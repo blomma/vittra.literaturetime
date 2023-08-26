@@ -8,7 +8,6 @@
 import XCTest
 
 final class vittra_literaturetimeUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
