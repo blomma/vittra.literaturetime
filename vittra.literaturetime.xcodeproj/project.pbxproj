@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E16CA082AA288B300B50C39 /* response_1693600338832.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E16CA072AA288B300B50C39 /* response_1693600338832.json */; };
+		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
+		9E16CA472AA3741F00B50C39 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA462AA3741F00B50C39 /* Persistence.swift */; };
+		9E16CA4B2AA3747B00B50C39 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA492AA3747B00B50C39 /* Model.xcdatamodeld */; };
+		9E4D19882A99F58E00386AC8 /* Times in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D19872A99F58E00386AC8 /* Times */; };
 		9E9CBD8B2A5898D600CB9319 /* vittra_literaturetimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */; };
 		9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8C2A5898D600CB9319 /* ContentView.swift */; };
 		9E9CBD8F2A5898D800CB9319 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */; };
@@ -14,6 +19,7 @@
 		9E9CBDA02A5898D800CB9319 /* vittra_literaturetimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD9F2A5898D800CB9319 /* vittra_literaturetimeTests.swift */; };
 		9E9CBDAA2A5898D800CB9319 /* vittra_literaturetimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBDA92A5898D800CB9319 /* vittra_literaturetimeUITests.swift */; };
 		9E9CBDAC2A5898D800CB9319 /* vittra_literaturetimeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBDAB2A5898D800CB9319 /* vittra_literaturetimeUITestsLaunchTests.swift */; };
+		9EBEDEF62A9BC7E2002CD4A4 /* Mimer in Frameworks */ = {isa = PBXBuildFile; productRef = 9EBEDEF52A9BC7E2002CD4A4 /* Mimer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E16CA072AA288B300B50C39 /* response_1693600338832.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_1693600338832.json; sourceTree = "<group>"; };
+		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
+		9E16CA462AA3741F00B50C39 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		9E4D19872A99F58E00386AC8 /* Times */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Times; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittra_literaturetimeApp.swift; sourceTree = "<group>"; };
 		9E9CBD8C2A5898D600CB9319 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +57,7 @@
 		9E9CBDA52A5898D800CB9319 /* vittra.literaturetimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vittra.literaturetimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBDA92A5898D800CB9319 /* vittra_literaturetimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittra_literaturetimeUITests.swift; sourceTree = "<group>"; };
 		9E9CBDAB2A5898D800CB9319 /* vittra_literaturetimeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittra_literaturetimeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9EBEDEF12A9BBC0B002CD4A4 /* Mimer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Mimer; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EBEDEF62A9BC7E2002CD4A4 /* Mimer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,13 +86,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E16CA482AA3746300B50C39 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9E16CA462AA3741F00B50C39 /* Persistence.swift */,
+				9E16CA492AA3747B00B50C39 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		9E9CBD7E2A5898D600CB9319 = {
 			isa = PBXGroup;
 			children = (
+				9EBEDEF12A9BBC0B002CD4A4 /* Mimer */,
 				9E9CBD892A5898D600CB9319 /* vittra.literaturetime */,
 				9E9CBD9E2A5898D800CB9319 /* vittra.literaturetimeTests */,
 				9E9CBDA82A5898D800CB9319 /* vittra.literaturetimeUITests */,
 				9E9CBD882A5898D600CB9319 /* Products */,
+				9EBEDEF42A9BC7E2002CD4A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,12 +120,16 @@
 		9E9CBD892A5898D600CB9319 /* vittra.literaturetime */ = {
 			isa = PBXGroup;
 			children = (
+				9E16CA482AA3746300B50C39 /* CoreData */,
+				9E16CA072AA288B300B50C39 /* response_1693600338832.json */,
+				9E4D19872A99F58E00386AC8 /* Times */,
 				9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */,
 				9E9CBD8C2A5898D600CB9319 /* ContentView.swift */,
 				9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */,
 				9E9CBD952A5898D800CB9319 /* vittra_literaturetime.entitlements */,
 				9E9CBD962A5898D800CB9319 /* Info.plist */,
 				9E9CBD902A5898D800CB9319 /* Preview Content */,
+				9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */,
 			);
 			path = vittra.literaturetime;
 			sourceTree = "<group>";
@@ -131,6 +159,13 @@
 			path = vittra.literaturetimeUITests;
 			sourceTree = "<group>";
 		};
+		9EBEDEF42A9BC7E2002CD4A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,8 +180,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				9EBEDEF32A9BC764002CD4A4 /* PBXTargetDependency */,
 			);
 			name = vittra.literaturetime;
+			packageProductDependencies = (
+				9EBEDEF52A9BC7E2002CD4A4 /* Mimer */,
+			);
 			productName = vittra.literaturetime;
 			productReference = 9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +274,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E4D19882A99F58E00386AC8 /* Times in Resources */,
+				9E16CA082AA288B300B50C39 /* response_1693600338832.json in Resources */,
 				9E9CBD922A5898D800CB9319 /* Preview Assets.xcassets in Resources */,
 				9E9CBD8F2A5898D800CB9319 /* Assets.xcassets in Resources */,
 			);
@@ -262,6 +303,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
+				9E16CA472AA3741F00B50C39 /* Persistence.swift in Sources */,
+				9E16CA4B2AA3747B00B50C39 /* Model.xcdatamodeld in Sources */,
+				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
 				9E9CBD8B2A5898D600CB9319 /* vittra_literaturetimeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +339,10 @@
 			isa = PBXTargetDependency;
 			target = 9E9CBD862A5898D600CB9319 /* vittra.literaturetime */;
 			targetProxy = 9E9CBDA62A5898D800CB9319 /* PBXContainerItemProxy */;
+		};
+		9EBEDEF32A9BC764002CD4A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 9EBEDEF22A9BC764002CD4A4 /* Mimer */;
 		};
 /* End PBXTargetDependency section */
 
@@ -434,8 +482,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,8 +513,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -596,6 +644,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9EBEDEF22A9BC764002CD4A4 /* Mimer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mimer;
+		};
+		9EBEDEF52A9BC7E2002CD4A4 /* Mimer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mimer;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		9E16CA492AA3747B00B50C39 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */,
+			);
+			currentVersion = 9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9E9CBD7F2A5898D600CB9319 /* Project object */;
 }
