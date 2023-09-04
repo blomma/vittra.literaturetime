@@ -10,7 +10,7 @@
 		9E16CA082AA288B300B50C39 /* response_1693600338832.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E16CA072AA288B300B50C39 /* response_1693600338832.json */; };
 		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
 		9E16CA472AA3741F00B50C39 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA462AA3741F00B50C39 /* Persistence.swift */; };
-		9E16CA4B2AA3747B00B50C39 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA492AA3747B00B50C39 /* Model.xcdatamodeld */; };
+		9E16CA4B2AA3747B00B50C39 /* LiteratureTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA492AA3747B00B50C39 /* LiteratureTime.xcdatamodeld */; };
 		9E4D19882A99F58E00386AC8 /* Times in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D19872A99F58E00386AC8 /* Times */; };
 		9E9CBD8B2A5898D600CB9319 /* vittra_literaturetimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */; };
 		9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8C2A5898D600CB9319 /* ContentView.swift */; };
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				9E16CA462AA3741F00B50C39 /* Persistence.swift */,
-				9E16CA492AA3747B00B50C39 /* Model.xcdatamodeld */,
+				9E16CA492AA3747B00B50C39 /* LiteratureTime.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 			files = (
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
 				9E16CA472AA3741F00B50C39 /* Persistence.swift in Sources */,
-				9E16CA4B2AA3747B00B50C39 /* Model.xcdatamodeld in Sources */,
+				9E16CA4B2AA3747B00B50C39 /* LiteratureTime.xcdatamodeld in Sources */,
 				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
 				9E9CBD8B2A5898D600CB9319 /* vittra_literaturetimeApp.swift in Sources */,
 			);
@@ -657,13 +657,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		9E16CA492AA3747B00B50C39 /* Model.xcdatamodeld */ = {
+		9E16CA492AA3747B00B50C39 /* LiteratureTime.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */,
 			);
 			currentVersion = 9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			path = LiteratureTime.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

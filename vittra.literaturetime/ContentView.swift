@@ -85,6 +85,7 @@ struct ContentViewMiddleware: Middleware {
                 literaturetime.quoteTime = value.quoteTime
                 literaturetime.quoteLast = value.quoteLast
                 literaturetime.time = value.time
+                literaturetime.id = value.hash
             }
 
             do {

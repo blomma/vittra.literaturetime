@@ -1,3 +1,4 @@
+import CoreData
 import Mimer
 import SwiftUI
 
@@ -12,11 +13,11 @@ extension String {
     }
 }
 
-struct LiteratureTimeModel: Codable, Equatable {
+struct LiteratureTimeModel: Equatable {
     var time: String
-    var quote_first: String
-    var quote_time_case: String
-    var quote_last: String
+    var quoteFirst: String
+    var quoteTime: String
+    var quoteLast: String
     var title: String
     var author: String
 }
@@ -47,23 +48,54 @@ struct LiteratureTimeReducer: Reducer {
 
 struct LiteratureTimeMiddleware: Middleware {
     struct Dependencies {
-        var search: (String) async throws -> [LiteratureTimeModel]
+        var search: (String) async throws -> LiteratureTimeModel?
 
         static var production: Dependencies {
             .init { query in
-                guard let file = Bundle.main.path(forResource: query, ofType: "json", inDirectory: "Times")
-                else {
-                    return .init([])
+                let context = PersistenceController.shared.container.viewContext
+
+                let fetchRequest = NSFetchRequest<LiteratureTime>(entityName: "\(LiteratureTime.self)")
+                fetchRequest.predicate = NSPredicate(format: "(%K == %@)", argumentArray: ["time", query])
+
+                guard let fetchRequestCount = try? context.count(for: fetchRequest) else {
+                    return nil
                 }
 
-                let data = try String(contentsOfFile: file).data(using: .utf8)
+                fetchRequest.fetchOffset = Int.random(in: 0 ... fetchRequestCount)
+                fetchRequest.fetchLimit = 1
 
-                guard let data = data
-                else {
-                    return .init([])
+                var fetchResults: [LiteratureTime]?
+                context.performAndWait {
+                    fetchResults = try? fetchRequest.execute()
                 }
 
-                return try JSONDecoder().decode([LiteratureTimeModel].self, from: data)
+                guard let fetchResults = fetchResults else {
+                    return nil
+                }
+
+                guard fetchResults.count > 0 else {
+                    return nil
+                }
+
+                guard
+                    let literatureTime = fetchResults.first,
+                    let time = literatureTime.time,
+                    let quoteFirst = literatureTime.quoteFirst,
+                    let quoteTime = literatureTime.quoteTime,
+                    let quoteLast = literatureTime.quoteLast,
+                    let title = literatureTime.title,
+                    let author = literatureTime.author
+                else {
+                    return nil
+                }
+
+                return LiteratureTimeModel(time: time, quoteFirst: quoteFirst, quoteTime: quoteTime, quoteLast: quoteLast, title: title, author: author)
+            }
+        }
+
+        static var preview: Dependencies {
+            .init { _ in
+                nil
             }
         }
     }
@@ -79,9 +111,11 @@ struct LiteratureTimeMiddleware: Middleware {
                 return .setResults(literatureTime: state.literatureTime)
             }
 
-            let literatureTime = results?.randomElement()
+            guard let results = results else {
+                return .setResults(literatureTime: state.literatureTime)
+            }
 
-            return .setResults(literatureTime: literatureTime ?? state.literatureTime)
+            return .setResults(literatureTime: results)
         default:
             return nil
         }
@@ -91,19 +125,19 @@ struct LiteratureTimeMiddleware: Middleware {
 typealias LiteratureTimeStore = Store<LiteratureTimeState, LiteratureTimeAction>
 
 struct LiteratureTimeView: View {
-    @State private var store = LiteratureTimeStore(
+    @State var store = LiteratureTimeStore(
         initialState: .init(
             literatureTime:
             LiteratureTimeModel(
                 time: "",
-                quote_first: "“Time is an illusion. Lunchtime doubly so.”",
-                quote_time_case: "",
-                quote_last: "",
+                quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
+                quoteTime: "",
+                quoteLast: "",
                 title: "The Hitchhiker's Guide to the Galaxy",
                 author: "Douglas Adams"
             )),
         reducer: LiteratureTimeReducer(),
-        middlewares: [LiteratureTimeMiddleware(dependencies: .production)]
+        middlewares: [LiteratureTimeMiddleware(dependencies: .preview)]
     )
 
     var body: some View {
@@ -114,10 +148,10 @@ struct LiteratureTimeView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
-                        Text(store.literatureTime.quote_first)
-                            + Text(store.literatureTime.quote_time_case)
+                        Text(store.literatureTime.quoteFirst)
+                            + Text(store.literatureTime.quoteTime)
                             .foregroundStyle(.literatureTime)
-                            + Text(store.literatureTime.quote_last)
+                            + Text(store.literatureTime.quoteLast)
                     }
                     .font(.system(.largeTitle, design: .serif, weight: .regular))
 
@@ -145,7 +179,7 @@ struct LiteratureTimeView: View {
             let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
             let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
-            let fileName = "\(paddedHour)_\(paddedMinute)"
+            let fileName = "\(paddedHour):\(paddedMinute)"
 
             await store.send(.searchRandom(query: fileName))
         }
@@ -159,7 +193,7 @@ struct LiteratureTimeView: View {
             let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
             let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
-            let fileName = "\(paddedHour)_\(paddedMinute)"
+            let fileName = "\(paddedHour):\(paddedMinute)"
 
             await store.send(.searchRandom(query: fileName))
         }
@@ -167,5 +201,18 @@ struct LiteratureTimeView: View {
 }
 
 #Preview {
-    LiteratureTimeView()
+    LiteratureTimeView(store: .init(
+        initialState: .init(
+            literatureTime:
+            LiteratureTimeModel(
+                time: "",
+                quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
+                quoteTime: "",
+                quoteLast: "",
+                title: "The Hitchhiker's Guide to the Galaxy",
+                author: "Douglas Adams"
+            )),
+        reducer: LiteratureTimeReducer(),
+        middlewares: [LiteratureTimeMiddleware(dependencies: .production)]
+    ))
 }
