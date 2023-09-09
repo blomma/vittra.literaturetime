@@ -61,7 +61,7 @@ struct LiteratureTimeMiddleware: Middleware {
                     return nil
                 }
 
-                fetchRequest.fetchOffset = Int.random(in: 0 ... fetchRequestCount)
+                fetchRequest.fetchOffset = Int.random(in: 0 ... fetchRequestCount - 1)
                 fetchRequest.fetchLimit = 1
 
                 var fetchResults: [LiteratureTime]?
