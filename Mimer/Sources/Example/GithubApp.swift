@@ -40,7 +40,6 @@ struct SearchReducer: Reducer {
 struct SearchMiddleware: Middleware {
     struct Dependencies {
         var search: (String) async throws -> SearchResponse
-        var search2: (Int) async throws -> SearchResponse
 
         static var production: Dependencies {
             .init { query in

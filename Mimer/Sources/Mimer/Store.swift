@@ -6,6 +6,7 @@ import Observation
 
     private let reducer: any Reducer<State, Action>
     private let middlewares: any Collection<any Middleware<State, Action>>
+    private let lock = NSRecursiveLock()
 
     /// Creates an instance of `Store` with the folowing parameters.
     public init(
@@ -20,17 +21,20 @@ import Observation
 
     /// A subscript providing access to the state of the store.
     public subscript<T>(dynamicMember keyPath: KeyPath<State, T>) -> T {
-        state[keyPath: keyPath]
+        lock.withLock { state[keyPath: keyPath] }
     }
 
     /// Use this method to mutate the state of the store by feeding actions.
     @MainActor public func send(_ action: Action) async {
-        state = reducer.reduce(oldState: state, with: action)
+        let newState = lock.withLock {
+            state = reducer.reduce(oldState: state, with: action)
+            return state
+        }
 
         await withTaskGroup(of: Action?.self) { group in
             middlewares.forEach { middleware in
                 group.addTask {
-                    await middleware.process(state: self.state, with: action)
+                    await middleware.process(state: newState, with: action)
                 }
             }
 
@@ -38,6 +42,45 @@ import Observation
                 await send(nextAction)
             }
         }
+    }
+}
+
+public extension Store {
+    /// Use this method to create another `Store` deriving from the current one.
+    @available(*, deprecated, message: "Use multiple stores instead of derived store")
+    func derived<DerivedState: Equatable, DerivedAction: Equatable>(
+        deriveState: @escaping (State) -> DerivedState,
+        deriveAction: @escaping (DerivedAction) -> Action
+    ) -> Store<DerivedState, DerivedAction> {
+        let derived = Store<DerivedState, DerivedAction>(
+            initialState: lock.withLock { deriveState(state) },
+            reducer: IdentityReducer(),
+            middlewares: [
+                ClosureMiddleware { _, action in
+                    await self.send(deriveAction(action))
+                    return nil
+                },
+            ]
+        )
+
+        @Sendable func enableStateObservationTracking() {
+            withObservationTracking {
+                let newState = lock.withLock { deriveState(state) }
+                derived.lock.withLock {
+                    if derived.state != newState {
+                        derived.state = newState
+                    }
+                }
+            } onChange: {
+                Task {
+                    enableStateObservationTracking()
+                }
+            }
+        }
+
+        enableStateObservationTracking()
+
+        return derived
     }
 }
 
@@ -50,7 +93,7 @@ public extension Store {
         embed: @escaping (Value) -> Action
     ) -> Binding<Value> {
         .init(
-            get: { extract(self.state) },
+            get: { self.lock.withLock { extract(self.state) } },
             set: { newValue in Task { await self.send(embed(newValue)) } }
         )
     }

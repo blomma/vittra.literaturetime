@@ -79,7 +79,7 @@ struct OffsetMiddleware<IndexedState, IndexedAction, State, Action>: Middleware 
     }
 }
 
-struct SendableMiddleware<State, Action>: Middleware {
+struct ClosureMiddleware<State, Action>: Middleware {
     let closure: @Sendable (State, Action) async -> Action?
 
     func process(state: State, with action: Action) async -> Action? {

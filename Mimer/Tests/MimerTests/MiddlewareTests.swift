@@ -1,9 +1,3 @@
-//
-//  MiddlewareTests.swift
-//
-//
-//  Created by Majid Jabrayilov on 14.07.22.
-//
 @testable import Mimer
 import XCTest
 

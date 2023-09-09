@@ -85,6 +85,57 @@ final class StoreTests: XCTestCase {
         XCTAssertEqual(store.counter, 0)
     }
 
+    func testDerivedStore() async throws {
+        let store = Store<State, Action>(
+            initialState: .init(),
+            reducer: TestReducer(),
+            middlewares: [TestMiddleware()]
+        )
+
+        let derived = store.derived(deriveState: { $0 }, deriveAction: { $0 })
+
+        XCTAssertEqual(store.counter, 0)
+        XCTAssertEqual(derived.counter, 0)
+
+        await store.send(.sideEffect)
+
+        XCTAssertEqual(store.counter, 1)
+        XCTAssertEqual(derived.counter, 1)
+
+        await derived.send(.sideEffect)
+
+        XCTAssertEqual(store.counter, 2)
+        XCTAssertEqual(derived.counter, 2)
+
+        let derivedTask = Task { await derived.send(.sideEffect) }
+        derivedTask.cancel()
+        await derivedTask.value
+
+        try await Task.sleep(nanoseconds: 1_000_000_000)
+
+        XCTAssertEqual(store.counter, 2)
+        XCTAssertEqual(derived.counter, 2)
+
+        let task = Task { await store.send(.sideEffect) }
+        task.cancel()
+        await task.value
+
+        try await Task.sleep(nanoseconds: 1_000_000_000)
+
+        XCTAssertEqual(store.counter, 2)
+        XCTAssertEqual(derived.counter, 2)
+
+        await store.send(.increment)
+
+        XCTAssertEqual(store.counter, 3)
+        XCTAssertEqual(derived.counter, 3)
+
+        await derived.send(.decrement)
+
+        XCTAssertEqual(store.counter, 2)
+        XCTAssertEqual(derived.counter, 2)
+    }
+
     func testBinding() async {
         let store = Store<State, Action>(
             initialState: .init(),
@@ -99,9 +150,8 @@ final class StoreTests: XCTestCase {
 
         binding.wrappedValue = 10
 
-        await MainActor.run {
-            XCTAssertEqual(store.counter, 10)
-        }
+        try? await Task.sleep(nanoseconds: 1_000_000)
+        XCTAssertEqual(store.counter, 10)
     }
 
     func testThreadSafety() async {
