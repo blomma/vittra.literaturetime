@@ -213,6 +213,6 @@ struct LiteratureTimeView: View {
                 author: "Douglas Adams"
             )),
         reducer: LiteratureTimeReducer(),
-        middlewares: [LiteratureTimeMiddleware(dependencies: .production)]
+        middlewares: [LiteratureTimeMiddleware(dependencies: .preview)]
     ))
 }
