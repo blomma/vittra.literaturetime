@@ -41,43 +41,6 @@ import Observation
     }
 }
 
-public extension Store {
-    /// Use this method to create another `Store` deriving from the current one.
-    @available(*, deprecated, message: "Use multiple stores instead of derived store")
-    func derived<DerivedState: Equatable, DerivedAction: Equatable>(
-        deriveState: @escaping (State) -> DerivedState,
-        deriveAction: @escaping (DerivedAction) -> Action
-    ) -> Store<DerivedState, DerivedAction> {
-        let derived = Store<DerivedState, DerivedAction>(
-            initialState: deriveState(state),
-            reducer: IdentityReducer(),
-            middlewares: [
-                ClosureMiddleware { _, action in
-                    await self.send(deriveAction(action))
-                    return nil
-                },
-            ]
-        )
-
-        @Sendable func enableStateObservationTracking() {
-            withObservationTracking {
-                let newState = deriveState(state)
-                if derived.state != newState {
-                    derived.state = newState
-                }
-            } onChange: {
-                Task {
-                    enableStateObservationTracking()
-                }
-            }
-        }
-
-        enableStateObservationTracking()
-
-        return derived
-    }
-}
-
 import SwiftUI
 
 public extension Store {
