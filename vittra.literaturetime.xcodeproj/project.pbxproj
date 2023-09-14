@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E16CA082AA288B300B50C39 /* response_1693600338832.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E16CA072AA288B300B50C39 /* response_1693600338832.json */; };
+		9E16CA082AA288B300B50C39 /* literature.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E16CA072AA288B300B50C39 /* literature.json */; };
 		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
 		9E16CA472AA3741F00B50C39 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA462AA3741F00B50C39 /* Persistence.swift */; };
 		9E16CA4B2AA3747B00B50C39 /* LiteratureTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA492AA3747B00B50C39 /* LiteratureTime.xcdatamodeld */; };
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9E16CA072AA288B300B50C39 /* response_1693600338832.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_1693600338832.json; sourceTree = "<group>"; };
+		9E16CA072AA288B300B50C39 /* literature.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = literature.json; sourceTree = "<group>"; };
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
 		9E16CA462AA3741F00B50C39 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				9E16CA482AA3746300B50C39 /* CoreData */,
-				9E16CA072AA288B300B50C39 /* response_1693600338832.json */,
+				9E16CA072AA288B300B50C39 /* literature.json */,
 				9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */,
 				9E9CBD8C2A5898D600CB9319 /* ContentView.swift */,
 				9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */,
@@ -271,7 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E16CA082AA288B300B50C39 /* response_1693600338832.json in Resources */,
+				9E16CA082AA288B300B50C39 /* literature.json in Resources */,
 				9E9CBD922A5898D800CB9319 /* Preview Assets.xcassets in Resources */,
 				9E9CBD8F2A5898D800CB9319 /* Assets.xcassets in Resources */,
 			);

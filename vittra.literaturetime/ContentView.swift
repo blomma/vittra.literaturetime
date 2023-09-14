@@ -41,7 +41,7 @@ struct ContentViewMiddleware: Middleware {
 
         static var production: Dependencies {
             .init {
-                guard let file = Bundle.main.path(forResource: "response_1693600338832", ofType: "json")
+                guard let file = Bundle.main.path(forResource: "literature", ofType: "json")
                 else {
                     return .init([])
                 }
