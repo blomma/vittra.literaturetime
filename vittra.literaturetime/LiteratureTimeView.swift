@@ -179,9 +179,9 @@ struct LiteratureTimeView: View {
             let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
             let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
-            let fileName = "\(paddedHour):\(paddedMinute)"
+            let query = "\(paddedHour):\(paddedMinute)"
 
-            await store.send(.searchRandom(query: fileName))
+            await store.send(.searchRandom(query: query))
         }
         .refreshable {
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
@@ -193,9 +193,9 @@ struct LiteratureTimeView: View {
             let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
             let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
-            let fileName = "\(paddedHour):\(paddedMinute)"
+            let query = "\(paddedHour):\(paddedMinute)"
 
-            await store.send(.searchRandom(query: fileName))
+            await store.send(.searchRandom(query: query))
         }
     }
 }
