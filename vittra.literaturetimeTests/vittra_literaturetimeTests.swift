@@ -1,10 +1,3 @@
-//
-//  vittra_literaturetimeTests.swift
-//  vittra.literaturetimeTests
-//
-//  Created by Mikael Hultgren on 2023-07-07.
-//
-
 @testable import vittra_literaturetime
 import XCTest
 
