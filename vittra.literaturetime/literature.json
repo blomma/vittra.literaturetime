@@ -192,10 +192,10 @@
     "time": "00:00",
     "quoteFirst": "Once upon a ",
     "quoteTime": "midnight",
-    "quoteLast": " dreary,\nwhile I pondered weak and weary,\nOver many a quaint and curious volume of forgotten lore,\nWhile I nodded, nearly napping, suddenly there came a tapping,\nAs of some one gently rapping, rapping at my chamber door.\n“Tis some visitor,” I muttered, “tapping at my chamber door - Only this, and nothing more.”",
+    "quoteLast": " dreary,\\nwhile I pondered weak and weary,\\nOver many a quaint and curious volume of forgotten lore,\\nWhile I nodded, nearly napping, suddenly there came a tapping,\\nAs of some one gently rapping, rapping at my chamber door.\\n\"Tis some visitor,\" I muttered, “tapping at my chamber door - Only this, and nothing more.”",
     "title": "The Raven",
     "author": "Edgar Allan Poe",
-    "hash": "5d493f300343bdb8937b028573ae99f0e216c843dbcb04383dc0e3119fc17091"
+    "hash": "2f223320909c64a41f66714e902dbd20ac303e1142f3417df7dbffaac13df498"
   },
   {
     "time": "00:00",
@@ -443,11 +443,11 @@
   {
     "time": "00:22",
     "quoteFirst": "Nobody had been one of Mycroft Ward's most important operatives and for sixty seconds every day, between 12.21am and ",
-    "quoteTime": "12.22am.",
-    "quoteLast": ", his laptop was permitted to connect directly with the gigantic online database of self that was Mycroft Ward's mind.",
+    "quoteTime": "12.22am",
+    "quoteLast": "., his laptop was permitted to connect directly with the gigantic online database of self that was Mycroft Ward's mind.",
     "title": "The Raw Shark Texts",
     "author": "Steven Hall",
-    "hash": "010bc6235f92fc77db81c11d2b1fc0689fe1d2c2858f995e3ded25a4015692d1"
+    "hash": "b4a905454c8502f8b25f0355158c4d99f7be47564d63be9675dd2682b19662c1"
   },
   {
     "time": "00:23",
@@ -488,11 +488,11 @@
   {
     "time": "00:26",
     "quoteFirst": "\"A Mr Dutta from King's Cross called and told me you were on your way. He said you wanted to see the arrival of yesterday's ",
-    "quoteTime": "12.26am.",
-    "quoteLast": " It'll take me a few minutes to cue up the footage. Our regular security bloke isn't here today; he's up before Haringey Magistrates' Court for gross indecency outside the headquarters of the Dagenham Girl Pipers.\"",
+    "quoteTime": "12.26am",
+    "quoteLast": ". It'll take me a few minutes to cue up the footage. Our regular security bloke isn't here today; he's up before Haringey Magistrates' Court for gross indecency outside the headquarters of the Dagenham Girl Pipers.\"",
     "title": "Bryant & May Off the Rails",
     "author": "Christopher Fowler",
-    "hash": "77651ff8a0b1a75da4aee4678a3a23810c556aeb70c140325906279d5efcaed0"
+    "hash": "3e13b3acda127272559ca14efddd278d0a76fefe361e87d5f1d73ac18a0ee60a"
   },
   {
     "time": "00:28",
@@ -686,11 +686,11 @@
   {
     "time": "01:00",
     "quoteFirst": "",
-    "quoteTime": "1.00 am.",
-    "quoteLast": " I felt the surrounding quietness suffocating me.",
+    "quoteTime": "1.00 am",
+    "quoteLast": ". I felt the surrounding quietness suffocating me.",
     "title": "Sister",
     "author": "Rosamund Lupton",
-    "hash": "50e9bf2251a65fc052953804c575ad0cc9c90506b4e509db06820554da75a2de"
+    "hash": "c99ab0c88ed141a051ef6fc5c019ee0f45e1285036a1af9c029929a397655e28"
   },
   {
     "time": "01:00",
@@ -821,11 +821,11 @@
   {
     "time": "01:15",
     "quoteFirst": "Lily Chen always prepared an ‘evening’ snack for her husband to consume on his return at ",
-    "quoteTime": "1.15am.",
-    "quoteLast": "",
+    "quoteTime": "1.15am",
+    "quoteLast": ".",
     "title": "Sour Sweet",
     "author": "Timothy Mo",
-    "hash": "26d083c133d67e9b6883e12fc83575d31b8c6be52ededc84b919705a0108b39f"
+    "hash": "4f20fc78349d055da08e0ecbf190a13bd701fc14dbab7680e419d2944ce728ca"
   },
   {
     "time": "01:15",
@@ -1136,11 +1136,11 @@
   {
     "time": "02:01",
     "quoteFirst": "I checked my watch. ",
-    "quoteTime": "2.01am.",
-    "quoteLast": " The cheeseburger Happy Meal was now only a distant memory. I cursed myself for not also ordering a breakfast sandwich for the morning.",
+    "quoteTime": "2.01am",
+    "quoteLast": ". The cheeseburger Happy Meal was now only a distant memory. I cursed myself for not also ordering a breakfast sandwich for the morning.",
     "title": "The Selected Works of T.S. Spivet",
     "author": "Reif Larsen",
-    "hash": "aa9d1b4ecdfcc79475358af438f29358c9070cdff757a816d0f38e9484b45023"
+    "hash": "37b00b24335a5c3f4f63f9ec16d33615c82863cd02bea1942b567330697646e8"
   },
   {
     "time": "02:02",
@@ -1325,20 +1325,20 @@
   {
     "time": "02:24",
     "quoteFirst": "It was ",
-    "quoteTime": "2.24am.",
-    "quoteLast": " She stumbled out of bed, tripping on her shoes that she’d kicked off earlier and pulled on a jumper.",
+    "quoteTime": "2.24am",
+    "quoteLast": ". She stumbled out of bed, tripping on her shoes that she’d kicked off earlier and pulled on a jumper.",
     "title": "After You’d Gone",
     "author": "Maggie O’Farrell",
-    "hash": "49dbb8e81a4daa92b8cdb9fc6d26f6cf751bb0ed1c81f9e9978e175a9d59397f"
+    "hash": "87cd2d64e725d4246d11c40a87dea3660d28a7c3a12bf7f0f13e2fba340beeae"
   },
   {
     "time": "02:25",
     "quoteFirst": "You see it is time: ",
-    "quoteTime": "2.25am.",
-    "quoteLast": " You get out of bed.",
+    "quoteTime": "2.25am",
+    "quoteLast": ". You get out of bed.",
     "title": "Nineteen Eighty-Three: The Red Riding Quartet, Book Four",
     "author": "David Peace",
-    "hash": "896823cb434d673880edd8aa4153735b8b3cc7fd17811b82610ae06b58ee961d"
+    "hash": "ce72b5847cc67c38cfcc1e8ecfef399bfc8bd5ba08453ff5ae84768995905a95"
   },
   {
     "time": "02:26",
@@ -1352,11 +1352,11 @@
   {
     "time": "02:27",
     "quoteFirst": "The moon didn’t shine again until ",
-    "quoteTime": "2.27am.",
-    "quoteLast": " It was enough to show Wallander that he was positioned some distance below the tree.",
+    "quoteTime": "2.27am",
+    "quoteLast": ". It was enough to show Wallander that he was positioned some distance below the tree.",
     "title": "One Step Behind",
     "author": "Henning Mankell",
-    "hash": "f62a326cca2eaca0d0a40a4c629e69ac7fb5a6171c794dc8e4efeac021bcae6b"
+    "hash": "85874a2380164626301b0e713e77d9a3a5b1f70f017ba54dd053a24c06b713f9"
   },
   {
     "time": "02:28",
@@ -1406,11 +1406,11 @@
   {
     "time": "02:31",
     "quoteFirst": "And then I woke up because there were people shouting in the flat and it was ",
-    "quoteTime": "2.31am.",
-    "quoteLast": " And one of the people was Father and I was frightened.",
+    "quoteTime": "2.31am",
+    "quoteLast": ". And one of the people was Father and I was frightened.",
     "title": "The Curious Incident Of The Dog In The Night-Time",
     "author": "Mark Haddon",
-    "hash": "690447cbba0dad45643177f00cce7aee4d5a54e083951b436c5b03f9b86adc5c"
+    "hash": "81c10b41f35adc35ae56f99610b8ec6ad64b9c8e5a85f779dc95dfaaf423d626"
   },
   {
     "time": "02:32",
@@ -1487,11 +1487,11 @@
   {
     "time": "02:46",
     "quoteFirst": "",
-    "quoteTime": "2.46am.",
-    "quoteLast": " The chain drive whirred and the paper target slid down the darkened range, ducking in and out of shafts of yellow incandescent light. At the firing station, a figure waited in the shadows. As the target passed the twenty-five-foot mark, the man opened fire: eight shots-rapid, unhesitating.",
+    "quoteTime": "2.46am",
+    "quoteLast": ". The chain drive whirred and the paper target slid down the darkened range, ducking in and out of shafts of yellow incandescent light. At the firing station, a figure waited in the shadows. As the target passed the twenty-five-foot mark, the man opened fire: eight shots-rapid, unhesitating.",
     "title": "Patriots",
     "author": "Steve Sohmer",
-    "hash": "fbc33cfc50c199e748a7a447d664c9b12527b2c5fdecb204eb2418badc349542"
+    "hash": "fbaac25046e4f50caab2a7f0f13bf33b9e7d1cd9e5d546df3e184b9c0a49c0e3"
   },
   {
     "time": "02:46",
@@ -1505,11 +1505,11 @@
   {
     "time": "02:47",
     "quoteFirst": "The glowing numbers read ",
-    "quoteTime": "2.47am.",
-    "quoteLast": " Moisés sighs and turns back to the bathroom door. Finally, the doorknob turns and Conchita comes back to bed. She resumes her place next to Moisés. Relieved, he pulls her close.",
+    "quoteTime": "2.47am",
+    "quoteLast": ". Moisés sighs and turns back to the bathroom door. Finally, the doorknob turns and Conchita comes back to bed. She resumes her place next to Moisés. Relieved, he pulls her close.",
     "title": "The Book of Want",
     "author": "Daniel A. Olivas",
-    "hash": "cb619f6f0964db7aec46aa3ab32b674a7f284fd82a5c89c741ccf180697ddf66"
+    "hash": "70fe7a766a18ae585cc47abf55cee29c544f05dc72149e96a1dcbd6e0c76674e"
   },
   {
     "time": "02:55",
@@ -1523,11 +1523,11 @@
   {
     "time": "02:55",
     "quoteFirst": "Time to go: ",
-    "quoteTime": "2.55am.",
-    "quoteLast": " Two-handed, Cec lifted his peak cap from the chair.",
+    "quoteTime": "2.55am",
+    "quoteLast": ". Two-handed, Cec lifted his peak cap from the chair.",
     "title": "Downriver",
     "author": "Iain Sinclair",
-    "hash": "0f6da4e15be62985fccdb1efe309c258eaac525676fc6896c966dac2dff6c553"
+    "hash": "6c9ebe8b3a0d1fdb69ac1ecb5b7dcc7bc5fc5d58bf206f79d8235a606d4a8470"
   },
   {
     "time": "02:56",
@@ -1658,11 +1658,11 @@
   {
     "time": "03:00",
     "quoteFirst": "Roused from her sleep, Freya Gaines groped for the switch of the vidphone; groggily she found it and snapped it on. ‘Lo,’ she mumbled, wondering what time it was. She made out the luminous dial of the clock beside the bed. ",
-    "quoteTime": "Three AM.",
-    "quoteLast": " Good grief.",
+    "quoteTime": "Three AM",
+    "quoteLast": ". Good grief.",
     "title": "The Game Players of Titan",
     "author": "Philip K Dick",
-    "hash": "15f99a887ee1cdba8e188550a8561f02618a3fd854958d3ea83de5db8df25508"
+    "hash": "8ce8e8331dbfc375ef304e22409f212491cbf0515fa7dea49f0a50f67ac48145"
   },
   {
     "time": "03:00",
@@ -1901,11 +1901,11 @@
   {
     "time": "03:34",
     "quoteFirst": "It was ",
-    "quoteTime": "3:34 am.",
-    "quoteLast": " and he was wide-awake. He'd heard the phone ring and the sound of his uncle's voice.",
+    "quoteTime": "3:34 am",
+    "quoteLast": ". and he was wide-awake. He'd heard the phone ring and the sound of his uncle's voice.",
     "title": "Always Florence",
     "author": "Muriel Jensen",
-    "hash": "1162f7343220c6849069820c684fea4a7d507d01d0b19ca91bdfdfb61fe7b780"
+    "hash": "d10bd99f0eb6b01ce64aa32dced40fdb1140ff5594af048c9900ba1e00dedd7b"
   },
   {
     "time": "03:35",
@@ -1946,11 +1946,11 @@
   {
     "time": "03:39",
     "quoteFirst": "23 October 1893 ",
-    "quoteTime": "3.39am.",
-    "quoteLast": " Upon further thought, I feel it necessary to explain that exile into the Master's workshop is not an unpleasant fate. It is not simply some bare-walled cellar devoid of stimulation - quite the opposite.",
+    "quoteTime": "3.39am",
+    "quoteLast": ". Upon further thought, I feel it necessary to explain that exile into the Master's workshop is not an unpleasant fate. It is not simply some bare-walled cellar devoid of stimulation - quite the opposite.",
     "title": "The Clockwork man",
     "author": "William Jablonsky",
-    "hash": "320d2fd3087beb17e7fc1a8602e300701b42cd5d24abbf482b709540cf9b4254"
+    "hash": "3ff6077e2a48eb1120cdc144c7c41bc7d76b040776907cb19c168e167d5f2cb3"
   },
   {
     "time": "03:40",
@@ -1964,11 +1964,11 @@
   {
     "time": "03:41",
     "quoteFirst": "The alarm clock said ",
-    "quoteTime": "3.41am.",
-    "quoteLast": " He sat up. Why was the alarm clock slow? He picked up the alarm clock and adjusted the hands to show the same time as his wristwatch: 3.44am",
+    "quoteTime": "3.41am",
+    "quoteLast": ". He sat up. Why was the alarm clock slow? He picked up the alarm clock and adjusted the hands to show the same time as his wristwatch: 3.44am",
     "title": "The Dogs of Riga",
     "author": "Henning Mankell",
-    "hash": "3326b299a776e6f94f6432a9725ecd577904fae77646cc2c25f203c52ac83eba"
+    "hash": "bcd4e005541f53655b54eada4709c255955b39c0236fab7f67fd76091fa096c1"
   },
   {
     "time": "03:42",
@@ -1982,11 +1982,11 @@
   {
     "time": "03:43",
     "quoteFirst": "The clock says ",
-    "quoteTime": "3.43am.",
-    "quoteLast": " The thermometer says it's a chilly fourteen degrees Fahrenheit. The weatherman says the cold spell will last until Thursday, so bundle up and bundle up some more. There are icicles barring the window of the bat cave.",
+    "quoteTime": "3.43am",
+    "quoteLast": ". The thermometer says it's a chilly fourteen degrees Fahrenheit. The weatherman says the cold spell will last until Thursday, so bundle up and bundle up some more. There are icicles barring the window of the bat cave.",
     "title": "Ghostwritten",
     "author": "David Mitchell",
-    "hash": "b42d0585d193f9c9f7f00411869c25e2ec3ecae020eb90e152947b7024d617a3"
+    "hash": "cc80c6f485eab022e5db1dc940c53723ba3e6511bbbdd31011b5bc50abc76539"
   },
   {
     "time": "03:44",
@@ -2117,11 +2117,11 @@
   {
     "time": "04:00",
     "quoteFirst": "“I looked at the clock and it was (yes, you guessed it) ",
-    "quoteTime": "four am.",
-    "quoteLast": " I should have taken comfort from the fact that approximately quarter of the Greenwich Mean Time world had just jolted awake also and were lying, staring miserably into the darkness, worrying ...”",
+    "quoteTime": "four am",
+    "quoteLast": ". I should have taken comfort from the fact that approximately quarter of the Greenwich Mean Time world had just jolted awake also and were lying, staring miserably into the darkness, worrying ...”",
     "title": "Watermelon",
     "author": "Marian Keyes",
-    "hash": "0a3eba2d17280cf69ffccc9714ba193b0d101dc38776e84de19b7bc212e0cf0e"
+    "hash": "05ef7832e19ea107f0c1192d488cfbe7aa2c41a229da95801c5a7f63124fd1fb"
   },
   {
     "time": "04:00",
@@ -2207,11 +2207,11 @@
   {
     "time": "04:05",
     "quoteFirst": "Leaves were being blown against my window. It was ",
-    "quoteTime": "4.05am.",
-    "quoteLast": " The moon had shifted in the sky, glaring through a clotted mass of clouds like a candled egg.",
+    "quoteTime": "4.05am",
+    "quoteLast": ". The moon had shifted in the sky, glaring through a clotted mass of clouds like a candled egg.",
     "title": "We Were the Mulvaneys",
     "author": "Joyce Carol Oates",
-    "hash": "eee204aa1e42fc8a57bb1b24d841886dfa5092aca64cee2db636b071ef530b7b"
+    "hash": "5a13cf231933d8c5b88fdf99a60d8cecee4eba5aad3a4695d4684ab72db24ffa"
   },
   {
     "time": "04:06",
@@ -2225,11 +2225,11 @@
   {
     "time": "04:07",
     "quoteFirst": "",
-    "quoteTime": "4.07am.",
-    "quoteLast": " Why am I standing? My shoulders feel cold and I'm shivering. I become aware that I'm standing in the middle of the room. I immediately look at the bedroom door. Closed, with no signs of a break-in. Why did I get up?",
+    "quoteTime": "4.07am",
+    "quoteLast": ". Why am I standing? My shoulders feel cold and I'm shivering. I become aware that I'm standing in the middle of the room. I immediately look at the bedroom door. Closed, with no signs of a break-in. Why did I get up?",
     "title": "Guarding Hanna: A Novel",
     "author": "Miha Mazzini",
-    "hash": "7ea35ab135e5fa3bd2705106c8dfc4cbeb16e68eee7319eba13c6e3c5a04e97a"
+    "hash": "08547814470b0ed630307fb5edea655e9af850632acd43b1aea8f2ba9efabdaf"
   },
   {
     "time": "04:08",
@@ -2774,11 +2774,11 @@
   {
     "time": "05:13",
     "quoteFirst": "Lying on my side in bed, I stared at my alarm clock until it became a blemish, its red hue glowing like a welcome sign beckoning me into the depths of hell's crimson-colored cavities. ",
-    "quoteTime": "5:13 am.",
-    "quoteLast": " To describe this Monday as a blue Monday was an understatement.",
+    "quoteTime": "5:13 am",
+    "quoteLast": ". To describe this Monday as a blue Monday was an understatement.",
     "title": "Uptempo",
     "author": "Nakia D Johnson",
-    "hash": "fb0aa6328b33477077d255628617137b45687ea0a4d686b85cc0f092c1323005"
+    "hash": "49e8b8ab9159b9af9a43536f05d1195d0cad1dbd5b2a19d290265f73341fa339"
   },
   {
     "time": "05:14",
@@ -3161,20 +3161,20 @@
   {
     "time": "06:15",
     "quoteFirst": "It was ",
-    "quoteTime": "6.15 am.",
-    "quoteLast": " Just starting to get light. A small knot of older teenagers were leaning against a nearby wall. They looked as though they had been out all night.Two of the guys stared at us. Their eyes hard and threatening.",
+    "quoteTime": "6.15 am",
+    "quoteLast": ". Just starting to get light. A small knot of older teenagers were leaning against a nearby wall. They looked as though they had been out all night.Two of the guys stared at us. Their eyes hard and threatening.",
     "title": "Girl Missing",
     "author": "Sophie McKenzie",
-    "hash": "816911d0bf3490f54b23ffddad1285970dc63bd433e730a291c8993be453c4e2"
+    "hash": "780a99bfe55aa693e7bbf79c7a140be9671ecd24028b6bc1fd248142a659e55e"
   },
   {
     "time": "06:15",
     "quoteFirst": "It was ",
-    "quoteTime": "6.15 am.",
-    "quoteLast": " Just starting to get light. A small knot of older teenagers were leaning against a nearby wall. They looked as though they had been out all night.Two of the guys stared at us. Their eyes hard and threatening.",
+    "quoteTime": "6.15 am",
+    "quoteLast": ". Just starting to get light. A small knot of older teenagers were leaning against a nearby wall. They looked as though they had been out all night.Two of the guys stared at us. Their eyes hard and threatening.",
     "title": "Girl Missing",
     "author": "Sophie McKenzie",
-    "hash": "816911d0bf3490f54b23ffddad1285970dc63bd433e730a291c8993be453c4e2"
+    "hash": "780a99bfe55aa693e7bbf79c7a140be9671ecd24028b6bc1fd248142a659e55e"
   },
   {
     "time": "06:17",
@@ -3251,11 +3251,11 @@
   {
     "time": "06:30",
     "quoteFirst": "Inside now MJ ordered. She pushed the three of us into the hotel room, thern shut the soor. I glanced at the clock by the bed. ",
-    "quoteTime": "6.30 am.",
-    "quoteLast": " Why were they waking Mum and Dad up this early?",
+    "quoteTime": "6.30 am",
+    "quoteLast": ". Why were they waking Mum and Dad up this early?",
     "title": "Girl Missing",
     "author": "Sophie McKenzie",
-    "hash": "560fc0f554447cc57d10945a76b7b9bd49a01fb6c43c5a41809a8034d40b95b4"
+    "hash": "52249a94668e5f0f34c110c89e3b560164345f146042ab83bc363b79c97c7d4a"
   },
   {
     "time": "06:30",
@@ -3359,11 +3359,11 @@
   {
     "time": "06:38",
     "quoteFirst": "The clock on the dashboard said it was ",
-    "quoteTime": "6.38am.",
-    "quoteLast": " He left the keys in the car, and walked toward the tree.",
+    "quoteTime": "6.38am",
+    "quoteLast": ". He left the keys in the car, and walked toward the tree.",
     "title": "American Gods",
     "author": "Neil Gaiman",
-    "hash": "29bfe27f2af050e84fd56b18ac25def755f85df43461c6e05ae3c85b27ab0576"
+    "hash": "bf5ff7abf5beda8edd8368161153fa6d16914f091f4595ab83538b5001808553"
   },
   {
     "time": "06:40",
@@ -3377,11 +3377,11 @@
   {
     "time": "06:43",
     "quoteFirst": "To London on the ",
-    "quoteTime": "6.43am.",
-    "quoteLast": " Jessica is back from her holiday. Things are looking up, she called me Chris, instead of Minister, when we talked on the phone this afternoon.",
+    "quoteTime": "6.43am",
+    "quoteLast": ". Jessica is back from her holiday. Things are looking up, she called me Chris, instead of Minister, when we talked on the phone this afternoon.",
     "title": "A View From the Foothills",
     "author": "Chris Mullin",
-    "hash": "bb15512d1cfd10b8dcf41b5ee28ded63e389c5ac732841ef314669570b6d94f8"
+    "hash": "048acd7ef3ad10fce45eee02e3760045568b2435bc0961c5f0e15a9e301f70dd"
   },
   {
     "time": "06:44",
@@ -4258,12 +4258,12 @@
   },
   {
     "time": "08:17",
-    "quoteFirst": "“Breakfast over, my uncle drew from his pocket a small notebook, intended for scientific observations. He consulted his instruments, and recorded:“Monday, July 1.“Chronometer, ",
+    "quoteFirst": "“Breakfast over, my uncle drew from his pocket a small notebook, intended for scientific observations. He consulted his instruments, and recorded:\\n“Monday, July 1.\\n“Chronometer, ",
     "quoteTime": "8.17 a.m.",
-    "quoteLast": "; barometer, 297 in.; thermometer, 6° (43° F.). Direction, E.S.E.”This last observation applied to the dark gallery, and was indicated by the compass.”",
+    "quoteLast": "; barometer, 297 in.; thermometer, 6° (43° F.). Direction, E.S.E.”\\nThis last observation applied to the dark gallery, and was indicated by the compass.”",
     "title": "A Journey to the Centre of the Earth",
     "author": "Jules Verne",
-    "hash": "ea9975e84a0544c5df53ddc954b1335a22f6de595cf5f0370c8dc51f4cdaf1eb"
+    "hash": "1fa375d0346eff9d740d37a56e4aacb80575e1f216953e063bb989d1cf6d98d9"
   },
   {
     "time": "08:17",
@@ -4583,11 +4583,11 @@
   {
     "time": "08:52",
     "quoteFirst": "Message one. Tuesday, ",
-    "quoteTime": "8.52am.",
-    "quoteLast": " Is anybody there? Hello?",
+    "quoteTime": "8.52am",
+    "quoteLast": ". Is anybody there? Hello?",
     "title": "Extremely Loud and Incredibly Close",
     "author": "Jonathan Safran Foer",
-    "hash": "a1f08a3f47cd2c255f54da0ce6fe060cf721a69477dfb341f7b8d93b9cc84ad6"
+    "hash": "8ed0fabafdb6ab8f2dcaf4d2643e17190e3f2d9bbbb1ab999c4f20b064398eed"
   },
   {
     "time": "08:54",
@@ -5249,11 +5249,11 @@
   {
     "time": "09:36",
     "quoteFirst": "Monday February 6th. ‘",
-    "quoteTime": "9.36am.",
-    "quoteLast": " Oh god, Oh god. Maybe he's fallen in love in New York and stayed there’.",
+    "quoteTime": "9.36am",
+    "quoteLast": ". Oh god, Oh god. Maybe he's fallen in love in New York and stayed there’.",
     "title": "Bridget Jones Diary",
     "author": "Helen Fielding",
-    "hash": "3bb458903dd43d12cc9c4332be34c95e9d7423bb132c3e85f582d49c12949c8c"
+    "hash": "9a3a0620421f5aa8fd48b7178a6ba753eacd9b5e08df23a35c9a8b1bec802ef9"
   },
   {
     "time": "09:37",
@@ -5303,20 +5303,20 @@
   {
     "time": "09:47",
     "quoteFirst": "Monday February 6th. ‘",
-    "quoteTime": "9.47am.",
-    "quoteLast": " Or gone to Las Vegas and got married’.",
+    "quoteTime": "9.47am",
+    "quoteLast": ". Or gone to Las Vegas and got married’.",
     "title": "Bridget Jones Diary",
     "author": "Helen Fielding",
-    "hash": "7a517c9ffebdc1dce8c8a701fd59053e6540cebacec5555d8e066b72d7cbaa2c"
+    "hash": "e9c80a954d103604473c3aa41769c9eb7d4486ba8c5ad909428c19f45de32381"
   },
   {
     "time": "09:50",
     "quoteFirst": "",
-    "quoteTime": "9.50am.",
-    "quoteLast": " Hmmm. Think will go inspect make-up in case he does come in",
+    "quoteTime": "9.50am",
+    "quoteLast": ". Hmmm. Think will go inspect make-up in case he does come in",
     "title": "Bridget Jones Diary",
     "author": "Helen Fielding",
-    "hash": "270776383608bda6e136b00ed5d598b7631907a80ff6bfcfa525c57aca85f31c"
+    "hash": "b609a4823d585171f3c1483aa6087b903ba86d3141a02bc79530bc7a009373c5"
   },
   {
     "time": "09:50",
@@ -6275,11 +6275,11 @@
   {
     "time": "11:14",
     "quoteFirst": "The report was dated Sunday, 25 September, 1966, at ",
-    "quoteTime": "11.14am.",
-    "quoteLast": " The text was laconic. Call from Hrk Vanger; stating that his brother's daughter (?) Harriett Ulrika Vanger, born 15 June 1960 (age 1960) has been missing from her home on Hedley Island since Saturday afternoon.",
+    "quoteTime": "11.14am",
+    "quoteLast": ". The text was laconic. Call from Hrk Vanger; stating that his brother's daughter (?) Harriett Ulrika Vanger, born 15 June 1960 (age 1960) has been missing from her home on Hedley Island since Saturday afternoon.",
     "title": "The Girl With The Dragon Tattoo",
     "author": "Stieg Larsson",
-    "hash": "862febf78d2f3ddc2228520ef31457aa3f332b549677e8efcfdcb0af1866980c"
+    "hash": "b4b06231f87419e971e8a3797cb3299122878b29e5425711831da87bd7fbc0be"
   },
   {
     "time": "11:15",
@@ -7056,22 +7056,31 @@
     "hash": "d334ac28f91ab8c0b189ef365052804158b75f9bfdcbde50b30407ca6d7dae9a"
   },
   {
-    "time": "12:26",
+    "time": "12:25",
     "quoteFirst": "",
-    "quoteTime": "",
-    "quoteLast": "12.25pm. 26. 27. Every time Billy saved a shot he looked heartbroken",
+    "quoteTime": "12.25",
+    "quoteLast": "pm. 26. 27. Every time Billy saved a shot he looked heartbroken",
     "title": "A Kestrel For a Knave",
     "author": "Barry Hines",
-    "hash": "11e6b0ce3f6da10efbf42bdccd7046a5e903d53711d82f0e96fcc97648a49c6b"
+    "hash": "54ba4fb16a383e880c6314425606be83a44a13eabdaa7592d58a1650b608d9d3"
+  },
+  {
+    "time": "12:26",
+    "quoteFirst": "12.25pm. ",
+    "quoteTime": "26",
+    "quoteLast": ". 27. Every time Billy saved a shot he looked heartbroken",
+    "title": "A Kestrel For a Knave",
+    "author": "Barry Hines",
+    "hash": "f17cbf4ffb0b3b29cd79241f85ed7aace52983042c8c6d17b16f989c7f997464"
   },
   {
     "time": "12:27",
-    "quoteFirst": "",
-    "quoteTime": "",
-    "quoteLast": "12.25pm. 26. 27. Every time Billy saved a shot he looked heartbroken",
+    "quoteFirst": "12.25pm. 26. ",
+    "quoteTime": "27",
+    "quoteLast": ". Every time Billy saved a shot he looked heartbroken",
     "title": "A Kestrel For a Knave",
     "author": "Barry Hines",
-    "hash": "aba4d0ce58490d37d309107269b90e915593cd4833f86aa338d6b2e92687de32"
+    "hash": "8892e0a36c62a4040ad160f1f74fe7c4f232ad3a9f82fa6925a794205d9b5c48"
   },
   {
     "time": "12:28",
@@ -7256,11 +7265,11 @@
   {
     "time": "12:54",
     "quoteFirst": "I listen to the different boats' horns, hoping to learn what kind of boat I'm hearing and what the signal means: is the boat leaving or entering the harbor; is it the ferry, or a whale-watching boat, or a fishing boat? At 5:33 pm there is a blast of two deep, resonant notes a major third apart. On another day there is the same blast at ",
-    "quoteTime": "12:54 pm.",
-    "quoteLast": " On another, exactly 8:00 am.",
+    "quoteTime": "12:54 pm",
+    "quoteLast": ". On another, exactly 8:00 am.",
     "title": "Varieties of Disturbance",
     "author": "Lydia Davis",
-    "hash": "d86745966de63277c2ecb27eb1418fc3ab8948293fac52eda05e5d3fd8803567"
+    "hash": "ae1712590b2c7693f5dc096c6bf421e1d9df188402353bd739b1c59ca5fdc829"
   },
   {
     "time": "12:55",
@@ -7742,11 +7751,11 @@
   {
     "time": "13:47",
     "quoteFirst": "Poppy was sprawled on Brianne's bed, applying black mascara to her stubby lashes. Brianne was sitting at her desk, trying to complete an essay before the 2pm deadline. It was ",
-    "quoteTime": "1.47pm.",
-    "quoteLast": "",
+    "quoteTime": "1.47pm",
+    "quoteLast": ".",
     "title": "The Woman Who Went To Bed For A Year",
     "author": "Sue Townsend",
-    "hash": "14986a4f81a091ceff22c8fc92119cc9d8b24abef6d6ba47d8288a380899746c"
+    "hash": "638fe55d6e276d22582d625b8b88320c822755cf2b04e12ab61e13088d524400"
   },
   {
     "time": "13:48",
@@ -7922,11 +7931,11 @@
   {
     "time": "14:04",
     "quoteFirst": "",
-    "quoteTime": "2.04pm.",
-    "quoteLast": " Once again, the Quartermaster-General's office came on the line asking for Colonel Finckh, and once again Finckh heard the quiet, unemotional, unfamiliar voice",
+    "quoteTime": "2.04pm",
+    "quoteLast": ". Once again, the Quartermaster-General's office came on the line asking for Colonel Finckh, and once again Finckh heard the quiet, unemotional, unfamiliar voice",
     "title": "The Night of the Generals",
     "author": "Hans Hellmut Kirst",
-    "hash": "ed6b7f7cf2a04bae33208419f7cc95467a259c090ec983aabf19f8a5738366c7"
+    "hash": "1a7d509d842c8d1f3e57863b1facf33e9642de9d6805f7cf0239703fa80373eb"
   },
   {
     "time": "14:05",
@@ -8435,11 +8444,11 @@
   {
     "time": "15:03",
     "quoteFirst": "I check Shingi's mobile phone - it says it's ",
-    "quoteTime": "3.03pm.",
-    "quoteLast": " I get out of bed, open my suitcase to take clean socks out and the smell of Mother hit my nose and make me feel dizzy.",
+    "quoteTime": "3.03pm",
+    "quoteLast": ". I get out of bed, open my suitcase to take clean socks out and the smell of Mother hit my nose and make me feel dizzy.",
     "title": "Harare North",
     "author": "Brian Chikwava",
-    "hash": "8ce5d3fd0a365a0d2c1fe9c02d5a6f450e29304957bbf8af85cbdb321902adcf"
+    "hash": "d88df4a51ee85f3229fd374cb420c3b7bf988dea4fbfde6eaed7244e3961672f"
   },
   {
     "time": "15:04",
@@ -9326,11 +9335,11 @@
   {
     "time": "16:29",
     "quoteFirst": "October 21, 2007, ",
-    "quoteTime": "4:29 pm.",
-    "quoteLast": " The phone was red. And what William hated most about it, besides the fact that it was inconveniently mounted on a wall in a tight corner (and at a strange angle), was that when it rang it was so gratingly loud that you could actually see the cherry receiver quavering as you picked it up.",
+    "quoteTime": "4:29 pm",
+    "quoteLast": ". The phone was red. And what William hated most about it, besides the fact that it was inconveniently mounted on a wall in a tight corner (and at a strange angle), was that when it rang it was so gratingly loud that you could actually see the cherry receiver quavering as you picked it up.",
     "title": "Believing Cedric",
     "author": "Mark Lavorato",
-    "hash": "f249d5bb6d5740ecf87a4f28827286bad2a7ef965df8f593baf0b475b7714c0c"
+    "hash": "55ea0a88fd5705e804d4109ebdee717592bb82a2aa23ce2e50c0b5b32a6a093d"
   },
   {
     "time": "16:30",
@@ -9371,11 +9380,11 @@
   {
     "time": "16:32",
     "quoteFirst": "“",
-    "quoteTime": "4.32pm.",
-    "quoteLast": " Now the eight Marines next to us leave their emplacement and file quickly past, the last saying, “Go! Go! Go!” They break into a run.”",
+    "quoteTime": "4.32pm",
+    "quoteLast": ". Now the eight Marines next to us leave their emplacement and file quickly past, the last saying, “Go! Go! Go!” They break into a run.”",
     "title": "Seek",
     "author": "Denis Johnson",
-    "hash": "3285534cf0d6e555879b2254926aa2c1c5e242cf2ae6dc98155f261e7b38d709"
+    "hash": "85e1dd94c4cfeff2921334d3c8868aaced396646990c61c0ead92ef0f1db7429"
   },
   {
     "time": "16:33",
@@ -9434,11 +9443,11 @@
   {
     "time": "16:42",
     "quoteFirst": "I'm always happy when I reach the finish line of a long-distance race, but this time it really struck me hard. I pumped my right fist into the air. The time was ",
-    "quoteTime": "4:42pm.",
-    "quoteLast": " Eleven hours and forty-two minutes since the start of the race.",
+    "quoteTime": "4:42pm",
+    "quoteLast": ". Eleven hours and forty-two minutes since the start of the race.",
     "title": "What I Talk About When I Talk About Running",
     "author": "Haruki Murakami",
-    "hash": "870c7d2b5aed31de6fdcbec3586b83dd504c2bb0fdf2bec1f87afe9e7ee415fd"
+    "hash": "a6b25e5bf2d1a6a7c4e32cf490448cb7bd6b860c6ea98641f0bab6711aab5189"
   },
   {
     "time": "16:45",
@@ -10181,11 +10190,11 @@
   {
     "time": "18:15",
     "quoteFirst": "I checked the time on the corner of my screen. ",
-    "quoteTime": "6.15 pm.",
-    "quoteLast": " I was never going to finisah my essay in forty-five minutes",
+    "quoteTime": "6.15 pm",
+    "quoteLast": ". I was never going to finisah my essay in forty-five minutes",
     "title": "Girl Missing",
     "author": "Sophie McKenzie",
-    "hash": "6620ec1c7f0c5a756480f422dadafd83a33ede2a060f344dc1251599a92ffba4"
+    "hash": "935860c1fe1bea836110bb9673526a04b95aaa36e2047c471aa7d5c12a58b9ca"
   },
   {
     "time": "18:20",
@@ -10928,11 +10937,11 @@
   {
     "time": "19:58",
     "quoteFirst": "Robert Langdon stole an anxious glance at his wristwatch: ",
-    "quoteTime": "7.58pm.",
-    "quoteLast": " The smiling face of Mickey Mouse did little to cheer him up.",
+    "quoteTime": "7.58pm",
+    "quoteLast": ". The smiling face of Mickey Mouse did little to cheer him up.",
     "title": "The Lost Symbol",
     "author": "Dan Brown",
-    "hash": "8b08d18d2d67122967858229658250cfcfd05fb05be1b71c1bd49a7ff9bc0d42"
+    "hash": "989e3e5bf0893d3e9a3d3aace031b58aa47575e4402b17fccd5eacfb3bc34994"
   },
   {
     "time": "19:59",
@@ -11324,11 +11333,11 @@
   {
     "time": "20:35",
     "quoteFirst": "",
-    "quoteTime": "8:35pm.",
-    "quoteLast": " Found operating instructions under Hello.",
+    "quoteTime": "8:35pm",
+    "quoteLast": ". Found operating instructions under Hello.",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "0652d19ab53fa9aa2799e3250e2a668dd10a9f38b1e0568722ce2ac73c475f1e"
+    "hash": "d7a9ee8166609c41f82c6ddb3bdc8e7e1151944603de0cb0a340fcc9d268f339"
   },
   {
     "time": "20:35",
@@ -11441,11 +11450,11 @@
   {
     "time": "20:50",
     "quoteFirst": "“",
-    "quoteTime": "8.50pm.",
-    "quoteLast": " Ah Diagram “Buttons for IMC functions”. But what are IMC functions?”",
+    "quoteTime": "8.50pm",
+    "quoteLast": ". Ah Diagram “Buttons for IMC functions”. But what are IMC functions?”",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "6f24d2334fe818590a764c5db2d048a7a753c5b950e9240a8b00782b980f4bce"
+    "hash": "f05d5c461055cafe2254ea5b03544c0de4a4635e08a11da90d1096b53645b707"
   },
   {
     "time": "20:50",
@@ -11495,20 +11504,20 @@
   {
     "time": "20:55",
     "quoteFirst": "And the past. The clock on the dash said ",
-    "quoteTime": "8:55pm.",
-    "quoteLast": " And the last pink shard of the sun was reaching up into the night sky, desperately trying to hold on for just one more minute.",
+    "quoteTime": "8:55pm",
+    "quoteLast": ". And the last pink shard of the sun was reaching up into the night sky, desperately trying to hold on for just one more minute.",
     "title": "Such Great Heights",
     "author": "Chris Cole",
-    "hash": "5b6c6a86f24aff04a6150df77d4c454d01856f967a19cb238325e22808bcfb58"
+    "hash": "8b090e0f01b61e3b177602a6c65b9c978f717d8aaccf7981bc067dee277c5a41"
   },
   {
     "time": "20:56",
-    "quoteFirst": "““No. 7 berth—a second-class. The gentleman has not yet come, and it is ",
+    "quoteFirst": "“No. 7 berth—a second-class. The gentleman has not yet come, and it is ",
     "quoteTime": "four minutes to nine",
     "quoteLast": ".”",
     "title": "Murder on the Orient Express",
     "author": "Agatha Christie",
-    "hash": "314672ff6ef2e70636bad124bfd760e282df00bd32618a79299a36e7a9e746b6"
+    "hash": "d640ed4b0a0511b034ad4796b228f0b9a71305f6ae058b126eaae92aebc62eac"
   },
   {
     "time": "20:57",
@@ -11675,11 +11684,11 @@
   {
     "time": "21:10",
     "quoteFirst": "",
-    "quoteTime": "10.10pm.",
-    "quoteLast": " When you turn your recorder on you must adjust clock and the calendar…....Press red and nothing happens. Press numbers and nothing happens. Wish stupid video had never been invented.",
+    "quoteTime": "10.10pm",
+    "quoteLast": ". When you turn your recorder on you must adjust clock and the calendar…....Press red and nothing happens. Press numbers and nothing happens. Wish stupid video had never been invented.",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "9240975e76da5f8dc9df8ff0e82b496ba7c842ffa637312e161cb98515758b69"
+    "hash": "73f3f01313329f41a5c13a623b03c6be4ae361e80c6ed41f4c8e04c8c14bc452"
   },
   {
     "time": "21:11",
@@ -12026,11 +12035,11 @@
   {
     "time": "22:02",
     "quoteFirst": "It was now ",
-    "quoteTime": "10.02pm.",
-    "quoteLast": " He has less than two hours.",
+    "quoteTime": "10.02pm",
+    "quoteLast": ". He has less than two hours.",
     "title": "The Lost Symbol",
     "author": "Dan Brown",
-    "hash": "6b19c53d9b5f2333a98cff126ab8a19a7644ed96094cd8a2666b138e8c5f3523"
+    "hash": "5760095f79550e818ce3513cc2ba8c84c49dfa42ccde826947098880ce4bc18e"
   },
   {
     "time": "22:05",
@@ -12125,11 +12134,11 @@
   {
     "time": "22:18",
     "quoteFirst": "",
-    "quoteTime": "10:18pm.",
-    "quoteLast": " Ah. Thelma and Louise is in there",
+    "quoteTime": "10:18pm",
+    "quoteLast": ". Ah. Thelma and Louise is in there",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "a973ee45a561491bb6aeaae91e51040e162af665d365dcd98d28929f8e3b94b1"
+    "hash": "c7e78acf7201e0ded7aa5cf3276be310ff1e76e97ba3d7ef8b915e525065b0a6"
   },
   {
     "time": "22:20",
@@ -12143,20 +12152,20 @@
   {
     "time": "22:21",
     "quoteFirst": "",
-    "quoteTime": "10:21pm.",
-    "quoteLast": " Frenziedly press all buttons. Cassette comes out and goes back in again",
+    "quoteTime": "10:21pm",
+    "quoteLast": ". Frenziedly press all buttons. Cassette comes out and goes back in again",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "47e121f5706727e9e9470f634cdf3d6c4514192851c8d615d461e152ce104a49"
+    "hash": "f192c9402dadd5e96c861eeefe02620243f32c0a410cf08a052770ded2555f56"
   },
   {
     "time": "22:21",
     "quoteFirst": "",
-    "quoteTime": "10:21pm.",
-    "quoteLast": " Thelma and Louise will not come out",
+    "quoteTime": "10:21pm",
+    "quoteLast": ". Thelma and Louise will not come out",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "17562448224efa941e9bde95659e3d2c194385e7a8329a370c4607f55331c7d5"
+    "hash": "7cde0e3be0c2d1c33e7d16a5e34f45abc59eb6953841691edb6553c0e90b0a18"
   },
   {
     "time": "22:21",
@@ -12188,11 +12197,11 @@
   {
     "time": "22:25",
     "quoteFirst": "\"",
-    "quoteTime": "10:25pm.",
-    "quoteLast": " Got new cassette in now. Right. Turn to “Recording…............… Aargh Newsnight is starting”",
+    "quoteTime": "10:25pm",
+    "quoteLast": ". Got new cassette in now. Right. Turn to “Recording…............… Aargh Newsnight is starting”",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "79208a7650ff9e6440f39abb7020bc80d612d47d4f23d0f88ce721afd4a55e96"
+    "hash": "f8745e689d312164cfc464572214df8cb84776ce353fa82dfb2392b4829a4de9"
   },
   {
     "time": "22:26",
@@ -12233,11 +12242,11 @@
   {
     "time": "22:31",
     "quoteFirst": "",
-    "quoteTime": "10.31pm.",
-    "quoteLast": " Ok OK. Calm. Penny Husbands-Bosworth, so asbestos leukaemia item is not on yet.",
+    "quoteTime": "10.31pm",
+    "quoteLast": ". Ok OK. Calm. Penny Husbands-Bosworth, so asbestos leukaemia item is not on yet.",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "f4608851ee2fc0994a339f1dfe01e837d2fdcfcccb687cab72313fbb7dab1abe"
+    "hash": "e5d24e8722330363112fdcb12f3f2480ed60f71ebc2c60a7450b4330e29e3068"
   },
   {
     "time": "22:31",
@@ -12260,11 +12269,11 @@
   {
     "time": "22:33",
     "quoteFirst": "",
-    "quoteTime": "10:33pm.",
-    "quoteLast": " Yessss, yessss. RECORDING CURRENT PROGRAMME. Have done it. Aargh. All going mad. Cassette has started rewinding and now stopped and ejected. Why? Shit. Shit. Realize in excitement have sat on remote control.",
+    "quoteTime": "10:33pm",
+    "quoteLast": ". Yessss, yessss. RECORDING CURRENT PROGRAMME. Have done it. Aargh. All going mad. Cassette has started rewinding and now stopped and ejected. Why? Shit. Shit. Realize in excitement have sat on remote control.",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "c5ac4508a7945a1013ae19b6b78685c0fd6b0e402454a61586eaabb38673c364"
+    "hash": "22d5fd545ffe1397cbce77b8dfd13d9aa2c3f24c125adabfd910c77cebc5ca00"
   },
   {
     "time": "22:35",
@@ -12305,11 +12314,11 @@
   {
     "time": "22:45",
     "quoteFirst": "",
-    "quoteTime": "10.45pm.",
-    "quoteLast": " Oh God Daniel fell about laughing when I said I could not programme video. Said he would do it for me. Still at least I have done best for Mum. It is exciting and historic when one's friends are on TV.",
+    "quoteTime": "10.45pm",
+    "quoteLast": ". Oh God Daniel fell about laughing when I said I could not programme video. Said he would do it for me. Still at least I have done best for Mum. It is exciting and historic when one's friends are on TV.",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "d1f3b8b12bf89f896e4931223792f7ff10c0eadb95d40509432710fcfc895fba"
+    "hash": "c1e6878addeffef29baea5c656b5bc7a2d9aa9e21d6d3ffd34b82f22ed2967d4"
   },
   {
     "time": "22:45",
@@ -12566,11 +12575,11 @@
   {
     "time": "23:15",
     "quoteFirst": "\"",
-    "quoteTime": "11.15pm.",
-    "quoteLast": " Humph. Mum just rang “Sorry, darling. It isn't Newsnigtht, it's Breakfast News tomorrow. Could you set it for seven o'clock tomorrow morning, BBC1?”",
+    "quoteTime": "11.15pm",
+    "quoteLast": ". Humph. Mum just rang “Sorry, darling. It isn't Newsnigtht, it's Breakfast News tomorrow. Could you set it for seven o'clock tomorrow morning, BBC1?”",
     "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
-    "hash": "8e9f730c36965b532d30a0399e24b7ee6a61f786b1a342cf58946988fe24dffe"
+    "hash": "cc533a243195e13c9ba520ebf4cd0c7c5b10e4dab015f7531a830e798960c04b"
   },
   {
     "time": "23:15",
@@ -12584,11 +12593,11 @@
   {
     "time": "23:16",
     "quoteFirst": "But I couldn't get out of the house straight away because he would see me, so I would have to wait until he was asleep. The time was ",
-    "quoteTime": "11.16 pm.",
-    "quoteLast": " I tried doubling 2s again, but I couldn't get past 2(15) which was 32,768. So I groaned to make the time pass quicker and not think.",
+    "quoteTime": "11.16 pm",
+    "quoteLast": ". I tried doubling 2s again, but I couldn't get past 2(15) which was 32,768. So I groaned to make the time pass quicker and not think.",
     "title": "The Curious Incident of the Dog in the Night-time",
     "author": "Mark Haddon",
-    "hash": "8582fab5ab8f8b9d6c9847b590e139bb93b89b084268a50b1e5b487ca9bbbe69"
+    "hash": "e2ba61ee927328819fccd60c0ead7a380a9c23f9d59c772f5b2a9cd8a3e7478b"
   },
   {
     "time": "23:18",
@@ -12872,11 +12881,11 @@
   {
     "time": "23:48",
     "quoteFirst": "Littell arranged a private charter.He told the pilot to fly balls-to-the-wall.The little two-seater rattled and shook-Kemper couldn't believe it. It was ",
-    "quoteTime": "11.48pm.",
-    "quoteLast": " They were thirty-six hours short of GO.",
+    "quoteTime": "11.48pm",
+    "quoteLast": ". They were thirty-six hours short of GO.",
     "title": "American Tabloid",
     "author": "James Ellroy",
-    "hash": "091132e6d8b66f7e15f02af4bcd784f72bb181a09cb6d7051775bbe84937261b"
+    "hash": "2f87767b5809241c932442cb3cc7f54813fdbc4a12b5d3852746c709025dd045"
   },
   {
     "time": "23:49",
@@ -12945,10 +12954,10 @@
     "time": "23:55",
     "quoteFirst": "“I looked at my watch. It wanted ",
     "quoteTime": "five minutes to twelve",
-    "quoteLast": ", when the premonitory symptoms of the working of the laudanum first showed themselves to me.At this time, no unpractised eyes would have detected any change in him. But, as the minutes of the new morning wore away, the swiftly-subtle progress of the influence began to show itself more plainly. The sublime intoxication of opium gleamed in his eyes; the dew of a stealthy perspiration began to glisten on his face. In five minutes more, the talk which he still kept up with me, failed in coherence.”",
+    "quoteLast": ", when the premonitory symptoms of the working of the laudanum first showed themselves to me.\\nAt this time, no unpractised eyes would have detected any change in him. But, as the minutes of the new morning wore away, the swiftly-subtle progress of the influence began to show itself more plainly. The sublime intoxication of opium gleamed in his eyes; the dew of a stealthy perspiration began to glisten on his face. In five minutes more, the talk which he still kept up with me, failed in coherence.”",
     "title": "The Moonstone",
     "author": "Wilkie Collins",
-    "hash": "c72d2ab931de972e4ea7c691871ac2ad9323142f5329fae4c41c4c3a43665fe1"
+    "hash": "eae06741010d7f4d57c04814441f973e683c4b671682fca972b5145b1e50739d"
   },
   {
     "time": "23:56",

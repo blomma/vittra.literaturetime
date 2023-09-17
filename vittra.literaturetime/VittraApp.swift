@@ -1,8 +1,7 @@
-import SwiftData
 import SwiftUI
 
 @main
-struct vittra_literaturetimeApp: App {
+struct VittraApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

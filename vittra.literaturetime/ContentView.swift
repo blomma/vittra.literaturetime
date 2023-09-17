@@ -1,4 +1,5 @@
 import Mimer
+import SwiftData
 import SwiftUI
 
 struct LiteratureTimeResponse: Equatable, Decodable {
@@ -25,10 +26,10 @@ struct ContentViewReducer: Reducer {
         var state = oldState
 
         switch action {
-        case .load:
-            state.isLoading = true
         case .loadDone:
             state.isLoading = false
+        case .load:
+            state.isLoading = true
         }
 
         return state
@@ -38,9 +39,10 @@ struct ContentViewReducer: Reducer {
 struct ContentViewMiddleware: Middleware {
     struct Dependencies {
         var load: () async throws -> [LiteratureTimeResponse]
+        var modelContainer: ModelContainer
 
         static var production: Dependencies {
-            .init {
+            .init(load: {
                 guard let file = Bundle.main.path(forResource: "literature", ofType: "json")
                 else {
                     return .init([])
@@ -54,7 +56,8 @@ struct ContentViewMiddleware: Middleware {
                 }
 
                 return try JSONDecoder().decode([LiteratureTimeResponse].self, from: data)
-            }
+
+            }, modelContainer: ModelContexts.productionContainer)
         }
     }
 
@@ -67,6 +70,7 @@ struct ContentViewMiddleware: Middleware {
 
             if defaults.bool(forKey: "v1") { return .loadDone }
 
+            print("in load")
             let results = try? await dependencies.load()
             guard let results = results else {
                 return .loadDone
@@ -76,25 +80,26 @@ struct ContentViewMiddleware: Middleware {
                 return .loadDone
             }
 
-            let context = PersistenceController.shared.container.newBackgroundContext()
-            context.performAndWait {
-                for value in results {
-                    let literaturetime = LiteratureTime(context: context)
-                    literaturetime.author = value.author
-                    literaturetime.title = value.title
-                    literaturetime.quoteFirst = value.quoteFirst
-                    literaturetime.quoteTime = value.quoteTime
-                    literaturetime.quoteLast = value.quoteLast
-                    literaturetime.time = value.time
-                    literaturetime.id = value.hash
-                }
+            let modelContext = ModelContext(dependencies.modelContainer)
+            for value in results {
+                let literatureTime = LiteratureTime(
+                    time: value.time,
+                    quoteFirst: value.quoteFirst,
+                    quoteTime: value.quoteTime,
+                    quoteLast: value.quoteLast,
+                    title: value.title,
+                    author: value.author,
+                    id: value.hash
+                )
 
-                do {
-                    try context.save()
-                } catch {
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
+                modelContext.insert(literatureTime)
+            }
+
+            do {
+                try modelContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
 
             defaults.setValue(true, forKey: "v1")
@@ -126,6 +131,7 @@ struct ContentView: View {
             }
         }
         .task {
+            print("test")
             await store.send(.load)
         }
     }

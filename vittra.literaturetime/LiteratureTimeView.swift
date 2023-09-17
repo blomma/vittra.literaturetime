@@ -1,5 +1,6 @@
 import CoreData
 import Mimer
+import SwiftData
 import SwiftUI
 
 extension String {
@@ -13,22 +14,13 @@ extension String {
     }
 }
 
-struct LiteratureTimeModel: Equatable {
-    var time: String
-    var quoteFirst: String
-    var quoteTime: String
-    var quoteLast: String
-    var title: String
-    var author: String
-}
-
 struct LiteratureTimeState: Equatable {
-    var literatureTime: LiteratureTimeModel
+    var literatureTime: LiteratureTime
 }
 
 enum LiteratureTimeAction: Equatable {
     case searchRandom(query: String)
-    case setResults(literatureTime: LiteratureTimeModel)
+    case setResults(literatureTime: LiteratureTime)
 }
 
 struct LiteratureTimeReducer: Reducer {
@@ -48,55 +40,44 @@ struct LiteratureTimeReducer: Reducer {
 
 struct LiteratureTimeMiddleware: Middleware {
     struct Dependencies {
-        var search: (String) async throws -> LiteratureTimeModel?
+        let search: (String) async throws -> LiteratureTime?
 
         static var production: Dependencies {
-            .init { query in
-                let context = PersistenceController.shared.container.viewContext
+            .init(search: { query in
+                var descriptor = FetchDescriptor<LiteratureTime>()
+                descriptor.predicate = #Predicate { item in
+                    item.time == query
+                }
 
-                let fetchRequest = NSFetchRequest<LiteratureTime>(entityName: "\(LiteratureTime.self)")
-                fetchRequest.predicate = NSPredicate(format: "(%K == %@)", argumentArray: ["time", query])
-
-                guard let fetchRequestCount = try? context.count(for: fetchRequest) else {
+                let modelContext = ModelContext(ModelContexts.productionContainer)
+                guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
                     return nil
                 }
 
-                fetchRequest.fetchOffset = Int.random(in: 0 ... fetchRequestCount - 1)
-                fetchRequest.fetchLimit = 1
+                descriptor.fetchLimit = 1
+                descriptor.fetchOffset = Int.random(in: 0 ... literatureTimeCount - 1)
 
-                var fetchResults: [LiteratureTime]?
-                context.performAndWait {
-                    fetchResults = try? fetchRequest.execute()
-                }
-
-                guard let fetchResults = fetchResults else {
+                guard let literatureTimes = try? modelContext.fetch(descriptor), let literatureTime = literatureTimes.first else {
                     return nil
                 }
 
-                guard fetchResults.count > 0 else {
-                    return nil
-                }
+                return LiteratureTime(
+                    time: literatureTime.time,
+                    quoteFirst: literatureTime.quoteFirst,
+                    quoteTime: literatureTime.quoteTime,
+                    quoteLast: literatureTime.quoteLast,
+                    title: literatureTime.title,
+                    author: literatureTime.author,
+                    id: literatureTime.id
+                )
 
-                guard
-                    let literatureTime = fetchResults.first,
-                    let time = literatureTime.time,
-                    let quoteFirst = literatureTime.quoteFirst,
-                    let quoteTime = literatureTime.quoteTime,
-                    let quoteLast = literatureTime.quoteLast,
-                    let title = literatureTime.title,
-                    let author = literatureTime.author
-                else {
-                    return nil
-                }
-
-                return LiteratureTimeModel(time: time, quoteFirst: quoteFirst, quoteTime: quoteTime, quoteLast: quoteLast, title: title, author: author)
-            }
+            })
         }
 
         static var preview: Dependencies {
-            .init { _ in
+            .init(search: { _ in
                 nil
-            }
+            })
         }
     }
 
@@ -128,13 +109,14 @@ struct LiteratureTimeView: View {
     @State var store = LiteratureTimeStore(
         initialState: .init(
             literatureTime:
-            LiteratureTimeModel(
+            LiteratureTime(
                 time: "",
                 quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
                 quoteTime: "",
                 quoteLast: "",
                 title: "The Hitchhiker's Guide to the Galaxy",
-                author: "Douglas Adams"
+                author: "Douglas Adams",
+                id: ""
             )),
         reducer: LiteratureTimeReducer(),
         middlewares: [LiteratureTimeMiddleware(dependencies: .production)]
@@ -204,13 +186,14 @@ struct LiteratureTimeView: View {
     LiteratureTimeView(store: .init(
         initialState: .init(
             literatureTime:
-            LiteratureTimeModel(
+            LiteratureTime(
                 time: "",
                 quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
                 quoteTime: "",
                 quoteLast: "",
                 title: "The Hitchhiker's Guide to the Galaxy",
-                author: "Douglas Adams"
+                author: "Douglas Adams",
+                id: ""
             )),
         reducer: LiteratureTimeReducer(),
         middlewares: [LiteratureTimeMiddleware(dependencies: .preview)]

@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E16CA082AA288B300B50C39 /* literature.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E16CA072AA288B300B50C39 /* literature.json */; };
 		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
-		9E16CA472AA3741F00B50C39 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA462AA3741F00B50C39 /* Persistence.swift */; };
-		9E16CA4B2AA3747B00B50C39 /* LiteratureTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA492AA3747B00B50C39 /* LiteratureTime.xcdatamodeld */; };
-		9E9CBD8B2A5898D600CB9319 /* vittra_literaturetimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */; };
+		9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */; };
 		9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8C2A5898D600CB9319 /* ContentView.swift */; };
 		9E9CBD8F2A5898D800CB9319 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */; };
 		9E9CBD922A5898D800CB9319 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD912A5898D800CB9319 /* Preview Assets.xcassets */; };
@@ -19,6 +17,9 @@
 		9E9CBDAA2A5898D800CB9319 /* vittra_literaturetimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBDA92A5898D800CB9319 /* vittra_literaturetimeUITests.swift */; };
 		9E9CBDAC2A5898D800CB9319 /* vittra_literaturetimeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBDAB2A5898D800CB9319 /* vittra_literaturetimeUITestsLaunchTests.swift */; };
 		9EBEDEF62A9BC7E2002CD4A4 /* Mimer in Frameworks */ = {isa = PBXBuildFile; productRef = 9EBEDEF52A9BC7E2002CD4A4 /* Mimer */; };
+		9EE412052AB5BCC500EAFB48 /* LiteratureTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE412042AB5BCC500EAFB48 /* LiteratureTime.swift */; };
+		9EE412072AB5C24200EAFB48 /* ModelContexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE412062AB5C24200EAFB48 /* ModelContexts.swift */; };
+		9EE412092AB61DE900EAFB48 /* LiteratureTimeModelActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE412082AB61DE900EAFB48 /* LiteratureTimeModelActor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,10 +42,8 @@
 /* Begin PBXFileReference section */
 		9E16CA072AA288B300B50C39 /* literature.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = literature.json; sourceTree = "<group>"; };
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
-		9E16CA462AA3741F00B50C39 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittra_literaturetimeApp.swift; sourceTree = "<group>"; };
+		9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VittraApp.swift; sourceTree = "<group>"; };
 		9E9CBD8C2A5898D600CB9319 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E9CBD912A5898D800CB9319 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -56,6 +55,9 @@
 		9E9CBDA92A5898D800CB9319 /* vittra_literaturetimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittra_literaturetimeUITests.swift; sourceTree = "<group>"; };
 		9E9CBDAB2A5898D800CB9319 /* vittra_literaturetimeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vittra_literaturetimeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9EBEDEF12A9BBC0B002CD4A4 /* Mimer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Mimer; sourceTree = "<group>"; };
+		9EE412042AB5BCC500EAFB48 /* LiteratureTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTime.swift; sourceTree = "<group>"; };
+		9EE412062AB5C24200EAFB48 /* ModelContexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContexts.swift; sourceTree = "<group>"; };
+		9EE412082AB61DE900EAFB48 /* LiteratureTimeModelActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeModelActor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,15 +86,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9E16CA482AA3746300B50C39 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				9E16CA462AA3741F00B50C39 /* Persistence.swift */,
-				9E16CA492AA3747B00B50C39 /* LiteratureTime.xcdatamodeld */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
 		9E9CBD7E2A5898D600CB9319 = {
 			isa = PBXGroup;
 			children = (
@@ -118,15 +111,15 @@
 		9E9CBD892A5898D600CB9319 /* vittra.literaturetime */ = {
 			isa = PBXGroup;
 			children = (
-				9E16CA482AA3746300B50C39 /* CoreData */,
-				9E16CA072AA288B300B50C39 /* literature.json */,
-				9E9CBD8A2A5898D600CB9319 /* vittra_literaturetimeApp.swift */,
+				9EE412032AB5BC5800EAFB48 /* Shared */,
+				9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */,
 				9E9CBD8C2A5898D600CB9319 /* ContentView.swift */,
+				9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */,
 				9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */,
 				9E9CBD952A5898D800CB9319 /* vittra_literaturetime.entitlements */,
 				9E9CBD962A5898D800CB9319 /* Info.plist */,
+				9E16CA072AA288B300B50C39 /* literature.json */,
 				9E9CBD902A5898D800CB9319 /* Preview Content */,
-				9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */,
 			);
 			path = vittra.literaturetime;
 			sourceTree = "<group>";
@@ -161,6 +154,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9EE412032AB5BC5800EAFB48 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9EE412042AB5BCC500EAFB48 /* LiteratureTime.swift */,
+				9EE412062AB5C24200EAFB48 /* ModelContexts.swift */,
+				9EE412082AB61DE900EAFB48 /* LiteratureTimeModelActor.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,10 +302,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
-				9E16CA472AA3741F00B50C39 /* Persistence.swift in Sources */,
-				9E16CA4B2AA3747B00B50C39 /* LiteratureTime.xcdatamodeld in Sources */,
 				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
-				9E9CBD8B2A5898D600CB9319 /* vittra_literaturetimeApp.swift in Sources */,
+				9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */,
+				9EE412072AB5C24200EAFB48 /* ModelContexts.swift in Sources */,
+				9EE412052AB5BCC500EAFB48 /* LiteratureTime.swift in Sources */,
+				9EE412092AB61DE900EAFB48 /* LiteratureTimeModelActor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +407,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -458,6 +463,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -475,11 +481,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = vittra.literaturetime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vittra;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -506,11 +513,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = vittra.literaturetime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vittra;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -651,19 +659,6 @@
 			productName = Mimer;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		9E16CA492AA3747B00B50C39 /* LiteratureTime.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */,
-			);
-			currentVersion = 9E16CA4A2AA3747B00B50C39 /* Model.xcdatamodel */;
-			path = LiteratureTime.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9E9CBD7F2A5898D600CB9319 /* Project object */;
 }
