@@ -97,14 +97,23 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
-      <PostActions>
+      <PreActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
                scriptText = "PLB=/usr/libexec/PlistBuddy&#10;BRANCH=${1:-&apos;main&apos;}&#10;BUILDNUMBER=$(expr $(git -C ${PROJECT_DIR} rev-list $BRANCH --count) + $(git -C ${PROJECT_DIR} rev-list $BRANCH..HEAD --count))&#10;&#10;$PLB -c &quot;Set :CFBundleVersion $BUILDNUMBER&quot; &quot;${TARGET_BUILD_DIR}/${INFOPLIST_PATH}&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "9E9CBD862A5898D600CB9319"
+                     BuildableName = "vittra.literaturetime.app"
+                     BlueprintName = "vittra.literaturetime"
+                     ReferencedContainer = "container:vittra.literaturetime.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
-      </PostActions>
+      </PreActions>
    </ArchiveAction>
 </Scheme>
