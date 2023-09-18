@@ -21,3 +21,17 @@ final class LiteratureTime: Equatable {
         self.id = id
     }
 }
+
+extension LiteratureTime {
+    static var fallback: LiteratureTime {
+        LiteratureTime(
+            time: "",
+            quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
+            quoteTime: "",
+            quoteLast: "",
+            title: "The Hitchhiker's Guide to the Galaxy",
+            author: "Douglas Adams",
+            id: ""
+        )
+    }
+}

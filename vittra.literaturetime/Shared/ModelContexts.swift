@@ -17,7 +17,21 @@ struct ModelContexts {
         do {
             let schema = Schema([LiteratureTime.self])
             let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-            return try ModelContainer(for: schema, configurations: [configuration])
+            let container = try ModelContainer(for: schema, configurations: [configuration])
+            
+            Task { @MainActor in
+                container.mainContext.insert(LiteratureTime(
+                    time: "",
+                    quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
+                    quoteTime: "",
+                    quoteLast: "",
+                    title: "The Hitchhiker's Guide to the Galaxy",
+                    author: "Douglas Adams",
+                    id: ""
+                ))
+            }
+            
+            return container
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

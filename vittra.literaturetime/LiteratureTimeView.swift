@@ -15,12 +15,12 @@ extension String {
 }
 
 struct LiteratureTimeState: Equatable {
-    var literatureTime: LiteratureTime
+    var literatureTime: LiteratureTime?
 }
 
 enum LiteratureTimeAction: Equatable {
     case searchRandom(query: String)
-    case setResults(literatureTime: LiteratureTime)
+    case setResults(literatureTime: LiteratureTime?)
 }
 
 struct LiteratureTimeReducer: Reducer {
@@ -70,13 +70,37 @@ struct LiteratureTimeMiddleware: Middleware {
                     author: literatureTime.author,
                     id: literatureTime.id
                 )
-
             })
         }
 
         static var preview: Dependencies {
-            .init(search: { _ in
-                nil
+            .init(search: { query in
+                var descriptor = FetchDescriptor<LiteratureTime>()
+                descriptor.predicate = #Predicate { item in
+                    item.time == query
+                }
+
+                let modelContext = ModelContext(ModelContexts.previewContainer)
+                guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
+                    return nil
+                }
+
+                descriptor.fetchLimit = 1
+                descriptor.fetchOffset = Int.random(in: 0 ... literatureTimeCount - 1)
+
+                guard let literatureTimes = try? modelContext.fetch(descriptor), let literatureTime = literatureTimes.first else {
+                    return nil
+                }
+
+                return LiteratureTime(
+                    time: literatureTime.time,
+                    quoteFirst: literatureTime.quoteFirst,
+                    quoteTime: literatureTime.quoteTime,
+                    quoteLast: literatureTime.quoteLast,
+                    title: literatureTime.title,
+                    author: literatureTime.author,
+                    id: literatureTime.id
+                )
             })
         }
     }
@@ -107,17 +131,7 @@ typealias LiteratureTimeStore = Store<LiteratureTimeState, LiteratureTimeAction>
 
 struct LiteratureTimeView: View {
     @State var store = LiteratureTimeStore(
-        initialState: .init(
-            literatureTime:
-            LiteratureTime(
-                time: "",
-                quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
-                quoteTime: "",
-                quoteLast: "",
-                title: "The Hitchhiker's Guide to the Galaxy",
-                author: "Douglas Adams",
-                id: ""
-            )),
+        initialState: .init(),
         reducer: LiteratureTimeReducer(),
         middlewares: [LiteratureTimeMiddleware(dependencies: .production)]
     )
@@ -129,17 +143,20 @@ struct LiteratureTimeView: View {
 
             ScrollView {
                 VStack(alignment: .leading) {
+                    
+                    let literatureTime = store.literatureTime ?? LiteratureTime.fallback
+                    
                     VStack(alignment: .leading) {
-                        Text(store.literatureTime.quoteFirst)
-                            + Text(store.literatureTime.quoteTime)
+                        Text(literatureTime.quoteFirst)
+                            + Text(literatureTime.quoteTime)
                             .foregroundStyle(.literatureTime)
-                            + Text(store.literatureTime.quoteLast)
+                            + Text(literatureTime.quoteLast)
                     }
                     .font(.system(.largeTitle, design: .serif, weight: .regular))
 
                     HStack {
-                        Text("- \(store.literatureTime.title), ")
-                            + Text(store.literatureTime.author)
+                        Text("- \(literatureTime.title), ")
+                            + Text(literatureTime.author)
                             .italic()
                     }
                     .padding(.leading, 20)
@@ -152,6 +169,7 @@ struct LiteratureTimeView: View {
             .foregroundStyle(.literature)
         }
         .task {
+            print("in litview task")
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
             guard let hour = hm.hour, let minute = hm.minute else {
@@ -184,18 +202,9 @@ struct LiteratureTimeView: View {
 
 #Preview {
     LiteratureTimeView(store: .init(
-        initialState: .init(
-            literatureTime:
-            LiteratureTime(
-                time: "",
-                quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
-                quoteTime: "",
-                quoteLast: "",
-                title: "The Hitchhiker's Guide to the Galaxy",
-                author: "Douglas Adams",
-                id: ""
-            )),
+        initialState: .init(),
         reducer: LiteratureTimeReducer(),
         middlewares: [LiteratureTimeMiddleware(dependencies: .preview)]
     ))
+    .modelContainer(ModelContexts.previewContainer)
 }

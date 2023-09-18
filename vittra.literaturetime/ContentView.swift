@@ -70,7 +70,6 @@ struct ContentViewMiddleware: Middleware {
 
             if defaults.bool(forKey: "v1") { return .loadDone }
 
-            print("in load")
             let results = try? await dependencies.load()
             guard let results = results else {
                 return .loadDone
@@ -131,7 +130,6 @@ struct ContentView: View {
             }
         }
         .task {
-            print("test")
             await store.send(.load)
         }
     }
