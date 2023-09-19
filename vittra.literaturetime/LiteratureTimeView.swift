@@ -117,7 +117,7 @@ struct LiteratureTimeMiddleware: Middleware {
             }
 
             guard let results = results else {
-                return .setResults(literatureTime: state.literatureTime)
+                return .setResults(literatureTime: LiteratureTime.fallback)
             }
 
             return .setResults(literatureTime: results)
