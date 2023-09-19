@@ -169,7 +169,6 @@ struct LiteratureTimeView: View {
             .foregroundStyle(.literature)
         }
         .task {
-            print("in litview task")
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
             guard let hour = hm.hour, let minute = hm.minute else {
