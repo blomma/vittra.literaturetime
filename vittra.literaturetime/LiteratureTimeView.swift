@@ -163,8 +163,8 @@ struct LiteratureTimeView: View {
                     .padding(.top, 20)
                     .font(.system(.footnote, design: .serif, weight: .regular))
                 }
-                .padding(10)
-                .padding(.top, 20)
+                .padding(20)
+                .padding(.top, 10)
                 .allowsTightening(false)
             }
             .foregroundStyle(.literature)
