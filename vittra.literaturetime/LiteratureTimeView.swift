@@ -152,7 +152,7 @@ struct LiteratureTimeView: View {
                             .foregroundStyle(.literatureTime)
                             + Text(literatureTime.quoteLast)
                     }
-                    .font(.system(.body, design: .serif, weight: .regular))
+                    .font(.system(.title, design: .serif, weight: .regular))
 
                     HStack {
                         Text("- \(literatureTime.title), ")
@@ -163,6 +163,7 @@ struct LiteratureTimeView: View {
                     .padding(.top, 20)
                     .font(.system(.footnote, design: .serif, weight: .regular))
                 }
+                .padding(10)
                 .padding(.top, 20)
                 .allowsTightening(false)
             }
