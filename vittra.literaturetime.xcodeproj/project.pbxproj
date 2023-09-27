@@ -21,6 +21,8 @@
 		9EE412052AB5BCC500EAFB48 /* LiteratureTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE412042AB5BCC500EAFB48 /* LiteratureTime.swift */; };
 		9EE412072AB5C24200EAFB48 /* ModelContexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE412062AB5C24200EAFB48 /* ModelContexts.swift */; };
 		9EE412092AB61DE900EAFB48 /* LiteratureTimeModelActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE412082AB61DE900EAFB48 /* LiteratureTimeModelActor.swift */; };
+		9EF396F42AC4C06800C93C3A /* ContentViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF396F32AC4C06800C93C3A /* ContentViewStore.swift */; };
+		9EF396F62AC4C55800C93C3A /* LiteratureTimeViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF396F52AC4C55800C93C3A /* LiteratureTimeViewStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		9EE412042AB5BCC500EAFB48 /* LiteratureTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTime.swift; sourceTree = "<group>"; };
 		9EE412062AB5C24200EAFB48 /* ModelContexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContexts.swift; sourceTree = "<group>"; };
 		9EE412082AB61DE900EAFB48 /* LiteratureTimeModelActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeModelActor.swift; sourceTree = "<group>"; };
+		9EF396F32AC4C06800C93C3A /* ContentViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewStore.swift; sourceTree = "<group>"; };
+		9EF396F52AC4C55800C93C3A /* LiteratureTimeViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeViewStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +117,10 @@
 		9E9CBD892A5898D600CB9319 /* vittra.literaturetime */ = {
 			isa = PBXGroup;
 			children = (
+				9EF396F22AC4C03500C93C3A /* Stores */,
+				9EF396F12AC4BFAB00C93C3A /* Views */,
 				9EE412032AB5BC5800EAFB48 /* Shared */,
 				9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */,
-				9E9CBD8C2A5898D600CB9319 /* ContentView.swift */,
-				9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */,
 				9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */,
 				9E9CBD952A5898D800CB9319 /* vittra_literaturetime.entitlements */,
 				9E9CBD962A5898D800CB9319 /* Info.plist */,
@@ -167,6 +171,24 @@
 				9EE412082AB61DE900EAFB48 /* LiteratureTimeModelActor.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		9EF396F12AC4BFAB00C93C3A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9E9CBD8C2A5898D600CB9319 /* ContentView.swift */,
+				9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9EF396F22AC4C03500C93C3A /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				9EF396F32AC4C06800C93C3A /* ContentViewStore.swift */,
+				9EF396F52AC4C55800C93C3A /* LiteratureTimeViewStore.swift */,
+			);
+			path = Stores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,8 +326,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EF396F42AC4C06800C93C3A /* ContentViewStore.swift in Sources */,
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
 				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
+				9EF396F62AC4C55800C93C3A /* LiteratureTimeViewStore.swift in Sources */,
 				9E9BBAC32AB779720058539B /* ModelContainerPreview.swift in Sources */,
 				9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */,
 				9EE412072AB5C24200EAFB48 /* ModelContexts.swift in Sources */,
