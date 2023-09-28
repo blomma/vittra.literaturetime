@@ -1,14 +1,16 @@
 import SwiftUI
 
-extension String {
-    func leftPadding(toLength: Int, withPad character: Character) -> String {
-        let stringLength = count
-        if stringLength < toLength {
-            return String(repeatElement(character, count: toLength - stringLength)) + self
-        } else {
-            return String(suffix(toLength))
-        }
+func createQuery() -> String? {
+    let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
+
+    guard let hour = hm.hour, let minute = hm.minute else {
+        return nil
     }
+
+    let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
+    let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
+
+    return "\(paddedHour):\(paddedMinute)"
 }
 
 struct LiteratureTimeView: View {
@@ -52,31 +54,17 @@ struct LiteratureTimeView: View {
             .foregroundStyle(.literature)
         }
         .task {
-            let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
-
-            guard let hour = hm.hour, let minute = hm.minute else {
+            guard let query = createQuery() else {
                 return
             }
-
-            let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
-            let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
-
-            let query = "\(paddedHour):\(paddedMinute)"
-
+            
             await store.send(.searchRandom(query: query))
         }
         .refreshable {
-            let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
-
-            guard let hour = hm.hour, let minute = hm.minute else {
+            guard let query = createQuery() else {
                 return
             }
-
-            let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
-            let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
-
-            let query = "\(paddedHour):\(paddedMinute)"
-
+            
             await store.send(.searchRandom(query: query))
         }
     }
