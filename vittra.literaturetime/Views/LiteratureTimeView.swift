@@ -14,6 +14,7 @@ func createQuery() -> String? {
 }
 
 struct LiteratureTimeView: View {
+    @Environment(\.scenePhase) var scenePhase
     @State var store = LiteratureTimeViewStore(
         initialState: .init(),
         reducer: LiteratureTimeViewReducer(),
@@ -27,9 +28,8 @@ struct LiteratureTimeView: View {
 
             ScrollView {
                 VStack(alignment: .leading) {
-                    
                     let literatureTime = store.literatureTime ?? LiteratureTime.fallback
-                    
+
                     VStack(alignment: .leading) {
                         Text(literatureTime.quoteFirst)
                             + Text(literatureTime.quoteTime)
@@ -53,18 +53,22 @@ struct LiteratureTimeView: View {
             }
             .foregroundStyle(.literature)
         }
-        .task {
-            guard let query = createQuery() else {
-                return
+        .onChange(of: scenePhase, initial: true) { _, newValue in
+            if newValue == .active {
+                Task {
+                    guard let query = createQuery() else {
+                        return
+                    }
+
+                    await store.send(.searchRandom(query: query))
+                }
             }
-            
-            await store.send(.searchRandom(query: query))
         }
         .refreshable {
             guard let query = createQuery() else {
                 return
             }
-            
+
             await store.send(.searchRandom(query: query))
         }
     }
