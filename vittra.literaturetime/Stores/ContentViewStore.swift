@@ -112,4 +112,3 @@ struct ContentViewMiddleware: Middleware {
 }
 
 typealias ContentViewStore = Store<ContentViewState, ContentViewAction>
-

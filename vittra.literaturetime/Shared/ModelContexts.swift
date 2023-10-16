@@ -18,7 +18,7 @@ struct ModelContexts {
             let schema = Schema([LiteratureTime.self])
             let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(for: schema, configurations: [configuration])
-            
+
             Task { @MainActor in
                 container.mainContext.insert(LiteratureTime(
                     time: "",
@@ -30,26 +30,11 @@ struct ModelContexts {
                     id: ""
                 ))
             }
-            
+
             return container
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }()
-
-//    static var previewContainer: () throws -> ModelContainer = {
-//        let schema = Schema([LiteratureTime.self])
-//        let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-//        let container = try! ModelContainer(for: schema, configurations: [configuration])
-    ////        let sampleData: [any PersistentModel] = [
-    ////            Trip.preview, BucketListItem.preview, LivingAccommodation.preview
-    ////        ]
-    ////        Task { @MainActor in
-    ////            sampleData.forEach {
-    ////                container.mainContext.insert($0)
-    ////            }
-    ////        }
-//        return container
-//    }
 }

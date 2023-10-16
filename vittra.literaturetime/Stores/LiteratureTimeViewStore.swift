@@ -116,4 +116,3 @@ struct LiteratureTimeViewMiddleware: Middleware {
 }
 
 typealias LiteratureTimeViewStore = Store<LiteratureTimeViewState, LiteratureTimeViewAction>
-
