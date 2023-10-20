@@ -22,6 +22,16 @@ final class LiteratureTime: Equatable {
     }
 }
 
+extension LiteratureTime: CustomStringConvertible {
+    var description: String {
+        return """
+        \(quoteFirst)\(quoteTime)\(quoteLast)
+
+        - \(title), \(author)
+        """
+    }
+}
+
 extension LiteratureTime {
     static var fallback: LiteratureTime {
         LiteratureTime(

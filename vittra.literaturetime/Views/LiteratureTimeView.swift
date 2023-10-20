@@ -27,9 +27,9 @@ struct LiteratureTimeView: View {
                 .ignoresSafeArea()
 
             ScrollView {
-                VStack(alignment: .leading) {
-                    let literatureTime = store.literatureTime ?? LiteratureTime.fallback
+                let literatureTime = store.literatureTime ?? LiteratureTime.fallback
 
+                VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
                         Text(literatureTime.quoteFirst)
                             + Text(literatureTime.quoteTime)
@@ -50,6 +50,13 @@ struct LiteratureTimeView: View {
                 .padding(25)
                 .padding(.top, 10)
                 .allowsTightening(false)
+                .contextMenu {
+                    Button {
+                        UIPasteboard.general.string = literatureTime.description
+                    } label: {
+                        Label("Copy quote", systemImage: "heart")
+                    }
+                }
             }
             .foregroundStyle(.literature)
         }
