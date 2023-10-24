@@ -36,7 +36,7 @@ struct LiteratureTimeViewMiddleware: Middleware {
                 descriptor.predicate = #Predicate { item in
                     item.time == query
                 }
-
+                
                 let modelContext = ModelContext(ModelContexts.productionContainer)
                 guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
                     return nil
@@ -56,6 +56,7 @@ struct LiteratureTimeViewMiddleware: Middleware {
                     quoteLast: literatureTime.quoteLast,
                     title: literatureTime.title,
                     author: literatureTime.author,
+                    gutenbergReference: literatureTime.gutenbergReference,
                     id: literatureTime.id
                 )
             })
@@ -87,6 +88,7 @@ struct LiteratureTimeViewMiddleware: Middleware {
                     quoteLast: literatureTime.quoteLast,
                     title: literatureTime.title,
                     author: literatureTime.author,
+                    gutenbergReference: literatureTime.gutenbergReference,
                     id: literatureTime.id
                 )
             })
@@ -99,10 +101,6 @@ struct LiteratureTimeViewMiddleware: Middleware {
         switch action {
         case let .searchRandom(query):
             let results = try? await dependencies.search(query)
-
-            guard !Task.isCancelled else {
-                return .setResults(literatureTime: state.literatureTime)
-            }
 
             guard let results = results else {
                 return .setResults(literatureTime: LiteratureTime.fallback)

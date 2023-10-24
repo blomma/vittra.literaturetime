@@ -10,7 +10,7 @@ actor LiteratureTimeModelActor: ModelActor {
         modelExecutor = DefaultSerialModelExecutor(modelContext: context)
     }
 
-    func insert(time: String, quoteFirst: String, quoteTime: String, quoteLast: String, title: String, author: String, id: String) throws {
+    func insert(time: String, quoteFirst: String, quoteTime: String, quoteLast: String, title: String, author: String, gutenbergReference: String, id: String) throws {
         let literatureTime = LiteratureTime(
             time: time,
             quoteFirst: quoteFirst,
@@ -18,6 +18,7 @@ actor LiteratureTimeModelActor: ModelActor {
             quoteLast: quoteLast,
             title: title,
             author: author,
+            gutenbergReference: gutenbergReference,
             id: id
         )
 

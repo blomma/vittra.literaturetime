@@ -9,15 +9,17 @@ final class LiteratureTime: Equatable {
     var quoteLast: String
     var title: String
     var author: String
+    var gutenbergReference: String
     var id: String
 
-    init(time: String, quoteFirst: String, quoteTime: String, quoteLast: String, title: String, author: String, id: String) {
+    init(time: String, quoteFirst: String, quoteTime: String, quoteLast: String, title: String, author: String, gutenbergReference: String, id: String) {
         self.time = time
         self.quoteFirst = quoteFirst
         self.quoteTime = quoteTime
         self.quoteLast = quoteLast
         self.title = title
         self.author = author
+        self.gutenbergReference = gutenbergReference
         self.id = id
     }
 }
@@ -41,6 +43,7 @@ extension LiteratureTime {
             quoteLast: "",
             title: "The Hitchhiker's Guide to the Galaxy",
             author: "Douglas Adams",
+            gutenbergReference: "",
             id: ""
         )
     }

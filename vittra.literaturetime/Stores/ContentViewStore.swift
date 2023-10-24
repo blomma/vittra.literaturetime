@@ -2,13 +2,14 @@ import Mimer
 import SwiftData
 import SwiftUI
 
-struct LiteratureTimeResponse: Equatable, Decodable {
+struct LiteratureTimeImport: Equatable, Decodable {
     var time: String
     var quoteFirst: String
     var quoteTime: String
     var quoteLast: String
     var title: String
     var author: String
+    var gutenbergReference: String
     var hash: String
 }
 
@@ -38,7 +39,7 @@ struct ContentViewReducer: Reducer {
 
 struct ContentViewMiddleware: Middleware {
     struct Dependencies {
-        var load: () async throws -> [LiteratureTimeResponse]
+        var load: () async throws -> [LiteratureTimeImport]
         var modelContainer: ModelContainer
 
         static var production: Dependencies {
@@ -55,7 +56,7 @@ struct ContentViewMiddleware: Middleware {
                     return .init([])
                 }
 
-                return try JSONDecoder().decode([LiteratureTimeResponse].self, from: data)
+                return try JSONDecoder().decode([LiteratureTimeImport].self, from: data)
 
             }, modelContainer: ModelContexts.productionContainer)
         }
@@ -68,18 +69,21 @@ struct ContentViewMiddleware: Middleware {
         case .load:
             let defaults = UserDefaults.standard
 
-            if defaults.bool(forKey: "v1") { return .loadDone }
+            if defaults.bool(forKey: "v3") { return .loadDone }
 
             let results = try? await dependencies.load()
             guard let results = results else {
                 return .loadDone
             }
 
-            guard !Task.isCancelled else {
-                return .loadDone
-            }
-
             let modelContext = ModelContext(dependencies.modelContainer)
+            do {
+                try modelContext.delete(model: LiteratureTime.self)
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+            
             for value in results {
                 let literatureTime = LiteratureTime(
                     time: value.time,
@@ -88,6 +92,7 @@ struct ContentViewMiddleware: Middleware {
                     quoteLast: value.quoteLast,
                     title: value.title,
                     author: value.author,
+                    gutenbergReference: value.gutenbergReference,
                     id: value.hash
                 )
 
@@ -101,7 +106,7 @@ struct ContentViewMiddleware: Middleware {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
 
-            defaults.setValue(true, forKey: "v1")
+            defaults.setValue(true, forKey: "v3")
 
             return .loadDone
 
