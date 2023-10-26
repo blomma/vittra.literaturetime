@@ -27,7 +27,7 @@ struct LiteratureTimeView: View {
                 .ignoresSafeArea()
 
             ScrollView {
-                let literatureTime = store.literatureTime ?? LiteratureTime.fallback
+                let literatureTime = store.literatureTime ?? LiteratureTime.emptyFallback
 
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
@@ -41,12 +41,14 @@ struct LiteratureTimeView: View {
                     HStack {
                         Text("- \(literatureTime.title), ")
                             + Text(literatureTime.author)
+                        + Text("   \(literatureTime.gutenbergReference)")
                             .italic()
                     }
                     .padding(.leading, 20)
                     .padding(.top, 20)
                     .font(.system(.footnote, design: .serif, weight: .regular))
                 }
+                .animation(.easeInOut(duration: 0.5), value: store.literatureTime)
                 .padding(25)
                 .padding(.top, 10)
                 .allowsTightening(false)
@@ -60,17 +62,24 @@ struct LiteratureTimeView: View {
             }
             .foregroundStyle(.literature)
         }
-        .onChange(of: scenePhase, initial: true) { _, newValue in
-            if newValue == .active {
-                Task {
-                    guard let query = createQuery() else {
-                        return
-                    }
-
-                    await store.send(.searchRandom(query: query))
-                }
+        .task {
+            guard let query = createQuery() else {
+                return
             }
+
+            await store.send(.searchRandom(query: query))
         }
+//        .onChange(of: scenePhase, initial: true) { _, newValue in
+//            if newValue == .active {
+//                Task {
+//                    guard let query = createQuery() else {
+//                        return
+//                    }
+//
+//                    await store.send(.searchRandom(query: query))
+//                }
+//            }
+//        }
         .refreshable {
             guard let query = createQuery() else {
                 return

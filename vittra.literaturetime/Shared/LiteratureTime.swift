@@ -4,6 +4,7 @@ import SwiftData
 @Model
 final class LiteratureTime: Equatable {
     var time: String
+
     var quoteFirst: String
     var quoteTime: String
     var quoteLast: String
@@ -43,6 +44,19 @@ extension LiteratureTime {
             quoteLast: "",
             title: "The Hitchhiker's Guide to the Galaxy",
             author: "Douglas Adams",
+            gutenbergReference: "",
+            id: ""
+        )
+    }
+    
+    static var emptyFallback: LiteratureTime {
+        LiteratureTime(
+            time: "",
+            quoteFirst: "",
+            quoteTime: "",
+            quoteLast: "",
+            title: "",
+            author: "",
             gutenbergReference: "",
             id: ""
         )
