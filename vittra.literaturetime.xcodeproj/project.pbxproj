@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E16CA082AA288B300B50C39 /* literature.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E16CA072AA288B300B50C39 /* literature.json */; };
 		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
+		9E2D43652AEC69920006EB20 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D43642AEC69920006EB20 /* DataExtension.swift */; };
 		9E9BBAC32AB779720058539B /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9BBAC22AB779720058539B /* ModelContainerPreview.swift */; };
 		9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */; };
 		9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8C2A5898D600CB9319 /* ContentView.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		9E16CA072AA288B300B50C39 /* literature.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = literature.json; sourceTree = "<group>"; };
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
+		9E2D43642AEC69920006EB20 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		9E9BBAC22AB779720058539B /* ModelContainerPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VittraApp.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				9EF396F82AC4DDD200C93C3A /* StringExtension.swift */,
+				9E2D43642AEC69920006EB20 /* DataExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				9EF396F42AC4C06800C93C3A /* ContentViewStore.swift in Sources */,
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
 				9EF396F92AC4DDD200C93C3A /* StringExtension.swift in Sources */,
+				9E2D43652AEC69920006EB20 /* DataExtension.swift in Sources */,
 				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
 				9EF396F62AC4C55800C93C3A /* LiteratureTimeViewStore.swift in Sources */,
 				9E9BBAC32AB779720058539B /* ModelContainerPreview.swift in Sources */,
