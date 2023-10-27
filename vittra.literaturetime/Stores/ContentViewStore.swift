@@ -69,9 +69,16 @@ struct ContentViewMiddleware: Middleware {
         case .load:
             let defaults = UserDefaults.standard
 
-            if defaults.bool(forKey: "v3") { return .loadDone }
+            if defaults.bool(forKey: "v4") { return .loadDone }
 
-            let results = try? await dependencies.load()
+            var results: [LiteratureTimeImport]?
+            do {
+                results = try await dependencies.load()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+
             guard let results = results else {
                 return .loadDone
             }
@@ -106,7 +113,7 @@ struct ContentViewMiddleware: Middleware {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
 
-            defaults.setValue(true, forKey: "v3")
+            defaults.setValue(true, forKey: "v4")
 
             return .loadDone
 
