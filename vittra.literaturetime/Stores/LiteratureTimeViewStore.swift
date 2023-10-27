@@ -3,12 +3,12 @@ import Mimer
 import SwiftData
 
 struct LiteratureTimeViewState: Equatable {
-    var literatureTime: LiteratureTime?
+    var literatureTime: LiteratureTime
 }
 
 enum LiteratureTimeViewAction: Equatable {
     case searchRandom(query: String)
-    case setResults(literatureTime: LiteratureTime?)
+    case setResults(literatureTime: LiteratureTime)
 }
 
 struct LiteratureTimeViewReducer: Reducer {
@@ -36,7 +36,7 @@ struct LiteratureTimeViewMiddleware: Middleware {
                 descriptor.predicate = #Predicate { item in
                     item.time == query
                 }
-                
+
                 let modelContext = ModelContext(ModelContexts.productionContainer)
                 guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
                     return nil
@@ -54,24 +54,24 @@ struct LiteratureTimeViewMiddleware: Middleware {
         }
 
         static var preview: Dependencies {
-            .init(search: { query in
-                return LiteratureTime.fallback
+            .init(search: { _ in
+                LiteratureTime.fallback
             })
         }
     }
 
     let dependencies: Dependencies
 
-    func process(state: LiteratureTimeViewState, with action: LiteratureTimeViewAction) async -> LiteratureTimeViewAction? {
+    func process(state _: LiteratureTimeViewState, with action: LiteratureTimeViewAction) async -> LiteratureTimeViewAction? {
         switch action {
         case let .searchRandom(query):
-            let results = try? await dependencies.search(query)
+            let result = try? await dependencies.search(query)
 
-            guard let results = results else {
+            guard let result = result else {
                 return .setResults(literatureTime: LiteratureTime.fallback)
             }
 
-            return .setResults(literatureTime: results)
+            return .setResults(literatureTime: result)
         default:
             return nil
         }

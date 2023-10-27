@@ -48,7 +48,7 @@ extension LiteratureTime {
             id: ""
         )
     }
-    
+
     static var emptyFallback: LiteratureTime {
         LiteratureTime(
             time: "",

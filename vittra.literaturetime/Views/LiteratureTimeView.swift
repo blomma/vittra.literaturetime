@@ -16,7 +16,7 @@ func createQuery() -> String? {
 struct LiteratureTimeView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var store = LiteratureTimeViewStore(
-        initialState: .init(),
+        initialState: .init(literatureTime: LiteratureTime.emptyFallback),
         reducer: LiteratureTimeViewReducer(),
         middlewares: [LiteratureTimeViewMiddleware(dependencies: .production)]
     )
@@ -26,22 +26,20 @@ struct LiteratureTimeView: View {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
-            ScrollView {
-                let literatureTime = store.literatureTime ?? LiteratureTime.emptyFallback
-
+            ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
-                        Text(literatureTime.quoteFirst)
-                            + Text(literatureTime.quoteTime)
+                        Text(store.literatureTime.quoteFirst)
+                            + Text(store.literatureTime.quoteTime)
                             .foregroundStyle(.literatureTime)
-                            + Text(literatureTime.quoteLast)
+                            + Text(store.literatureTime.quoteLast)
                     }
                     .font(.system(.title, design: .serif, weight: .regular))
 
                     HStack {
-                        Text("- \(literatureTime.title), ")
-                            + Text(literatureTime.author)
-                        + Text("   \(literatureTime.gutenbergReference)")
+                        Text("- \(store.literatureTime.title), ")
+                            + Text(store.literatureTime.author)
+                            + Text("   \(store.literatureTime.gutenbergReference)")
                             .italic()
                     }
                     .padding(.leading, 20)
@@ -54,7 +52,7 @@ struct LiteratureTimeView: View {
                 .allowsTightening(false)
                 .contextMenu {
                     Button {
-                        UIPasteboard.general.string = literatureTime.description
+                        UIPasteboard.general.string = store.literatureTime.description
                     } label: {
                         Label("Copy quote", systemImage: "heart")
                     }
@@ -92,7 +90,7 @@ struct LiteratureTimeView: View {
 
 #Preview {
     LiteratureTimeView(store: .init(
-        initialState: .init(),
+        initialState: .init(literatureTime: LiteratureTime.emptyFallback),
         reducer: LiteratureTimeViewReducer(),
         middlewares: [LiteratureTimeViewMiddleware(dependencies: .preview)]
     ))
