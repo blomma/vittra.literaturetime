@@ -4,8 +4,12 @@ import SwiftUI
 struct ModelContexts {
     static let productionContainer: ModelContainer = {
         do {
+            guard let storeURL = Bundle.main.url(forResource: "literatureTimes", withExtension: "store") else {
+                fatalError("Failed to find literatureTimes.store")
+            }
+
             let schema = Schema([LiteratureTime.self])
-            let configuration = ModelConfiguration()
+            let configuration = ModelConfiguration(url: storeURL)
             return try ModelContainer(for: schema, configurations: [configuration])
         } catch {
             let nsError = error as NSError

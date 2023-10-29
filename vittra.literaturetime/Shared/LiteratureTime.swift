@@ -4,7 +4,6 @@ import SwiftData
 @Model
 final class LiteratureTime: Equatable {
     var time: String
-
     var quoteFirst: String
     var quoteTime: String
     var quoteLast: String
@@ -22,43 +21,5 @@ final class LiteratureTime: Equatable {
         self.author = author
         self.gutenbergReference = gutenbergReference
         self.id = id
-    }
-}
-
-extension LiteratureTime: CustomStringConvertible {
-    var description: String {
-        return """
-        \(quoteFirst)\(quoteTime)\(quoteLast)
-
-        - \(title), \(author)
-        """
-    }
-}
-
-extension LiteratureTime {
-    static var fallback: LiteratureTime {
-        LiteratureTime(
-            time: "",
-            quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
-            quoteTime: "",
-            quoteLast: "",
-            title: "The Hitchhiker's Guide to the Galaxy",
-            author: "Douglas Adams",
-            gutenbergReference: "",
-            id: ""
-        )
-    }
-
-    static var emptyFallback: LiteratureTime {
-        LiteratureTime(
-            time: "",
-            quoteFirst: "",
-            quoteTime: "",
-            quoteLast: "",
-            title: "",
-            author: "",
-            gutenbergReference: "",
-            id: ""
-        )
     }
 }
