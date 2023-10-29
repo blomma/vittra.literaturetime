@@ -44,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
+		9E2D43662AED5AC50006EB20 /* Yggdrasil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Yggdrasil; sourceTree = "<group>"; };
 		9E9BBAC22AB779720058539B /* ModelContainerPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VittraApp.swift; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		9E9CBD7E2A5898D600CB9319 = {
 			isa = PBXGroup;
 			children = (
+				9E2D43662AED5AC50006EB20 /* Yggdrasil */,
 				9EBEDEF12A9BBC0B002CD4A4 /* Mimer */,
 				9E9CBD892A5898D600CB9319 /* vittra.literaturetime */,
 				9E9CBD9E2A5898D800CB9319 /* vittra.literaturetimeTests */,
