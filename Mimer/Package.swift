@@ -25,3 +25,9 @@ let package = Package(
         .target(name: "Example", dependencies: ["Mimer"]),
     ]
 )
+
+//for target in package.targets {
+//    var settings = target.swiftSettings ?? []
+//    settings.append(.enableExperimentalFeature("StrictConcurrency"))
+//    target.swiftSettings = settings
+//}
