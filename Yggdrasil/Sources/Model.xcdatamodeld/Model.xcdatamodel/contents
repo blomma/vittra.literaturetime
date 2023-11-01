@@ -9,5 +9,8 @@
         <attribute name="quoteTime" attributeType="String"/>
         <attribute name="time" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
+        <fetchIndex name="byTimeIndex">
+            <fetchIndexElement property="time" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
 </model>

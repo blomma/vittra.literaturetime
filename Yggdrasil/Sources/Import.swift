@@ -67,6 +67,7 @@ func importLiteratureTime(fromFile: String, toStore: String) {
 
                 // Adjust this to the actual location where you want the file to be saved.
                 let destination = URL(filePath: toStore)
+                try FileManager.default.removeItem(at: destination)
                 try FileManager.default.copyItem(at: storeURL, to: destination)
             } catch {
                 print("Failed to create data: \(error.localizedDescription)")
