@@ -53,6 +53,8 @@ struct LiteratureTimeView: View {
                     } label: {
                         Label("Copy quote", systemImage: "heart")
                     }
+                    Link("View book on gutenberg",
+                          destination: URL(string: "https://www.gutenberg.org/ebooks/\(store.viewModel.gutenbergReference)")!)
                 }
             }
             .padding(25)
