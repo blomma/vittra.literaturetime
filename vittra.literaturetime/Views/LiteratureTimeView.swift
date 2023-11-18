@@ -26,30 +26,27 @@ struct LiteratureTimeView: View {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
-            ScrollView(.vertical) {
+            ScrollView(.vertical) {                
                 VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
+                    Group {
                         Text(store.viewModel.quoteFirst)
                             + Text(store.viewModel.quoteTime)
-                            .foregroundStyle(.literatureTime)
+                                .foregroundStyle(.literatureTime)
                             + Text(store.viewModel.quoteLast)
                     }
-                    .font(.system(.title, design: .serif, weight: .regular))
+                    .font(.system(.title2, design: .serif, weight: .regular))
 
                     HStack {
                         Text("- \(store.viewModel.title), ")
                             + Text(store.viewModel.author)
+                                .italic()
                             + Text("   \(store.viewModel.gutenbergReference)")
-                            .italic()
                     }
-                    .padding(.leading, 20)
-                    .padding(.top, 20)
+                    .padding(.top, 15)
+                    .padding(.leading, 25)
                     .font(.system(.footnote, design: .serif, weight: .regular))
                 }
-                .animation(.easeInOut(duration: 0.5), value: store.viewModel)
-                .padding(25)
-                .padding(.top, 10)
-                .allowsTightening(false)
+                .foregroundStyle(.literature)
                 .contextMenu {
                     Button {
                         UIPasteboard.general.string = store.viewModel.description
@@ -58,6 +55,7 @@ struct LiteratureTimeView: View {
                     }
                 }
             }
+            .padding(25)
             .foregroundStyle(.literature)
         }
         .task {
