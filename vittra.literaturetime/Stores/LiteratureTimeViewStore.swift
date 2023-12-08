@@ -3,12 +3,58 @@ import Mimer
 import SwiftData
 
 struct LiteratureTimeViewState: Equatable {
-    var viewModel: LiteratureTimeView.ViewModel
+    var time: String
+    var quoteFirst: String
+    var quoteTime: String
+    var quoteLast: String
+    var title: String
+    var author: String
+    var gutenbergReference: String
+    var id: String
 }
+
+extension LiteratureTimeViewState: CustomStringConvertible {
+    var description: String {
+        return """
+        \(quoteFirst)\(quoteTime)\(quoteLast)
+
+        - \(title), \(author), \(gutenbergReference)
+        """
+    }
+}
+
+extension LiteratureTimeViewState {
+    static var fallback: LiteratureTimeViewState {
+        LiteratureTimeViewState(
+            time: "",
+            quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
+            quoteTime: "",
+            quoteLast: "",
+            title: "The Hitchhiker's Guide to the Galaxy",
+            author: "Douglas Adams",
+            gutenbergReference: "",
+            id: ""
+        )
+    }
+
+    static var empty: LiteratureTimeViewState {
+        LiteratureTimeViewState(
+            time: "",
+            quoteFirst: "",
+            quoteTime: "",
+            quoteLast: "",
+            title: "",
+            author: "",
+            gutenbergReference: "",
+            id: ""
+        )
+    }
+}
+
 
 enum LiteratureTimeViewAction: Equatable {
     case searchRandom(query: String)
-    case setResults(literatureTime: LiteratureTimeView.ViewModel)
+    case setResults(literatureTime: LiteratureTimeViewState)
     case setFallback
 }
 
@@ -18,9 +64,9 @@ struct LiteratureTimeViewReducer: Reducer {
 
         switch action {
         case let .setResults(literatureTime):
-            state.viewModel = literatureTime
+            state = literatureTime
         case .setFallback:
-            state.viewModel = .fallback
+            state = .fallback
         default:
             return state
         }
@@ -74,7 +120,7 @@ struct LiteratureTimeViewMiddleware: Middleware {
                 return .setFallback
             }
 
-            return .setResults(literatureTime: LiteratureTimeView.ViewModel(
+            return .setResults(literatureTime: LiteratureTimeViewState(
                 time: result.time,
                 quoteFirst: result.quoteFirst.replacingOccurrences(of: "\n", with: " "),
                 quoteTime: result.quoteTime.replacingOccurrences(of: "\n", with: " "),

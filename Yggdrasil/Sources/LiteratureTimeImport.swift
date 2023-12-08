@@ -7,4 +7,5 @@ struct LiteratureTimeImport: Equatable, Decodable {
     var author: String
     var gutenbergReference: String
     var hash: String
+    var matchType: Int
 }
