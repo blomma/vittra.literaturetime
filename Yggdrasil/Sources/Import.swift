@@ -58,7 +58,6 @@ func importLiteratureTime(fromFile: String, toStore: String) {
                     literatureTime.author = literatureTimeImport.author
                     literatureTime.gutenbergReference = literatureTimeImport.gutenbergReference
                     literatureTime.id = literatureTimeImport.hash
-                    literatureTime.matchType = Int16(literatureTimeImport.matchType)
 
                     container.viewContext.insert(literatureTime)
                 }

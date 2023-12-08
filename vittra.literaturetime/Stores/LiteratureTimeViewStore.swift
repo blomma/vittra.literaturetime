@@ -82,9 +82,9 @@ struct LiteratureTimeViewMiddleware: Middleware {
         static var production: Dependencies {
             .init(search: { query in
                 var descriptor = FetchDescriptor<LiteratureTime>()
-//                descriptor.predicate = #Predicate { item in
-//                    item.time == query
-//                }
+                descriptor.predicate = #Predicate { item in
+                    item.time == query
+                }
 
                 let modelContext = ModelContext(ModelContexts.productionContainer)
                 guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
