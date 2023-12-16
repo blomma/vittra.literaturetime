@@ -80,7 +80,7 @@ struct LiteratureTimeView: View {
         Link(
             destination: URL(string: "https://www.gutenberg.org/ebooks/\(store.gutenbergReference)")!)
         {
-            Label("View book on gutenberg", systemImage: "lock")
+            Label("View book on gutenberg", systemImage: "book")
         }
     }
 }
