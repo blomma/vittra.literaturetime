@@ -20,27 +20,27 @@ struct LiteratureTimeView: View {
         reducer: LiteratureTimeViewReducer(),
         middlewares: [LiteratureTimeViewMiddleware(dependencies: .production)]
     )
-
+    
     var body: some View {
         ZStack {
             Color(.literatureBackground)
                 .ignoresSafeArea()
-
-            ScrollView(.vertical) {                
+            
+            ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
                         Text(store.quoteFirst)
-                            + Text(store.quoteTime)
-                                .foregroundStyle(.literatureTime)
-                            + Text(store.quoteLast)
+                        + Text(store.quoteTime)
+                            .foregroundStyle(.literatureTime)
+                        + Text(store.quoteLast)
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
-
+                    
                     HStack {
                         Text("- \(store.title), ")
-                            + Text(store.author)
-                                .italic()
-                            + Text("   \(store.gutenbergReference)")
+                        + Text(store.author)
+                            .italic()
+                        + Text("   \(store.gutenbergReference)")
                     }
                     .padding(.top, 15)
                     .padding(.leading, 25)
@@ -48,13 +48,7 @@ struct LiteratureTimeView: View {
                 }
                 .foregroundStyle(.literature)
                 .contextMenu {
-                    Button {
-                        UIPasteboard.general.string = store.description
-                    } label: {
-                        Label("Copy quote", systemImage: "heart")
-                    }
-                    Link("View book on gutenberg",
-                          destination: URL(string: "https://www.gutenberg.org/ebooks/\(store.gutenbergReference)")!)
+                    contextMenu
                 }
             }
             .padding(25)
@@ -64,26 +58,29 @@ struct LiteratureTimeView: View {
             guard let query = createQuery() else {
                 return
             }
-
+            
             await store.send(.searchRandom(query: query))
         }
-//        .onChange(of: scenePhase, initial: true) { _, newValue in
-//            if newValue == .active {
-//                Task {
-//                    guard let query = createQuery() else {
-//                        return
-//                    }
-//
-//                    await store.send(.searchRandom(query: query))
-//                }
-//            }
-//        }
         .refreshable {
             guard let query = createQuery() else {
                 return
             }
-
+            
             await store.send(.searchRandom(query: query))
+        }
+    }
+    
+    @ViewBuilder
+    private var contextMenu: some View {
+        Button {
+            UIPasteboard.general.string = store.description
+        } label: {
+            Label("Copy quote", systemImage: "doc.on.doc")
+        }
+        Link(
+             destination: URL(string: "https://www.gutenberg.org/ebooks/\(store.gutenbergReference)")!)
+        {
+            Label("View book on gutenberg", systemImage: "lock")
         }
     }
 }
