@@ -121,9 +121,9 @@ struct LiteratureTimeViewMiddleware: Middleware {
 
             return .setResults(literatureTime: LiteratureTimeViewState(
                 time: result.time,
-                quoteFirst: result.quoteFirst.replacingOccurrences(of: "\n", with: " "),
-                quoteTime: result.quoteTime.replacingOccurrences(of: "\n", with: " "),
-                quoteLast: result.quoteLast.replacingOccurrences(of: "\n", with: " "),
+                quoteFirst: result.quoteFirst,
+                quoteTime: result.quoteTime,
+                quoteLast: result.quoteLast,
                 title: result.title,
                 author: result.author,
                 gutenbergReference: result.gutenbergReference,
