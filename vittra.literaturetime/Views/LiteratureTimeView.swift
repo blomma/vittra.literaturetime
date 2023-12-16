@@ -46,12 +46,13 @@ struct LiteratureTimeView: View {
                     .padding(.leading, 25)
                     .font(.system(.footnote, design: .serif, weight: .regular))
                 }
+                .padding(15)
                 .foregroundStyle(.literature)
                 .contextMenu {
                     contextMenu
                 }
             }
-            .padding(25)
+            .padding(15)
             .foregroundStyle(.literature)
         }
         .task {
