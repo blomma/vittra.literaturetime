@@ -20,27 +20,27 @@ struct LiteratureTimeView: View {
         reducer: LiteratureTimeViewReducer(),
         middlewares: [LiteratureTimeViewMiddleware(dependencies: .production)]
     )
-    
+
     var body: some View {
         ZStack {
             Color(.literatureBackground)
                 .ignoresSafeArea()
-            
+
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
                         Text(store.quoteFirst)
-                        + Text(store.quoteTime)
+                            + Text(store.quoteTime)
                             .foregroundStyle(.literatureTime)
-                        + Text(store.quoteLast)
+                            + Text(store.quoteLast)
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
-                    
+
                     HStack {
                         Text("- \(store.title), ")
-                        + Text(store.author)
+                            + Text(store.author)
                             .italic()
-                        + Text("   \(store.gutenbergReference)")
+                            + Text("   \(store.gutenbergReference)")
                     }
                     .padding(.top, 15)
                     .padding(.leading, 25)
@@ -58,18 +58,18 @@ struct LiteratureTimeView: View {
             guard let query = createQuery() else {
                 return
             }
-            
+
             await store.send(.searchRandom(query: query))
         }
         .refreshable {
             guard let query = createQuery() else {
                 return
             }
-            
+
             await store.send(.searchRandom(query: query))
         }
     }
-    
+
     @ViewBuilder
     private var contextMenu: some View {
         Button {
@@ -78,7 +78,7 @@ struct LiteratureTimeView: View {
             Label("Copy quote", systemImage: "doc.on.doc")
         }
         Link(
-             destination: URL(string: "https://www.gutenberg.org/ebooks/\(store.gutenbergReference)")!)
+            destination: URL(string: "https://www.gutenberg.org/ebooks/\(store.gutenbergReference)")!)
         {
             Label("View book on gutenberg", systemImage: "lock")
         }

@@ -51,7 +51,6 @@ extension LiteratureTimeViewState {
     }
 }
 
-
 enum LiteratureTimeViewAction: Equatable {
     case searchRandom(query: String)
     case setResults(literatureTime: LiteratureTimeViewState)
