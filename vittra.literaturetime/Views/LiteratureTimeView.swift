@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 func createQuery() -> String? {
@@ -15,10 +16,9 @@ func createQuery() -> String? {
 
 struct LiteratureTimeView: View {
     @Environment(\.scenePhase) var scenePhase
-    @State var store = LiteratureTimeViewStore(
+    @State var model = ViewModel(
         initialState: .empty,
-        reducer: LiteratureTimeViewReducer(),
-        middlewares: [LiteratureTimeViewMiddleware(dependencies: .production)]
+        provider: LiteratureTimeProvider()
     )
 
     var body: some View {
@@ -29,18 +29,18 @@ struct LiteratureTimeView: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
-                        Text(store.quoteFirst)
-                            + Text(store.quoteTime)
+                        Text(model.quoteFirst)
+                            + Text(model.quoteTime)
                             .foregroundStyle(.literatureTime)
-                            + Text(store.quoteLast)
+                            + Text(model.quoteLast)
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
 
                     HStack {
-                        Text("- \(store.title), ")
-                            + Text(store.author)
+                        Text("- \(model.title), ")
+                            + Text(model.author)
                             .italic()
-                            + Text("   \(store.gutenbergReference)")
+                            + Text("   \(model.gutenbergReference)")
                     }
                     .padding(.top, 15)
                     .padding(.leading, 25)
@@ -60,37 +60,66 @@ struct LiteratureTimeView: View {
                 return
             }
 
-            await store.send(.searchRandom(query: query))
+            model.search(query: query)
         }
         .refreshable {
             guard let query = createQuery() else {
                 return
             }
 
-            await store.send(.searchRandom(query: query))
+            model.search(query: query)
         }
     }
 
     @ViewBuilder
     private var contextMenu: some View {
         Button {
-            UIPasteboard.general.string = store.description
+            UIPasteboard.general.string = model.description
         } label: {
             Label("Copy quote", systemImage: "doc.on.doc")
         }
         Link(
-            destination: URL(string: "https://www.gutenberg.org/ebooks/\(store.gutenbergReference)")!)
+            destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
         {
             Label("View book on gutenberg", systemImage: "book")
         }
     }
 }
 
+extension LiteratureTimeView {
+    @Observable @dynamicMemberLookup
+    public final class ViewModel {
+        private var state: LiteratureTimeViewState
+        private var provider: LiteratureTimeViewProviding
+
+        public init(
+            initialState state: LiteratureTimeViewState,
+            provider: LiteratureTimeViewProviding
+        ) {
+            self.state = state
+            self.provider = provider
+        }
+
+        public subscript<T>(dynamicMember keyPath: KeyPath<LiteratureTimeViewState, T>) -> T {
+            state[keyPath: keyPath]
+        }
+
+        func search(query: String) {
+            let literatureTime = try? provider.search(query: query)
+
+            guard let literatureTime = literatureTime else {
+                state = .fallback
+                return
+            }
+
+            state = literatureTime
+        }
+    }
+}
+
 #Preview {
-    LiteratureTimeView(store: .init(
+    LiteratureTimeView(model: .init(
         initialState: .empty,
-        reducer: LiteratureTimeViewReducer(),
-        middlewares: [LiteratureTimeViewMiddleware(dependencies: .preview)]
+        provider: LiteratureTimeProviderPreview()
     ))
-    .modelContainer(ModelContexts.previewContainer)
 }
