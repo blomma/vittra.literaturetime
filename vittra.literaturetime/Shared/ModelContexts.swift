@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-struct ModelContexts {
+enum ModelContexts {
     static let productionContainer: ModelContainer = {
         do {
             guard let storeURL = Bundle.main.url(
