@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-enum ModelContexts {
+extension ModelContainer {
     static let productionContainer: ModelContainer = {
         do {
             guard let storeURL = Bundle.main.url(
@@ -11,7 +11,7 @@ enum ModelContexts {
                 fatalError("Failed to find literatureTimes.store")
             }
 
-            let schema = Schema([LiteratureTime.self])
+            let schema = Schema([Database.LiteratureTime.self])
             let configuration = ModelConfiguration(url: storeURL, allowsSave: false)
             return try ModelContainer(for: schema, configurations: [configuration])
         } catch {
@@ -22,12 +22,12 @@ enum ModelContexts {
 
     static let previewContainer: ModelContainer = {
         do {
-            let schema = Schema([LiteratureTime.self])
+            let schema = Schema([Database.LiteratureTime.self])
             let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(for: schema, configurations: [configuration])
 
             Task { @MainActor in
-                container.mainContext.insert(LiteratureTime(
+                container.mainContext.insert(Database.LiteratureTime(
                     time: "",
                     quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
                     quoteTime: "",

@@ -1,25 +1,9 @@
 import SwiftData
 import SwiftUI
 
-func createQuery() -> String? {
-    let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
-
-    guard let hour = hm.hour, let minute = hm.minute else {
-        return nil
-    }
-
-    let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
-    let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
-
-    return "\(paddedHour):\(paddedMinute)"
-}
-
 struct LiteratureTimeView: View {
     @Environment(\.scenePhase) var scenePhase
-    @State var model = ViewModel(
-        initialState: .empty,
-        provider: LiteratureTimeProvider()
-    )
+    @State var model: ViewModel
 
     var body: some View {
         ZStack {
@@ -49,30 +33,23 @@ struct LiteratureTimeView: View {
                 .padding(15)
                 .foregroundStyle(.literature)
                 .contextMenu {
-                    contextMenu
+                    makeContextMenu
                 }
             }
             .padding(15)
             .foregroundStyle(.literature)
         }
         .task {
-            guard let query = createQuery() else {
-                return
-            }
-
-            model.search(query: query)
+            await model.fetchRandomQuote()
         }
         .refreshable {
-            guard let query = createQuery() else {
-                return
-            }
-
-            model.search(query: query)
+            await model.fetchRandomQuote()
         }
     }
 
+    @MainActor
     @ViewBuilder
-    private var contextMenu: some View {
+    private var makeContextMenu: some View {
         Button {
             UIPasteboard.general.string = model.description
         } label: {
@@ -87,25 +64,41 @@ struct LiteratureTimeView: View {
 }
 
 extension LiteratureTimeView {
+    @MainActor
     @Observable @dynamicMemberLookup
-    public final class ViewModel {
-        private var state: LiteratureTimeViewState
+    final class ViewModel {
+        private var state: LiteratureTime
         private var provider: LiteratureTimeViewProviding
 
         public init(
-            initialState state: LiteratureTimeViewState,
+            initialState state: LiteratureTime,
             provider: LiteratureTimeViewProviding
         ) {
             self.state = state
             self.provider = provider
         }
 
-        public subscript<T>(dynamicMember keyPath: KeyPath<LiteratureTimeViewState, T>) -> T {
+        public subscript<T>(dynamicMember keyPath: KeyPath<LiteratureTime, T>) -> T {
             state[keyPath: keyPath]
         }
 
-        func search(query: String) {
-            let literatureTime = try? provider.search(query: query)
+        func fetchRandomQuote() async {
+            let actorQueueLabel = DispatchQueue.currentLabel
+            print("Actor1 queue:", actorQueueLabel)
+
+            let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
+
+            guard let hour = hm.hour, let minute = hm.minute else {
+                state = .fallback
+                return
+            }
+
+            let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
+            let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
+
+            let query = "\(paddedHour):\(paddedMinute)"
+
+            let literatureTime = try? await provider.search(query: query)
 
             guard let literatureTime = literatureTime else {
                 state = .fallback

@@ -1,22 +1,45 @@
+import CoreData
 import Foundation
 import SwiftData
 
-protocol LiteratureTimeViewProviding {
-    func search(query: String) throws -> LiteratureTimeViewState?
+// get current dispatch queue label
+extension DispatchQueue {
+    static var currentLabel: String {
+        return String(validatingUTF8: __dispatch_queue_get_label(nil)) ?? "unknown"
+    }
 }
 
-extension LiteratureTimeViewProviding {
-    func search(query: String) throws -> LiteratureTimeViewState? {
-        var descriptor = FetchDescriptor<LiteratureTime>()
+protocol LiteratureTimeViewProviding {
+    func search(query: String) async throws -> LiteratureTime?
+}
+
+struct LiteratureTimeProviderPreview: LiteratureTimeViewProviding {
+    func search(query _: String) throws -> LiteratureTime? {
+        var literatureTime: LiteratureTime = .fallback
+        literatureTime.author = "Douglas Adamss"
+
+        return literatureTime
+    }
+}
+
+@ModelActor
+actor LiteratureTimeProvider: LiteratureTimeViewProviding {}
+
+extension LiteratureTimeProvider {
+    func search(query: String) throws -> LiteratureTime? {
+        let actorQueueLabel = DispatchQueue.currentLabel
+        print("Actor3 queue:", actorQueueLabel)
+
+        var descriptor = FetchDescriptor<Database.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.time == query
         }
 
-        let modelContext = ModelContext(ModelContexts.productionContainer)
         guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
             return nil
         }
 
+        print("literatureTimeCount:", literatureTimeCount)
         descriptor.fetchLimit = 1
         descriptor.fetchOffset = Int.random(in: 0 ... literatureTimeCount - 1)
 
@@ -24,7 +47,7 @@ extension LiteratureTimeViewProviding {
             return nil
         }
 
-        return LiteratureTimeViewState(
+        return LiteratureTime(
             time: literatureTime.time,
             quoteFirst: literatureTime.quoteFirst,
             quoteTime: literatureTime.quoteTime,
@@ -34,15 +57,5 @@ extension LiteratureTimeViewProviding {
             gutenbergReference: literatureTime.gutenbergReference,
             id: literatureTime.id
         )
-    }
-}
-
-struct LiteratureTimeProvider: LiteratureTimeViewProviding {}
-struct LiteratureTimeProviderPreview: LiteratureTimeViewProviding {
-    func search(query _: String) throws -> LiteratureTimeViewState? {
-        var literatureTime: LiteratureTimeViewState = .fallback
-        literatureTime.author = "Douglas Adamss"
-
-        return literatureTime
     }
 }
