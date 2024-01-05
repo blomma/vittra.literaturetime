@@ -1,0 +1,3 @@
+[submodule "Quotes"]
+	path = Quotes
+	url = https://github.com/blomma/translated.quotes.literaturetime

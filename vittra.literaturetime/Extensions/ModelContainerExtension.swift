@@ -6,7 +6,8 @@ extension ModelContainer {
         do {
             guard let storeURL = Bundle.main.url(
                 forResource: "literatureTimes",
-                withExtension: "store"
+                withExtension: "store",
+                subdirectory: "Quotes"
             ) else {
                 fatalError("Failed to find literatureTimes.store")
             }
