@@ -9,7 +9,7 @@ struct LiteratureTimeView: View {
         ZStack {
             Color(.literatureBackground)
                 .ignoresSafeArea()
-
+ 
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
@@ -24,7 +24,6 @@ struct LiteratureTimeView: View {
                         Text("- \(model.title), ")
                             + Text(model.author)
                             .italic()
-                            + Text("   \(model.gutenbergReference)")
                     }
                     .padding(.top, 15)
                     .padding(.leading, 25)
@@ -53,12 +52,15 @@ struct LiteratureTimeView: View {
         Button {
             UIPasteboard.general.string = model.description
         } label: {
-            Label("Copy quote", systemImage: "doc.on.doc")
+            Label("Copy quote to clipboard", systemImage: "doc.on.doc")
         }
-        Link(
-            destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
-        {
-            Label("View book on gutenberg", systemImage: "book")
+        
+        if (model.gutenbergReference != "") {
+            Link(
+                destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
+            {
+                Label("View book on gutenberg", systemImage: "book")
+            }
         }
     }
 }
