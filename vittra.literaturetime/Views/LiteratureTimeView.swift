@@ -21,9 +21,7 @@ struct LiteratureTimeView: View {
                     .font(.system(.title2, design: .serif, weight: .regular))
 
                     HStack {
-                        Text("- \(model.title), ")
-                            + Text(model.author)
-                            .italic()
+                        Text("- \(model.title), \(Text(model.author).italic())")
                     }
                     .padding(.top, 15)
                     .padding(.leading, 25)
@@ -37,12 +35,12 @@ struct LiteratureTimeView: View {
             }
             .padding(15)
             .foregroundStyle(.literature)
-        }
-        .task {
-            await model.fetchRandomQuote()
-        }
-        .refreshable {
-            await model.fetchRandomQuote()
+            .task {
+                await model.fetchRandomQuote()
+            }
+            .refreshable {
+                await model.fetchRandomQuote()
+            }
         }
     }
 
