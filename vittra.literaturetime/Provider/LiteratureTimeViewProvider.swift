@@ -27,9 +27,6 @@ actor LiteratureTimeProvider: LiteratureTimeViewProviding {}
 
 extension LiteratureTimeProvider {
     func search(query: String) throws -> LiteratureTime? {
-        let actorQueueLabel = DispatchQueue.currentLabel
-        print("Actor3 queue:", actorQueueLabel)
-
         var descriptor = FetchDescriptor<Database.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.time == query
