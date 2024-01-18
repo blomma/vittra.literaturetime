@@ -83,9 +83,6 @@ extension LiteratureTimeView {
         }
 
         func fetchRandomQuote() async {
-            let actorQueueLabel = DispatchQueue.currentLabel
-            print("Actor1 queue:", actorQueueLabel)
-
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
             guard let hour = hm.hour, let minute = hm.minute else {
