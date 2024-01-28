@@ -70,7 +70,7 @@ func importLiteratureTime(fromFile: String, toStore: String) {
                 try FileManager.default.removeItem(at: destination)
                 try FileManager.default.copyItem(at: storeURL, to: destination)
             } catch {
-                print("Failed to create data: \(error.localizedDescription)")
+                fatalError("Failed to create data: \(error.localizedDescription)")
             }
         }
     }
