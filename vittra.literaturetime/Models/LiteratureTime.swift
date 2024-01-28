@@ -25,9 +25,9 @@ extension LiteratureTime {
     static var fallback: LiteratureTime {
         LiteratureTime(
             time: "",
-            quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
+            quoteFirst: "Apologies, a quote has not yet been unearthed for the current time, instead, for now, I leave you with this quote from Douglas Adams.\n\n\n",
             quoteTime: "",
-            quoteLast: "",
+            quoteLast: "“Time is an illusion. Lunchtime doubly so.”",
             title: "The Hitchhiker's Guide to the Galaxy",
             author: "Douglas Adams",
             gutenbergReference: "",

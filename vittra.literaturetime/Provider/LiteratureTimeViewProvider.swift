@@ -8,10 +8,7 @@ protocol LiteratureTimeViewProviding {
 
 struct LiteratureTimeProviderPreview: LiteratureTimeViewProviding {
     func search(query _: String) throws -> LiteratureTime? {
-        var literatureTime: LiteratureTime = .fallback
-        literatureTime.author = "Douglas Adamss"
-
-        return literatureTime
+        return .fallback
     }
 }
 
