@@ -29,6 +29,7 @@ struct LiteratureTimeView: View {
                 }
                 .padding(15)
                 .foregroundStyle(.literature)
+                .contentShape(Rectangle())
                 .contextMenu {
                     makeContextMenu
                 }
