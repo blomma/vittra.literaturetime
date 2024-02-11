@@ -4,7 +4,8 @@ import SwiftUI
 struct LiteratureTimeView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var model: ViewModel
-
+    @AppStorage("literatureTimeId") private var literatureTimeId = ""
+    
     var body: some View {
         ZStack {
             Color(.literatureBackground)
@@ -37,10 +38,24 @@ struct LiteratureTimeView: View {
             .padding(15)
             .foregroundStyle(.literature)
             .task {
+                if !literatureTimeId.isEmpty {
+                    await model.fetchQuoteFrom(Id: literatureTimeId)
+                }
+
+                if !model.id.isEmpty {
+                    return
+                }
+                
                 await model.fetchRandomQuote()
+                if !model.id.isEmpty {
+                    literatureTimeId = model.id
+                }
             }
             .refreshable {
                 await model.fetchRandomQuote()
+                if !model.id.isEmpty {
+                    literatureTimeId = model.id
+                }
             }
         }
     }
@@ -97,6 +112,17 @@ extension LiteratureTimeView {
             let query = "\(paddedHour):\(paddedMinute)"
 
             let literatureTime = try? await provider.search(query: query)
+
+            guard let literatureTime = literatureTime else {
+                state = .fallback
+                return
+            }
+
+            state = literatureTime
+        }
+        
+        func fetchQuoteFrom(Id: String) async {
+            let literatureTime = try? await provider.searchFor(Id: Id)
 
             guard let literatureTime = literatureTime else {
                 state = .fallback
