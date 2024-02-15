@@ -11,8 +11,8 @@ struct LiteratureTimeProviderPreview: LiteratureTimeViewProviding {
     func search(query _: String) throws -> LiteratureTime? {
         return .fallback
     }
-    
-    func searchFor(Id: String) async throws -> LiteratureTime? {
+
+    func searchFor(Id _: String) async throws -> LiteratureTime? {
         return .fallback
     }
 }
@@ -49,7 +49,7 @@ extension LiteratureTimeProvider {
             id: literatureTime.id
         )
     }
-    
+
     func searchFor(Id: String) async throws -> LiteratureTime? {
         var descriptor = FetchDescriptor<Database.LiteratureTime>()
         descriptor.predicate = #Predicate { item in

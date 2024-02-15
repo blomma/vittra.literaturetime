@@ -4,13 +4,12 @@ import SwiftUI
 struct LiteratureTimeView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var model: ViewModel
-    @AppStorage("literatureTimeId") private var literatureTimeId = ""
-    
+
     var body: some View {
         ZStack {
             Color(.literatureBackground)
                 .ignoresSafeArea()
- 
+
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
@@ -38,24 +37,10 @@ struct LiteratureTimeView: View {
             .padding(15)
             .foregroundStyle(.literature)
             .task {
-                if !literatureTimeId.isEmpty {
-                    await model.fetchQuoteFrom(Id: literatureTimeId)
-                }
-
-                if !model.id.isEmpty {
-                    return
-                }
-                
-                await model.fetchRandomQuote()
-                if !model.id.isEmpty {
-                    literatureTimeId = model.id
-                }
+                await model.fetchQuote()
             }
             .refreshable {
-                await model.fetchRandomQuote()
-                if !model.id.isEmpty {
-                    literatureTimeId = model.id
-                }
+                await model.refreshQuote()
             }
         }
     }
@@ -68,8 +53,8 @@ struct LiteratureTimeView: View {
         } label: {
             Label("Copy quote to clipboard", systemImage: "doc.on.doc")
         }
-        
-        if (model.gutenbergReference != "") {
+
+        if model.gutenbergReference != "" {
             Link(
                 destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
             {
@@ -83,8 +68,13 @@ extension LiteratureTimeView {
     @MainActor
     @Observable @dynamicMemberLookup
     final class ViewModel {
+        class Storage {
+            @AppStorage("literatureTimeId") public var literatureTimeId = ""
+        }
+
         private var state: LiteratureTime
-        private var provider: LiteratureTimeViewProviding
+        private let provider: LiteratureTimeViewProviding
+        private let storage = Storage()
 
         public init(
             initialState state: LiteratureTime,
@@ -98,7 +88,30 @@ extension LiteratureTimeView {
             state[keyPath: keyPath]
         }
 
-        func fetchRandomQuote() async {
+        func refreshQuote() async {
+            await fetchRandomQuote()
+
+            if !state.id.isEmpty {
+                storage.literatureTimeId = state.id
+            }
+        }
+
+        func fetchQuote() async {
+            if !storage.literatureTimeId.isEmpty {
+                await fetchQuoteFrom(Id: storage.literatureTimeId)
+            }
+
+            if !state.id.isEmpty {
+                return
+            }
+
+            await fetchRandomQuote()
+            if !state.id.isEmpty {
+                storage.literatureTimeId = state.id
+            }
+        }
+
+        private func fetchRandomQuote() async {
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
             guard let hour = hm.hour, let minute = hm.minute else {
@@ -120,8 +133,8 @@ extension LiteratureTimeView {
 
             state = literatureTime
         }
-        
-        func fetchQuoteFrom(Id: String) async {
+
+        private func fetchQuoteFrom(Id: String) async {
             let literatureTime = try? await provider.searchFor(Id: Id)
 
             guard let literatureTime = literatureTime else {
