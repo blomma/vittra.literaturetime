@@ -68,13 +68,12 @@ extension LiteratureTimeView {
     @MainActor
     @Observable @dynamicMemberLookup
     final class ViewModel {
-        class Storage {
-            @AppStorage("literatureTimeId") public var literatureTimeId = ""
-        }
+        @ObservationIgnored
+        @AppStorage("literatureTimeId") 
+        private var literatureTimeId = ""
 
         private var state: LiteratureTime
         private let provider: LiteratureTimeViewProviding
-        private let storage = Storage()
 
         public init(
             initialState state: LiteratureTime,
@@ -92,13 +91,13 @@ extension LiteratureTimeView {
             await fetchRandomQuote()
 
             if !state.id.isEmpty {
-                storage.literatureTimeId = state.id
+                literatureTimeId = state.id
             }
         }
 
         func fetchQuote() async {
-            if !storage.literatureTimeId.isEmpty {
-                await fetchQuoteFrom(Id: storage.literatureTimeId)
+            if !literatureTimeId.isEmpty {
+                await fetchQuoteFrom(Id: literatureTimeId)
             }
 
             if !state.id.isEmpty {
@@ -107,7 +106,7 @@ extension LiteratureTimeView {
 
             await fetchRandomQuote()
             if !state.id.isEmpty {
-                storage.literatureTimeId = state.id
+                literatureTimeId = state.id
             }
         }
 
