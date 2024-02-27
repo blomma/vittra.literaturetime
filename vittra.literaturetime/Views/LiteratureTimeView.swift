@@ -4,9 +4,11 @@ import SwiftUI
 struct LiteratureTimeView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var model: ViewModel
+    @State var shouldPresentSettings = false
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topTrailing) {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
@@ -42,25 +44,48 @@ struct LiteratureTimeView: View {
             .refreshable {
                 await model.refreshQuote()
             }
+
+            Button {
+                shouldPresentSettings.toggle()
+            } label: {
+                Image(systemName: "gearshape")
+                    .foregroundStyle(.literature)
+                    .opacity(0.5)
+            }
+            .offset(x: -30)
+        }
+        .sheet(isPresented: $shouldPresentSettings) {
+            SettingsView()
+                .preferredColorScheme(
+                    // Workaround for a bug, once preferredColorScheme is set to something explicit,
+                    // like .light or .dark and then reset back to .none, for a presentation dialog
+                    // like sheet, it will no longer respect the global system colorScheme no matter
+                    // what you do, so this gets around it by just listening for changes in colorScheme,
+                    // since that triggers correctly
+                    colorScheme == .dark ? .dark : .light
+                )
         }
     }
 
     @MainActor
     @ViewBuilder
     private var makeContextMenu: some View {
-        Button {
-            UIPasteboard.general.string = model.description
-        } label: {
-            Label("Copy quote to clipboard", systemImage: "doc.on.doc")
-        }
+        Section {
+            Button {
+                UIPasteboard.general.string = model.description
+            } label: {
+                Label("Copy quote to clipboard", systemImage: "doc.on.doc")
+            }
 
-        if model.gutenbergReference != "" {
-            Link(
-                destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
-            {
-                Label("View book on gutenberg", systemImage: "book")
+            if model.gutenbergReference != "" {
+                Link(
+                    destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
+                {
+                    Label("View book on gutenberg", systemImage: "link")
+                }
             }
         }
+        .listRowBackground(Color(.literatureBackground))
     }
 }
 
@@ -69,7 +94,7 @@ extension LiteratureTimeView {
     @Observable @dynamicMemberLookup
     final class ViewModel {
         @ObservationIgnored
-        @AppStorage("literatureTimeId") 
+        @AppStorage("literatureTimeId")
         private var literatureTimeId = ""
 
         private var state: LiteratureTime
@@ -146,9 +171,20 @@ extension LiteratureTimeView {
     }
 }
 
-#Preview {
+#Preview("Light") {
     LiteratureTimeView(model: .init(
         initialState: .empty,
         provider: LiteratureTimeProviderPreview()
     ))
+    .environment(UserPreferences.shared)
+    .preferredColorScheme(.light)
+}
+
+#Preview("Dark") {
+    LiteratureTimeView(model: .init(
+        initialState: .empty,
+        provider: LiteratureTimeProviderPreview()
+    ))
+    .preferredColorScheme(.dark)
+    .environment(UserPreferences.shared)
 }

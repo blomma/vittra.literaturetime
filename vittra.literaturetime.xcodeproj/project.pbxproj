@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E02B0EF2B8A547400823D0E /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E02B0EE2B8A547400823D0E /* UserPreferences.swift */; };
 		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
 		9E1F45EB2B47086800454FD8 /* Quotes in Resources */ = {isa = PBXBuildFile; fileRef = 9E1F45EA2B47086800454FD8 /* Quotes */; };
 		9E92B69B2B45EAB200F98E99 /* ModelContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */; };
@@ -14,6 +15,8 @@
 		9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8C2A5898D600CB9319 /* ContentView.swift */; };
 		9E9CBD8F2A5898D800CB9319 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */; };
 		9E9CBD922A5898D800CB9319 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD912A5898D800CB9319 /* Preview Assets.xcassets */; };
+		9EB8AB502B8909DC00C6708C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */; };
+		9EB8AB532B89129500C6708C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8AB522B89129500C6708C /* AboutView.swift */; };
 		9EE43E4D2B443A7600E0A008 /* LiteratureTimeViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE43E4C2B443A7600E0A008 /* LiteratureTimeViewProvider.swift */; };
 		9EEB857E2B664A4000D48369 /* Oknytt in Frameworks */ = {isa = PBXBuildFile; productRef = 9EEB857D2B664A4000D48369 /* Oknytt */; };
 		9EF396F62AC4C55800C93C3A /* LiteratureTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF396F52AC4C55800C93C3A /* LiteratureTime.swift */; };
@@ -21,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E02B0EE2B8A547400823D0E /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
 		9E1F45EA2B47086800454FD8 /* Quotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Quotes; sourceTree = "<group>"; };
 		9E2D43662AED5AC50006EB20 /* Yggdrasil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Yggdrasil; sourceTree = "<group>"; };
@@ -32,6 +36,8 @@
 		9E9CBD912A5898D800CB9319 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9E9CBD952A5898D800CB9319 /* vittra_literaturetime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vittra_literaturetime.entitlements; sourceTree = "<group>"; };
 		9E9CBD962A5898D800CB9319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9EB8AB522B89129500C6708C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		9EE43E4C2B443A7600E0A008 /* LiteratureTimeViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeViewProvider.swift; sourceTree = "<group>"; };
 		9EEB857C2B66488600D48369 /* Oknytt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Oknytt; sourceTree = "<group>"; };
 		9EF396F52AC4C55800C93C3A /* LiteratureTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTime.swift; sourceTree = "<group>"; };
@@ -50,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E02B0ED2B8A545C00823D0E /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				9E02B0EE2B8A547400823D0E /* UserPreferences.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 		9E9CBD7E2A5898D600CB9319 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +87,7 @@
 		9E9CBD892A5898D600CB9319 /* vittra.literaturetime */ = {
 			isa = PBXGroup;
 			children = (
+				9E02B0ED2B8A545C00823D0E /* Environment */,
 				9EE43E4B2B443A5D00E0A008 /* Provider */,
 				9EE43E422B435BAE00E0A008 /* Models */,
 				9ED072EC2AED989B000A6120 /* Resources */,
@@ -93,6 +108,15 @@
 				9E9CBD912A5898D800CB9319 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9EB8AB512B89127900C6708C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */,
+				9EB8AB522B89129500C6708C /* AboutView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		9EBEDEF42A9BC7E2002CD4A4 /* Frameworks */ = {
@@ -128,6 +152,7 @@
 		9EF396F12AC4BFAB00C93C3A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9EB8AB512B89127900C6708C /* Settings */,
 				9E9CBD8C2A5898D600CB9319 /* ContentView.swift */,
 				9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */,
 			);
@@ -218,8 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
+				9EB8AB502B8909DC00C6708C /* SettingsView.swift in Sources */,
 				9E92B69B2B45EAB200F98E99 /* ModelContainerExtension.swift in Sources */,
 				9EF396F92AC4DDD200C93C3A /* StringExtension.swift in Sources */,
+				9EB8AB532B89129500C6708C /* AboutView.swift in Sources */,
+				9E02B0EF2B8A547400823D0E /* UserPreferences.swift in Sources */,
 				9EE43E4D2B443A7600E0A008 /* LiteratureTimeViewProvider.swift in Sources */,
 				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
 				9EF396F62AC4C55800C93C3A /* LiteratureTime.swift in Sources */,
@@ -374,7 +402,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.artsoftheinsane.vittra-literaturetime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -410,7 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.artsoftheinsane.vittra-literaturetime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
