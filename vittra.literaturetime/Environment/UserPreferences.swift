@@ -15,6 +15,9 @@ public final class UserPreferences {
     class UserPreferencesStorage {
         @AppStorage("colorScheme")
         public var colorScheme: ColorScheme = .light
+
+        @AppStorage("autoRefreshQuote")
+        public var autoRefreshQuote: Bool = false
     }
 
     private let userPreferencesStorage = UserPreferencesStorage()
@@ -27,7 +30,14 @@ public final class UserPreferences {
         }
     }
 
+    public var autoRefreshQuote: Bool {
+        didSet {
+            userPreferencesStorage.autoRefreshQuote = autoRefreshQuote
+        }
+    }
+
     private init() {
         colorScheme = userPreferencesStorage.colorScheme
+        autoRefreshQuote = userPreferencesStorage.autoRefreshQuote
     }
 }

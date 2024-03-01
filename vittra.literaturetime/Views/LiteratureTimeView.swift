@@ -6,6 +6,7 @@ struct LiteratureTimeView: View {
     @State var model: ViewModel
     @State var shouldPresentSettings = false
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(UserPreferences.self) private var userPreferences
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -38,8 +39,13 @@ struct LiteratureTimeView: View {
             }
             .padding(15)
             .foregroundStyle(.literature)
+            .onChange(of: userPreferences.autoRefreshQuote) { _, _ in
+                Task {
+                    await model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
+                }
+            }
             .task {
-                await model.fetchQuote()
+                await model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
             }
             .refreshable {
                 await model.refreshQuote()
@@ -77,7 +83,7 @@ struct LiteratureTimeView: View {
                 Label("Copy quote to clipboard", systemImage: "doc.on.doc")
             }
 
-            if model.gutenbergReference != "" {
+            if !model.gutenbergReference.isEmpty {
                 Link(
                     destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
                 {
@@ -95,10 +101,12 @@ extension LiteratureTimeView {
     final class ViewModel {
         @ObservationIgnored
         @AppStorage("literatureTimeId")
-        private var literatureTimeId = ""
+        private var literatureTimeId: String = .init()
 
         private var state: LiteratureTime
         private let provider: LiteratureTimeViewProviding
+
+        private var quoteTimer: Timer?
 
         public init(
             initialState state: LiteratureTime,
@@ -114,13 +122,36 @@ extension LiteratureTimeView {
 
         func refreshQuote() async {
             await fetchRandomQuote()
-
-            if !state.id.isEmpty {
-                literatureTimeId = state.id
-            }
         }
 
-        func fetchQuote() async {
+        func fetchQuote(autoRefresh: Bool) async {
+            quoteTimer?.invalidate()
+            quoteTimer = nil
+
+            if autoRefresh {
+                await fetchRandomQuote()
+
+                let now = Date.timeIntervalSinceReferenceDate
+                let delayFraction = trunc(now) - now
+
+                let delay = 60.0 - Double(Int(now) % 60) + delayFraction
+
+                quoteTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { _ in
+                    Task { @MainActor in
+                        await self.fetchRandomQuote()
+
+                        // Now create a repeating timer that fires once a minute.
+                        self.quoteTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+                            Task { @MainActor in
+                                await self.fetchRandomQuote()
+                            }
+                        }
+                    }
+                }
+
+                return
+            }
+
             if !literatureTimeId.isEmpty {
                 await fetchQuoteFrom(Id: literatureTimeId)
             }
@@ -130,9 +161,6 @@ extension LiteratureTimeView {
             }
 
             await fetchRandomQuote()
-            if !state.id.isEmpty {
-                literatureTimeId = state.id
-            }
         }
 
         private func fetchRandomQuote() async {
@@ -151,10 +179,13 @@ extension LiteratureTimeView {
             let literatureTime = try? await provider.search(query: query)
 
             guard let literatureTime = literatureTime else {
+                literatureTimeId = .init()
                 state = .fallback
+
                 return
             }
 
+            literatureTimeId = literatureTime.id
             state = literatureTime
         }
 

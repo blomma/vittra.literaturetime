@@ -10,6 +10,7 @@ struct SettingsView: View {
             Form {
                 appSection
                 displaySection
+                generalSection
             }
             .scrollContentBackground(.hidden)
             .background(Color(.literatureBackground))
@@ -59,6 +60,30 @@ struct SettingsView: View {
             .pickerStyle(.segmented)
         } header: {
             Text("Apperance")
+        } footer: {
+            switch userPreferences.colorScheme {
+            case .system:
+                Text("Automatically switch between light and dark themes when your system does")
+            case .light:
+                Text("Always use light theme")
+            case .dark:
+                Text("Always use dark theme")
+            }
+        }
+        .listRowBackground(Color(.literatureBackground))
+    }
+
+    @ViewBuilder
+    private var generalSection: some View {
+        @Bindable var userPreferences = userPreferences
+        Section {
+            Toggle(isOn: $userPreferences.autoRefreshQuote) {
+                Label("Auto refresh quote", systemImage: "arrow.clockwise")
+            }
+        } header: {
+            Text("General")
+        } footer: {
+            Text("Automatically refresh quote shown every minute on the minute")
         }
         .listRowBackground(Color(.literatureBackground))
     }

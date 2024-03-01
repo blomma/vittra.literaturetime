@@ -32,7 +32,7 @@ struct AboutView: View {
                 .multilineTextAlignment(.leading)
                 .foregroundStyle(.secondary)
             } header: {
-                Text("Timely Quote is built with the following Open Source software:")
+                Text("Timely Quote is built with the following Open Source projects:")
                     .textCase(nil)
             }
             .listRowBackground(Color(.literatureBackground))
