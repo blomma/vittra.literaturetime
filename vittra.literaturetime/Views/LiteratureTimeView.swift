@@ -1,12 +1,14 @@
 import SwiftData
 import SwiftUI
+import Oknytt
 
 struct LiteratureTimeView: View {
-    @Environment(\.scenePhase) var scenePhase
     @State var model: ViewModel
     @State var shouldPresentSettings = false
+
     @Environment(\.colorScheme) private var colorScheme
     @Environment(UserPreferences.self) private var userPreferences
+    @Environment(\.scenePhase) var scenePhase
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -39,13 +41,17 @@ struct LiteratureTimeView: View {
             }
             .padding(15)
             .foregroundStyle(.literature)
-            .onChange(of: userPreferences.autoRefreshQuote) { _, _ in
+            .onChange(of: scenePhase) { _, newPhase in
+                if newPhase == .active {
+                    Task {
+                        await model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
+                    }
+                }
+            }
+            .onChange(of: userPreferences.autoRefreshQuote) {
                 Task {
                     await model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
                 }
-            }
-            .task {
-                await model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
             }
             .refreshable {
                 await model.refreshQuote()
