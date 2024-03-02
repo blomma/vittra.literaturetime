@@ -22,13 +22,14 @@ struct LiteratureTimeView: View {
                             .foregroundStyle(.literatureTime)
                             + Text(model.state.quoteLast)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(.title2, design: .serif, weight: .regular))
 
                     HStack {
                         Text("- \(model.state.title), \(Text(model.state.author).italic())")
                     }
                     .padding(.top, 15)
-                    .padding(.leading, 25)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                     .font(.system(.footnote, design: .serif, weight: .regular))
                 }
                 .animation(.default, value: model.state)
