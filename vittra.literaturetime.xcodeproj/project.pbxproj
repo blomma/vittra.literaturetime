@@ -13,6 +13,7 @@
 		9E92B69B2B45EAB200F98E99 /* ModelContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */; };
 		9E97DBD02B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBCF2B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift */; };
 		9E97DBD22B938F5D007DE3A4 /* LiteratureTimePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */; };
+		9E97DBD42B93D12D007DE3A4 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */; };
 		9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */; };
 		9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8C2A5898D600CB9319 /* ContentView.swift */; };
 		9E9CBD8F2A5898D800CB9319 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8E2A5898D800CB9319 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerExtension.swift; sourceTree = "<group>"; };
 		9E97DBCF2B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeProviderPreview.swift; sourceTree = "<group>"; };
 		9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimePreview.swift; sourceTree = "<group>"; };
+		9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VittraApp.swift; sourceTree = "<group>"; };
 		9E9CBD8C2A5898D600CB9319 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				9EF396F82AC4DDD200C93C3A /* StringExtension.swift */,
 				9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */,
+				9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				9E92B69B2B45EAB200F98E99 /* ModelContainerExtension.swift in Sources */,
 				9E97DBD22B938F5D007DE3A4 /* LiteratureTimePreview.swift in Sources */,
 				9EF396F92AC4DDD200C93C3A /* StringExtension.swift in Sources */,
+				9E97DBD42B93D12D007DE3A4 /* UIApplicationExtension.swift in Sources */,
 				9EB8AB532B89129500C6708C /* AboutView.swift in Sources */,
 				9E02B0EF2B8A547400823D0E /* UserPreferences.swift in Sources */,
 				9EE43E4D2B443A7600E0A008 /* LiteratureTimeViewProvider.swift in Sources */,

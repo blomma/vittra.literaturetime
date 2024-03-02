@@ -5,7 +5,6 @@ struct LiteratureTimeView: View {
     @State var model: ViewModel
     @State var shouldPresentSettings = false
 
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(UserPreferences.self) private var userPreferences
     @Environment(\.scenePhase) var scenePhase
 
@@ -69,14 +68,6 @@ struct LiteratureTimeView: View {
         }
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
-                .preferredColorScheme(
-                    // Workaround for a bug, once preferredColorScheme is set to something explicit,
-                    // like .light or .dark and then reset back to .none, for a presentation dialog
-                    // like sheet, it will no longer respect the global system colorScheme no matter
-                    // what you do, so this gets around it by just listening for changes in colorScheme,
-                    // since that triggers correctly
-                    colorScheme == .dark ? .dark : .light
-                )
         }
     }
 
