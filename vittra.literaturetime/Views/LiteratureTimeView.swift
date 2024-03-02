@@ -206,7 +206,7 @@ extension LiteratureTimeView {
 
 #Preview("Light") {
     LiteratureTimeView(model: .init(
-        initialState: .empty,
+        initialState: .previewSmall,
         provider: LiteratureTimeProviderPreview()
     ))
     .environment(UserPreferences.shared)
@@ -215,7 +215,7 @@ extension LiteratureTimeView {
 
 #Preview("Dark") {
     LiteratureTimeView(model: .init(
-        initialState: .empty,
+        initialState: .preview,
         provider: LiteratureTimeProviderPreview()
     ))
     .preferredColorScheme(.dark)
