@@ -1,6 +1,5 @@
 import SwiftData
 import SwiftUI
-import Oknytt
 
 struct LiteratureTimeView: View {
     @State var model: ViewModel
@@ -18,20 +17,21 @@ struct LiteratureTimeView: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
-                        Text(model.quoteFirst)
-                            + Text(model.quoteTime)
+                        Text(model.state.quoteFirst)
+                            + Text(model.state.quoteTime)
                             .foregroundStyle(.literatureTime)
-                            + Text(model.quoteLast)
+                            + Text(model.state.quoteLast)
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
 
                     HStack {
-                        Text("- \(model.title), \(Text(model.author).italic())")
+                        Text("- \(model.state.title), \(Text(model.state.author).italic())")
                     }
                     .padding(.top, 15)
                     .padding(.leading, 25)
                     .font(.system(.footnote, design: .serif, weight: .regular))
                 }
+                .animation(.default, value: model.state)
                 .padding(15)
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
@@ -84,14 +84,14 @@ struct LiteratureTimeView: View {
     private var makeContextMenu: some View {
         Section {
             Button {
-                UIPasteboard.general.string = model.description
+                UIPasteboard.general.string = model.state.description
             } label: {
                 Label("Copy quote to clipboard", systemImage: "doc.on.doc")
             }
 
-            if !model.gutenbergReference.isEmpty {
+            if !model.state.gutenbergReference.isEmpty {
                 Link(
-                    destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.gutenbergReference)")!)
+                    destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)")!)
                 {
                     Label("View book on gutenberg", systemImage: "link")
                 }
@@ -103,13 +103,13 @@ struct LiteratureTimeView: View {
 
 extension LiteratureTimeView {
     @MainActor
-    @Observable @dynamicMemberLookup
+    @Observable
     final class ViewModel {
         @ObservationIgnored
         @AppStorage("literatureTimeId")
         private var literatureTimeId: String = .init()
 
-        private var state: LiteratureTime
+        public var state: LiteratureTime
         private let provider: LiteratureTimeViewProviding
 
         private var quoteTimer: Timer?
@@ -120,10 +120,6 @@ extension LiteratureTimeView {
         ) {
             self.state = state
             self.provider = provider
-        }
-
-        public subscript<T>(dynamicMember keyPath: KeyPath<LiteratureTime, T>) -> T {
-            state[keyPath: keyPath]
         }
 
         func refreshQuote() async {
