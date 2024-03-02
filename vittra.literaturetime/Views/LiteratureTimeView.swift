@@ -205,6 +205,7 @@ extension LiteratureTimeView {
     }
 }
 
+#if DEBUG
 #Preview("Light") {
     LiteratureTimeView(model: .init(
         initialState: .previewSmall,
@@ -222,3 +223,4 @@ extension LiteratureTimeView {
     .preferredColorScheme(.dark)
     .environment(UserPreferences.shared)
 }
+#endif

@@ -14,6 +14,7 @@ struct ContentView: View {
     }
 }
 
+#if DEBUG
 #Preview("Light") {
     ContentView()
         .preferredColorScheme(.light)
@@ -23,3 +24,4 @@ struct ContentView: View {
     ContentView()
         .preferredColorScheme(.dark)
 }
+#endif

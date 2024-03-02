@@ -89,6 +89,7 @@ struct SettingsView: View {
     }
 }
 
+#if DEBUG
 #Preview("Light") {
     SettingsView()
         .preferredColorScheme(.light)
@@ -100,3 +101,4 @@ struct SettingsView: View {
         .preferredColorScheme(.dark)
         .environment(UserPreferences.shared)
 }
+#endif
