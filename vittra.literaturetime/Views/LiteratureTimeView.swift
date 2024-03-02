@@ -197,21 +197,21 @@ extension LiteratureTimeView {
 }
 
 #if DEBUG
-#Preview("Light") {
-    LiteratureTimeView(model: .init(
-        initialState: .previewSmall,
-        provider: LiteratureTimeProviderPreview()
-    ))
-    .environment(UserPreferences.shared)
-    .preferredColorScheme(.light)
-}
+    #Preview("Light") {
+        LiteratureTimeView(model: .init(
+            initialState: .previewSmall,
+            provider: LiteratureTimeProviderPreview()
+        ))
+        .environment(UserPreferences.shared)
+        .preferredColorScheme(.light)
+    }
 
-#Preview("Dark") {
-    LiteratureTimeView(model: .init(
-        initialState: .preview,
-        provider: LiteratureTimeProviderPreview()
-    ))
-    .preferredColorScheme(.dark)
-    .environment(UserPreferences.shared)
-}
+    #Preview("Dark") {
+        LiteratureTimeView(model: .init(
+            initialState: .preview,
+            provider: LiteratureTimeProviderPreview()
+        ))
+        .preferredColorScheme(.dark)
+        .environment(UserPreferences.shared)
+    }
 #endif

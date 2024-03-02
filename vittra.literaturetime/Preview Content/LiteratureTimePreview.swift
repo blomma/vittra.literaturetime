@@ -11,7 +11,7 @@ extension LiteratureTime {
             id: "e42d5465bc978b08ec08d6711a0bc165d5381eaeaced8321fb33b95c85b97157"
         )
     }
-    
+
     static var previewSmall: LiteratureTime {
         LiteratureTime(
             time: "21:05",

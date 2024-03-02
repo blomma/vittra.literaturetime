@@ -15,13 +15,13 @@ struct ContentView: View {
 }
 
 #if DEBUG
-#Preview("Light") {
-    ContentView()
-        .preferredColorScheme(.light)
-}
+    #Preview("Light") {
+        ContentView()
+            .preferredColorScheme(.light)
+    }
 
-#Preview("Dark") {
-    ContentView()
-        .preferredColorScheme(.dark)
-}
+    #Preview("Dark") {
+        ContentView()
+            .preferredColorScheme(.dark)
+    }
 #endif

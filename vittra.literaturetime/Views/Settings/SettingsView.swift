@@ -90,15 +90,15 @@ struct SettingsView: View {
 }
 
 #if DEBUG
-#Preview("Light") {
-    SettingsView()
-        .preferredColorScheme(.light)
-        .environment(UserPreferences.shared)
-}
+    #Preview("Light") {
+        SettingsView()
+            .preferredColorScheme(.light)
+            .environment(UserPreferences.shared)
+    }
 
-#Preview("Dark") {
-    SettingsView()
-        .preferredColorScheme(.dark)
-        .environment(UserPreferences.shared)
-}
+    #Preview("Dark") {
+        SettingsView()
+            .preferredColorScheme(.dark)
+            .environment(UserPreferences.shared)
+    }
 #endif

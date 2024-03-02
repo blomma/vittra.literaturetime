@@ -46,7 +46,7 @@ struct AboutView: View {
 }
 
 #if DEBUG
-#Preview {
-    AboutView()
-}
+    #Preview {
+        AboutView()
+    }
 #endif
