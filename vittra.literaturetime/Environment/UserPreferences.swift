@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 public enum ColorScheme: String, CaseIterable, Identifiable {
-    case system
+    case automatic
     case light
     case dark
 

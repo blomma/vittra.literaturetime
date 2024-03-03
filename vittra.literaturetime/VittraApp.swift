@@ -11,19 +11,15 @@ struct VittraApp: App {
             ContentView()
         }
         .onChange(of: userPreferences.colorScheme) { _, _ in
-            if userPreferences.colorScheme != .system {
-                UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = userPreferences.colorScheme == .dark ? .dark : .light
-            } else {
-                UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .unspecified
-            }
+            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
+                userPreferences.colorScheme == .automatic ? .unspecified
+                    : userPreferences.colorScheme == .dark ? .dark : .light
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
-                if userPreferences.colorScheme != .system {
-                    UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = userPreferences.colorScheme == .dark ? .dark : .light
-                } else {
-                    UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .unspecified
-                }
+                UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
+                    userPreferences.colorScheme == .automatic ? .unspecified
+                        : userPreferences.colorScheme == .dark ? .dark : .light
             }
         }
         .environment(UserPreferences.shared)

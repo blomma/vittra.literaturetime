@@ -62,7 +62,7 @@ struct SettingsView: View {
             Text("Apperance")
         } footer: {
             switch userPreferences.colorScheme {
-            case .system:
+            case .automatic:
                 Text("Automatically switch between light and dark themes when your system does")
             case .light:
                 Text("Always use light theme")
