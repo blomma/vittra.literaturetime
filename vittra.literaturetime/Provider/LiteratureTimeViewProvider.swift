@@ -3,12 +3,11 @@ import Foundation
 import SwiftData
 
 protocol LiteratureTimeViewProviding {
-    func search(query: String) async throws -> LiteratureTime?
-    func searchFor(Id: String) async throws -> LiteratureTime?
+    func search(query: String) throws -> LiteratureTime?
+    func searchFor(Id: String) throws -> LiteratureTime?
 }
 
-@ModelActor
-actor LiteratureTimeProvider: LiteratureTimeViewProviding {}
+struct LiteratureTimeProvider: LiteratureTimeViewProviding {}
 extension LiteratureTimeProvider {
     func search(query: String) throws -> LiteratureTime? {
         var descriptor = FetchDescriptor<Database.LiteratureTime>()
@@ -16,6 +15,7 @@ extension LiteratureTimeProvider {
             item.time == query
         }
 
+        let modelContext = ModelContext(.productionContainer)
         guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
             return nil
         }
@@ -39,12 +39,13 @@ extension LiteratureTimeProvider {
         )
     }
 
-    func searchFor(Id: String) async throws -> LiteratureTime? {
+    func searchFor(Id: String) throws -> LiteratureTime? {
         var descriptor = FetchDescriptor<Database.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.id == Id
         }
 
+        let modelContext = ModelContext(.productionContainer)
         guard let literatureTimes = try? modelContext.fetch(descriptor), let literatureTime = literatureTimes.first else {
             return nil
         }

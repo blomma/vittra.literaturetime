@@ -13,7 +13,7 @@ extension LiteratureTimeProviderPreview {
         )
     }
 
-    func searchFor(Id _: String) async throws -> LiteratureTime? {
+    func searchFor(Id _: String) throws -> LiteratureTime? {
         return LiteratureTime(
             time: "21:05",
             quoteFirst: "It was ",

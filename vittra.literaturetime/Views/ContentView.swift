@@ -8,7 +8,7 @@ struct ContentView: View {
 
             LiteratureTimeView(model: .init(
                 initialState: .empty,
-                provider: LiteratureTimeProvider(modelContainer: .productionContainer)
+                provider: LiteratureTimeProvider()
             ))
         }
     }

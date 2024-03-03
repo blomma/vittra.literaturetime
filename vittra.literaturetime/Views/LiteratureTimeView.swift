@@ -43,18 +43,14 @@ struct LiteratureTimeView: View {
             .foregroundStyle(.literature)
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
-                    Task {
-                        await model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
-                    }
+                    model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
                 }
             }
             .onChange(of: userPreferences.autoRefreshQuote) {
-                Task {
-                    await model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
-                }
+                model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
             }
             .refreshable {
-                await model.refreshQuote()
+                model.refreshQuote()
             }
 
             Button {
@@ -114,16 +110,16 @@ extension LiteratureTimeView {
             self.provider = provider
         }
 
-        func refreshQuote() async {
-            await fetchRandomQuote()
+        func refreshQuote() {
+            fetchRandomQuote()
         }
 
-        func fetchQuote(autoRefresh: Bool) async {
+        func fetchQuote(autoRefresh: Bool)  {
             quoteTimer?.invalidate()
             quoteTimer = nil
 
             if autoRefresh {
-                await fetchRandomQuote()
+                fetchRandomQuote()
 
                 let now = Date.timeIntervalSinceReferenceDate
                 let delayFraction = trunc(now) - now
@@ -132,12 +128,12 @@ extension LiteratureTimeView {
 
                 quoteTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { _ in
                     Task { @MainActor in
-                        await self.fetchRandomQuote()
+                        self.fetchRandomQuote()
 
                         // Now create a repeating timer that fires once a minute.
                         self.quoteTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
                             Task { @MainActor in
-                                await self.fetchRandomQuote()
+                                self.fetchRandomQuote()
                             }
                         }
                     }
@@ -147,17 +143,17 @@ extension LiteratureTimeView {
             }
 
             if !literatureTimeId.isEmpty {
-                await fetchQuoteFrom(Id: literatureTimeId)
+                fetchQuoteFrom(Id: literatureTimeId)
             }
 
             if !state.id.isEmpty {
                 return
             }
 
-            await fetchRandomQuote()
+            fetchRandomQuote()
         }
 
-        private func fetchRandomQuote() async {
+        private func fetchRandomQuote() {
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
             guard let hour = hm.hour, let minute = hm.minute else {
@@ -170,7 +166,7 @@ extension LiteratureTimeView {
 
             let query = "\(paddedHour):\(paddedMinute)"
 
-            let literatureTime = try? await provider.search(query: query)
+            let literatureTime = try? provider.search(query: query)
 
             guard let literatureTime = literatureTime else {
                 literatureTimeId = .init()
@@ -183,8 +179,8 @@ extension LiteratureTimeView {
             state = literatureTime
         }
 
-        private func fetchQuoteFrom(Id: String) async {
-            let literatureTime = try? await provider.searchFor(Id: Id)
+        private func fetchQuoteFrom(Id: String) {
+            let literatureTime = try? provider.searchFor(Id: Id)
 
             guard let literatureTime = literatureTime else {
                 state = .fallback
