@@ -18,6 +18,9 @@ struct AboutView: View {
                 Link(destination: URL(string: "https://github.com/blomma/vittra.literaturetime/blob/main/PRIVACY.md")!) {
                     Label("Privacy Policy", systemImage: "lock")
                 }
+                Link(destination: URL(string: "https://github.com/blomma/vittra.literaturetime/blob/main/LICENSE")!) {
+                    Label("License", systemImage: "checkmark.shield")
+                }
             } footer: {
                 Text("\(versionNumber)©2024 Mikael Hultgren")
             }
@@ -30,9 +33,8 @@ struct AboutView: View {
                 • [SwiftFormat](https://github.com/nicklockwood/SwiftFormat)
                 """)
                 .multilineTextAlignment(.leading)
-                .foregroundStyle(.secondary)
             } header: {
-                Text("Timely Quote is built with the following Open Source projects:")
+                Text("Timely Quote is built with the following open source projects:")
                     .textCase(nil)
             }
             .listRowBackground(Color(.literatureBackground))
