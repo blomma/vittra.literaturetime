@@ -21,15 +21,15 @@ struct LiteratureTimeView: View {
                             .foregroundStyle(.literatureTime)
                             + Text(model.state.quoteLast)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(.title2, design: .serif, weight: .regular))
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
                     HStack {
                         Text("- \(model.state.title), \(Text(model.state.author).italic())")
                     }
-                    .padding(.top, 15)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
                     .font(.system(.footnote, design: .serif, weight: .regular))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.top, 15)
                 }
                 .animation(.default, value: model.state)
                 .padding(15)
