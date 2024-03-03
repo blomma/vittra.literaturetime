@@ -31,6 +31,9 @@
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
 		9E1F45EA2B47086800454FD8 /* Quotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Quotes; sourceTree = "<group>"; };
 		9E2D43662AED5AC50006EB20 /* Yggdrasil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Yggdrasil; sourceTree = "<group>"; };
+		9E77C65F2B94B2A400ABF7B6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PRIVACY.md; sourceTree = "<group>"; };
 		9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerExtension.swift; sourceTree = "<group>"; };
 		9E97DBCF2B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeProviderPreview.swift; sourceTree = "<group>"; };
 		9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimePreview.swift; sourceTree = "<group>"; };
@@ -73,6 +76,9 @@
 		9E9CBD7E2A5898D600CB9319 = {
 			isa = PBXGroup;
 			children = (
+				9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */,
+				9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */,
+				9E77C65F2B94B2A400ABF7B6 /* LICENSE */,
 				9EEB857C2B66488600D48369 /* Oknytt */,
 				9E1F45EA2B47086800454FD8 /* Quotes */,
 				9E2D43662AED5AC50006EB20 /* Yggdrasil */,

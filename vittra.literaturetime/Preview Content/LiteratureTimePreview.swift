@@ -12,6 +12,19 @@ extension LiteratureTime {
         )
     }
 
+    static var preview0425: LiteratureTime {
+        return LiteratureTime(
+            time: "04:25",
+            quoteFirst: "As I dressed I glanced at my watch. It was no wonder that no one was stirring. It was ",
+            quoteTime: "twenty-five minutes past four",
+            quoteLast: ". I had hardly finished when Holmes returned with the news that the boy was putting in the horse.",
+            title: "Adventures of Sherlock Holmes",
+            author: "A. Conan Doyle",
+            gutenbergReference: "48320",
+            id: "022e03ec87e892d6d0e35aa4fd2b1798e2b7ff2d038a9cf91c1c32abea8418bb"
+        )
+    }
+
     static var previewSmall: LiteratureTime {
         LiteratureTime(
             time: "21:05",
