@@ -58,7 +58,7 @@ struct LiteratureTimeView: View {
             } label: {
                 Image(systemName: "gearshape")
                     .foregroundStyle(.literature)
-                    .opacity(0.5)
+                    .opacity(0.3)
             }
             .offset(x: -30)
         }
