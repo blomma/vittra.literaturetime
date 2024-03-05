@@ -54,17 +54,6 @@ struct LiteratureTimeView: View {
             .refreshable {
                 model.refreshQuote()
             }
-
-            Button {
-                shouldPresentSettings.toggle()
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .font(.system(.title, weight: .regular))
-                    .foregroundStyle(.literature)
-                    .opacity(0.3)
-            }
-            .padding(.horizontal, horizontalSizeClass == .compact ? 40 : 100)
-            .padding(.vertical, 20)
         }
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
@@ -73,22 +62,33 @@ struct LiteratureTimeView: View {
 
     @ViewBuilder
     private var makeContextMenu: some View {
-        Section {
-            Button {
-                UIPasteboard.general.string = model.state.description
-            } label: {
-                Label("Copy quote to clipboard", systemImage: "doc.on.doc")
+        Button {
+            UIPasteboard.general.string = model.state.description
+        } label: {
+            Label("Copy quote", systemImage: "doc.on.doc")
+        }
+
+        if !model.state.gutenbergReference.isEmpty {
+            Link(
+                destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)")!)
+            {
+                Label("View book on gutenberg", systemImage: "safari")
             }
 
-            if !model.state.gutenbergReference.isEmpty {
-                Link(
-                    destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)")!)
-                {
-                    Label("View book on gutenberg", systemImage: "link")
-                }
+            Button {
+                UIPasteboard.general.string = "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)"
+            } label: {
+                Label("Copy link to gutenberg", systemImage: "link")
             }
         }
-        .listRowBackground(Color(.literatureBackground))
+
+        Divider()
+
+        Button {
+            shouldPresentSettings.toggle()
+        } label: {
+            Label("Settings", systemImage: "gearshape")
+        }
     }
 }
 
