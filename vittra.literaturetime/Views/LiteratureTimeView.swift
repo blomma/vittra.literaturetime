@@ -8,7 +8,7 @@ struct LiteratureTimeView: View {
     @Environment(UserPreferences.self) private var userPreferences
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Color(.literatureBackground)
@@ -117,7 +117,7 @@ extension LiteratureTimeView {
             fetchRandomQuote()
         }
 
-        func fetchQuote(autoRefresh: Bool)  {
+        func fetchQuote(autoRefresh: Bool) {
             quoteTimer?.invalidate()
             quoteTimer = nil
 
