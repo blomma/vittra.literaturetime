@@ -11,7 +11,7 @@ struct LiteratureTimeView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .bottomTrailing) {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
@@ -58,12 +58,12 @@ struct LiteratureTimeView: View {
             Button {
                 shouldPresentSettings.toggle()
             } label: {
-                Image(systemName: "gearshape")
+                Image(systemName: "gearshape.fill")
+                    .font(.system(.title, weight: .regular))
                     .foregroundStyle(.literature)
-                    .opacity(0.4)
-                    .shadow(radius: 4, x: 0, y: 4)
+                    .opacity(0.3)
             }
-            .padding(.horizontal, horizontalSizeClass == .compact ? 20 : 100)
+            .padding(.horizontal, horizontalSizeClass == .compact ? 40 : 100)
             .padding(.vertical, 20)
         }
         .sheet(isPresented: $shouldPresentSettings) {
