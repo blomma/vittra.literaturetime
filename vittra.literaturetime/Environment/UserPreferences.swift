@@ -9,10 +9,9 @@ public enum ColorScheme: String, CaseIterable, Identifiable {
     public var id: Self { self }
 }
 
-@MainActor
 @Observable
 public final class UserPreferences {
-    class UserPreferencesStorage {
+    final class UserPreferencesStorage {
         @AppStorage("colorScheme")
         public var colorScheme: ColorScheme = .light
 
@@ -21,8 +20,6 @@ public final class UserPreferences {
     }
 
     private let userPreferencesStorage = UserPreferencesStorage()
-
-    public static let shared = UserPreferences()
 
     public var colorScheme: ColorScheme {
         didSet {
@@ -36,7 +33,7 @@ public final class UserPreferences {
         }
     }
 
-    private init() {
+    init() {
         colorScheme = userPreferencesStorage.colorScheme
         autoRefreshQuote = userPreferencesStorage.autoRefreshQuote
     }

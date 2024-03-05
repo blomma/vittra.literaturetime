@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct VittraApp: App {
-    @State var userPreferences = UserPreferences.shared
+    @State var userPreferences = UserPreferences()
 
     @Environment(\.scenePhase) var scenePhase
 
@@ -22,6 +22,6 @@ struct VittraApp: App {
                         : userPreferences.colorScheme == .dark ? .dark : .light
             }
         }
-        .environment(UserPreferences.shared)
+        .environment(userPreferences)
     }
 }

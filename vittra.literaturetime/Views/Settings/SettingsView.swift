@@ -93,12 +93,12 @@ struct SettingsView: View {
     #Preview("Light") {
         SettingsView()
             .preferredColorScheme(.light)
-            .environment(UserPreferences.shared)
+            .environment(UserPreferences())
     }
 
     #Preview("Dark") {
         SettingsView()
             .preferredColorScheme(.dark)
-            .environment(UserPreferences.shared)
+            .environment(UserPreferences())
     }
 #endif

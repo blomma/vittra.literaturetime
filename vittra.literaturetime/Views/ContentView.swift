@@ -7,10 +7,7 @@ struct ContentView: View {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
-            LiteratureTimeView(model: .init(
-                initialState: .empty,
-                provider: LiteratureTimeProvider()
-            ))
+            LiteratureTimeView()
         }
     }
 }

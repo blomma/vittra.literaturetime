@@ -3,7 +3,10 @@ import SwiftUI
 
 @MainActor
 struct LiteratureTimeView: View {
-    @State var model: ViewModel
+    @State var model: ViewModel = .init(
+        initialState: .empty,
+        provider: LiteratureTimeProvider()
+    )
     @State var shouldPresentSettings = false
 
     @Environment(UserPreferences.self) private var userPreferences
@@ -201,7 +204,7 @@ extension LiteratureTimeView {
             initialState: .previewSmall,
             provider: LiteratureTimeProviderPreview()
         ))
-        .environment(UserPreferences.shared)
+        .environment(UserPreferences())
         .preferredColorScheme(.light)
     }
 
@@ -211,6 +214,6 @@ extension LiteratureTimeView {
             provider: LiteratureTimeProviderPreview()
         ))
         .preferredColorScheme(.dark)
-        .environment(UserPreferences.shared)
+        .environment(UserPreferences())
     }
 #endif
