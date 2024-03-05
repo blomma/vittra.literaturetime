@@ -7,13 +7,14 @@ struct LiteratureTimeView: View {
 
     @Environment(UserPreferences.self) private var userPreferences
     @Environment(\.scenePhase) var scenePhase
-
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
-            ScrollView(.vertical) {
+            ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Group {
                         Text(model.state.quoteFirst)
@@ -31,15 +32,15 @@ struct LiteratureTimeView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.top, 15)
                 }
+                .padding(.horizontal, horizontalSizeClass == .compact ? 30 : 100)
+                .padding(.vertical, 45)
                 .animation(.default, value: model.state)
-                .padding(15)
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
                 .contextMenu {
                     makeContextMenu
                 }
             }
-            .padding(15)
             .foregroundStyle(.literature)
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
@@ -58,9 +59,11 @@ struct LiteratureTimeView: View {
             } label: {
                 Image(systemName: "gearshape")
                     .foregroundStyle(.literature)
-                    .opacity(0.3)
+                    .opacity(0.4)
+                    .shadow(radius: 4, x: 0, y: 4)
             }
-            .offset(x: -30)
+            .padding(.horizontal, horizontalSizeClass == .compact ? 20 : 100)
+            .padding(.vertical, 20)
         }
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
