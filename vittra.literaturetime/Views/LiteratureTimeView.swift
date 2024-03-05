@@ -1,6 +1,7 @@
 import SwiftData
 import SwiftUI
 
+@MainActor
 struct LiteratureTimeView: View {
     @State var model: ViewModel
     @State var shouldPresentSettings = false
@@ -70,7 +71,6 @@ struct LiteratureTimeView: View {
         }
     }
 
-    @MainActor
     @ViewBuilder
     private var makeContextMenu: some View {
         Section {
