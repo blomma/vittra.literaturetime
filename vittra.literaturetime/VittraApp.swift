@@ -2,26 +2,27 @@ import SwiftUI
 
 @main
 struct VittraApp: App {
-    @State var userPreferences = UserPreferences()
+    @AppStorage("\(Preferences.colorScheme)")
+    private var colorScheme: ColorScheme = .light
 
-    @Environment(\.scenePhase) var scenePhase
+    @Environment(\.scenePhase)
+    private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .onChange(of: userPreferences.colorScheme) { _, _ in
+        .onChange(of: colorScheme) { _, _ in
             UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
-                userPreferences.colorScheme == .automatic ? .unspecified
-                    : userPreferences.colorScheme == .dark ? .dark : .light
+                colorScheme == .automatic ? .unspecified
+                    : colorScheme == .dark ? .dark : .light
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
-                    userPreferences.colorScheme == .automatic ? .unspecified
-                        : userPreferences.colorScheme == .dark ? .dark : .light
+                    colorScheme == .automatic ? .unspecified
+                        : colorScheme == .dark ? .dark : .light
             }
         }
-        .environment(userPreferences)
     }
 }

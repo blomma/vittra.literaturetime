@@ -2,8 +2,14 @@ import SwiftUI
 
 @MainActor
 struct SettingsView: View {
-    @Environment(\.dismiss) private var dismiss
-    @Environment(UserPreferences.self) private var userPreferences
+    @AppStorage("\(Preferences.colorScheme)")
+    private var colorScheme: ColorScheme = .light
+
+    @AppStorage("\(Preferences.autoRefreshQuote)")
+    private var autoRefreshQuote: Bool = false
+
+    @Environment(\.dismiss)
+    private var dismiss
 
     var body: some View {
         NavigationStack {
@@ -50,9 +56,8 @@ struct SettingsView: View {
 
     @ViewBuilder
     private var displaySection: some View {
-        @Bindable var userPreferences = userPreferences
         Section {
-            Picker("ColorScheme", selection: $userPreferences.colorScheme) {
+            Picker("ColorScheme", selection: $colorScheme) {
                 ForEach(ColorScheme.allCases) { colorScheme in
                     Text(colorScheme.rawValue.capitalized)
                 }
@@ -61,7 +66,7 @@ struct SettingsView: View {
         } header: {
             Text("Apperance")
         } footer: {
-            switch userPreferences.colorScheme {
+            switch colorScheme {
             case .automatic:
                 Text("Automatically switch between light and dark themes when your system does")
             case .light:
@@ -75,9 +80,8 @@ struct SettingsView: View {
 
     @ViewBuilder
     private var generalSection: some View {
-        @Bindable var userPreferences = userPreferences
         Section {
-            Toggle(isOn: $userPreferences.autoRefreshQuote) {
+            Toggle(isOn: $autoRefreshQuote) {
                 Label("Auto refresh quote", systemImage: "arrow.clockwise")
             }
         } header: {
@@ -93,12 +97,10 @@ struct SettingsView: View {
     #Preview("Light") {
         SettingsView()
             .preferredColorScheme(.light)
-            .environment(UserPreferences())
     }
 
     #Preview("Dark") {
         SettingsView()
             .preferredColorScheme(.dark)
-            .environment(UserPreferences())
     }
 #endif

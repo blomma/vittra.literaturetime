@@ -3,15 +3,23 @@ import SwiftUI
 
 @MainActor
 struct LiteratureTimeView: View {
-    @State var model: ViewModel = .init(
+    @AppStorage("\(Preferences.autoRefreshQuote)")
+    private var autoRefreshQuote: Bool = false
+
+    @State
+    var model: ViewModel = .init(
         initialState: .empty,
         provider: LiteratureTimeProvider()
     )
-    @State var shouldPresentSettings = false
 
-    @Environment(UserPreferences.self) private var userPreferences
-    @Environment(\.scenePhase) var scenePhase
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @State
+    private var shouldPresentSettings = false
+
+    @Environment(\.scenePhase)
+    private var scenePhase
+
+    @Environment(\.horizontalSizeClass)
+    private var horizontalSizeClass
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -48,11 +56,11 @@ struct LiteratureTimeView: View {
             .foregroundStyle(.literature)
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
-                    model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
+                    model.fetchQuote(autoRefresh: autoRefreshQuote)
                 }
             }
-            .onChange(of: userPreferences.autoRefreshQuote) {
-                model.fetchQuote(autoRefresh: userPreferences.autoRefreshQuote)
+            .onChange(of: autoRefreshQuote) {
+                model.fetchQuote(autoRefresh: autoRefreshQuote)
             }
             .refreshable {
                 model.refreshQuote()
@@ -100,7 +108,7 @@ extension LiteratureTimeView {
     @Observable
     final class ViewModel {
         @ObservationIgnored
-        @AppStorage("literatureTimeId")
+        @AppStorage("\(Preferences.literatureTimeId)")
         private var literatureTimeId: String = .init()
 
         public var state: LiteratureTime
@@ -204,7 +212,6 @@ extension LiteratureTimeView {
             initialState: .previewSmall,
             provider: LiteratureTimeProviderPreview()
         ))
-        .environment(UserPreferences())
         .preferredColorScheme(.light)
     }
 
@@ -214,6 +221,5 @@ extension LiteratureTimeView {
             provider: LiteratureTimeProviderPreview()
         ))
         .preferredColorScheme(.dark)
-        .environment(UserPreferences())
     }
 #endif
