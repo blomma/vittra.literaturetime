@@ -5,12 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html),
 
-## 1.2.0
+## 1.2.0 - 2024-03-07
 
 - Quotes should always be aligned to the left no matter the size of it
 - Autorefresh of quote is now possible, but only if you want it
 - Dark mode is now a reality, but again, only if you want it
-- Added a settings dialog, accessed via the upper right corner cog, to contain all the new options at your disposal
+- Added a settings dialog, accessed via the long press menu- Quotes should always be aligned to the left no matter the size of it
 
 ## 1.1.0 - 2024-02-17
 
