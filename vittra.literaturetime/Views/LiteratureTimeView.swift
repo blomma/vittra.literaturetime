@@ -111,10 +111,11 @@ extension LiteratureTimeView {
         @AppStorage("\(Preferences.literatureTimeId)")
         private var literatureTimeId: String = .init()
 
-        public var state: LiteratureTime
         private let provider: LiteratureTimeViewProviding
 
         private var quoteTimer: Timer?
+
+        public var state: LiteratureTime
 
         public init(
             initialState state: LiteratureTime,
@@ -180,7 +181,7 @@ extension LiteratureTimeView {
 
             let query = "\(paddedHour):\(paddedMinute)"
 
-            let literatureTime = try? provider.search(query: query)
+            let literatureTime = try? provider.search(query: query, excludingId: literatureTimeId)
 
             guard let literatureTime = literatureTime else {
                 literatureTimeId = .init()

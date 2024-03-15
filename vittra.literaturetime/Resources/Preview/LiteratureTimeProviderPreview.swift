@@ -1,6 +1,6 @@
 struct LiteratureTimeProviderPreview: LiteratureTimeViewProviding {}
 extension LiteratureTimeProviderPreview {
-    func search(query _: String) throws -> LiteratureTime? {
+    func search(query _: String, excludingId: String) throws -> LiteratureTime? {
         return LiteratureTime(
             time: "21:05",
             quoteFirst: "It was ",
