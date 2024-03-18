@@ -3,20 +3,25 @@ import Foundation
 import SwiftData
 
 protocol LiteratureTimeViewProviding {
-    func search(query: String, excludingId: String) throws -> LiteratureTime?
-    func searchFor(Id: String) throws -> LiteratureTime?
+    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime?
+    func fetch(id: String) throws -> LiteratureTime?
 }
 
 struct LiteratureTimeProvider: LiteratureTimeViewProviding {}
 extension LiteratureTimeProvider {
-    func search(query: String, excludingId: String) throws -> LiteratureTime? {
+    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
         let modelContext = ModelContext(.productionContainer)
+
+        let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
+        let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
+
+        let time = "\(paddedHour):\(paddedMinute)"
 
         var descriptor = FetchDescriptor<Database.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
-            item.time == query && item.id != excludingId
+            item.time == time && item.id != excludingId
         }
-        
+
         if let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 {
             descriptor.fetchLimit = 1
             descriptor.fetchOffset = Int.random(in: 0 ... literatureTimeCount - 1)
@@ -36,9 +41,9 @@ extension LiteratureTimeProvider {
                 id: literatureTime.id
             )
         }
-        
+
         descriptor.predicate = #Predicate { item in
-            item.time == query
+            item.time == time
         }
 
         descriptor.fetchLimit = nil
@@ -46,7 +51,7 @@ extension LiteratureTimeProvider {
         guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
             return nil
         }
-        
+
         descriptor.fetchLimit = 1
         descriptor.fetchOffset = Int.random(in: 0 ... literatureTimeCount - 1)
 
@@ -66,10 +71,10 @@ extension LiteratureTimeProvider {
         )
     }
 
-    func searchFor(Id: String) throws -> LiteratureTime? {
+    func fetch(id: String) throws -> LiteratureTime? {
         var descriptor = FetchDescriptor<Database.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
-            item.id == Id
+            item.id == id
         }
 
         let modelContext = ModelContext(.productionContainer)

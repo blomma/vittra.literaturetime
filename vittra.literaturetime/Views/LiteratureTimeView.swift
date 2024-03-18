@@ -63,7 +63,7 @@ struct LiteratureTimeView: View {
                 model.fetchQuote(autoRefresh: autoRefreshQuote)
             }
             .refreshable {
-                model.refreshQuote()
+                model.fetchRandomQuote()
             }
         }
         .sheet(isPresented: $shouldPresentSettings) {
@@ -125,10 +125,6 @@ extension LiteratureTimeView {
             self.provider = provider
         }
 
-        func refreshQuote() {
-            fetchRandomQuote()
-        }
-
         func fetchQuote(autoRefresh: Bool) {
             quoteTimer?.invalidate()
             quoteTimer = nil
@@ -158,7 +154,14 @@ extension LiteratureTimeView {
             }
 
             if !literatureTimeId.isEmpty {
-                fetchQuoteFrom(Id: literatureTimeId)
+                let literatureTime = try? provider.fetch(id: literatureTimeId)
+
+                guard let literatureTime = literatureTime else {
+                    state = .fallback
+                    return
+                }
+
+                state = literatureTime
             }
 
             if !state.id.isEmpty {
@@ -168,7 +171,7 @@ extension LiteratureTimeView {
             fetchRandomQuote()
         }
 
-        private func fetchRandomQuote() {
+        func fetchRandomQuote() {
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
             guard let hour = hm.hour, let minute = hm.minute else {
@@ -176,12 +179,7 @@ extension LiteratureTimeView {
                 return
             }
 
-            let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
-            let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
-
-            let query = "\(paddedHour):\(paddedMinute)"
-
-            let literatureTime = try? provider.search(query: query, excludingId: literatureTimeId)
+            let literatureTime = try? provider.fetchRandom(hour: hour, minute: minute, excludingId: literatureTimeId)
 
             guard let literatureTime = literatureTime else {
                 literatureTimeId = .init()
@@ -191,17 +189,6 @@ extension LiteratureTimeView {
             }
 
             literatureTimeId = literatureTime.id
-            state = literatureTime
-        }
-
-        private func fetchQuoteFrom(Id: String) {
-            let literatureTime = try? provider.searchFor(Id: Id)
-
-            guard let literatureTime = literatureTime else {
-                state = .fallback
-                return
-            }
-
             state = literatureTime
         }
     }
