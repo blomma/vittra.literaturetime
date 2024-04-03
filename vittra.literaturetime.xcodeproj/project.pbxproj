@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E02B0EF2B8A547400823D0E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E02B0EE2B8A547400823D0E /* Preferences.swift */; };
 		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
 		9E1F45EB2B47086800454FD8 /* Quotes in Resources */ = {isa = PBXBuildFile; fileRef = 9E1F45EA2B47086800454FD8 /* Quotes */; };
+		9E6FDC022BBC5E83003DF133 /* Providers in Frameworks */ = {isa = PBXBuildFile; productRef = 9E6FDC012BBC5E83003DF133 /* Providers */; };
 		9E8CE65A2B9CF1B6004C62B5 /* ColorResourceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CE6592B9CF1B6004C62B5 /* ColorResourceExtension.swift */; };
-		9E92B69B2B45EAB200F98E99 /* ModelContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */; };
-		9E97DBD02B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBCF2B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift */; };
 		9E97DBD22B938F5D007DE3A4 /* LiteratureTimePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */; };
 		9E97DBD42B93D12D007DE3A4 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */; };
 		9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */; };
@@ -20,23 +18,19 @@
 		9E9CBD8F2A5898D800CB9319 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8E2A5898D800CB9319 /* Colors.xcassets */; };
 		9EB8AB502B8909DC00C6708C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */; };
 		9EB8AB532B89129500C6708C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8AB522B89129500C6708C /* AboutView.swift */; };
-		9EE43E4D2B443A7600E0A008 /* LiteratureTimeViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE43E4C2B443A7600E0A008 /* LiteratureTimeViewProvider.swift */; };
 		9EEB857E2B664A4000D48369 /* Oknytt in Frameworks */ = {isa = PBXBuildFile; productRef = 9EEB857D2B664A4000D48369 /* Oknytt */; };
-		9EF396F62AC4C55800C93C3A /* LiteratureTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF396F52AC4C55800C93C3A /* LiteratureTime.swift */; };
-		9EF396F92AC4DDD200C93C3A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF396F82AC4DDD200C93C3A /* StringExtension.swift */; };
+		9EF5B1582BBC5FF6005BB932 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 9EF5B1572BBC5FF6005BB932 /* Models */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9E02B0EE2B8A547400823D0E /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
 		9E1F45EA2B47086800454FD8 /* Quotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Quotes; sourceTree = "<group>"; };
 		9E2D43662AED5AC50006EB20 /* Yggdrasil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Yggdrasil; sourceTree = "<group>"; };
+		9E6FDC002BBC5E30003DF133 /* Providers */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Providers; sourceTree = "<group>"; };
 		9E77C65F2B94B2A400ABF7B6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PRIVACY.md; sourceTree = "<group>"; };
 		9E8CE6592B9CF1B6004C62B5 /* ColorResourceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorResourceExtension.swift; sourceTree = "<group>"; };
-		9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerExtension.swift; sourceTree = "<group>"; };
-		9E97DBCF2B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeProviderPreview.swift; sourceTree = "<group>"; };
 		9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimePreview.swift; sourceTree = "<group>"; };
 		9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,10 +41,8 @@
 		9E9CBD962A5898D800CB9319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9EB8AB522B89129500C6708C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		9EE43E4C2B443A7600E0A008 /* LiteratureTimeViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeViewProvider.swift; sourceTree = "<group>"; };
 		9EEB857C2B66488600D48369 /* Oknytt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Oknytt; sourceTree = "<group>"; };
-		9EF396F52AC4C55800C93C3A /* LiteratureTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTime.swift; sourceTree = "<group>"; };
-		9EF396F82AC4DDD200C93C3A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		9EF5B1592BBC6120005BB932 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EF5B1582BBC5FF6005BB932 /* Models in Frameworks */,
 				9EEB857E2B664A4000D48369 /* Oknytt in Frameworks */,
+				9E6FDC022BBC5E83003DF133 /* Providers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,8 +65,10 @@
 				9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */,
 				9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */,
 				9E77C65F2B94B2A400ABF7B6 /* LICENSE */,
-				9EEB857C2B66488600D48369 /* Oknytt */,
 				9E1F45EA2B47086800454FD8 /* Quotes */,
+				9EF5B1592BBC6120005BB932 /* Models */,
+				9E6FDC002BBC5E30003DF133 /* Providers */,
+				9EEB857C2B66488600D48369 /* Oknytt */,
 				9E2D43662AED5AC50006EB20 /* Yggdrasil */,
 				9E9CBD892A5898D600CB9319 /* vittra.literaturetime */,
 				9E9CBD882A5898D600CB9319 /* Products */,
@@ -92,8 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBD962A5898D800CB9319 /* Info.plist */,
-				9EE43E4B2B443A5D00E0A008 /* Provider */,
-				9EE43E422B435BAE00E0A008 /* Models */,
 				9ED072EC2AED989B000A6120 /* Resources */,
 				9EF396F72AC4DDBB00C93C3A /* Extensions */,
 				9EF396F12AC4BFAB00C93C3A /* Views */,
@@ -106,7 +100,6 @@
 		9E9CBD902A5898D800CB9319 /* Preview */ = {
 			isa = PBXGroup;
 			children = (
-				9E97DBCF2B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift */,
 				9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */,
 			);
 			path = Preview;
@@ -137,23 +130,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		9EE43E422B435BAE00E0A008 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9E02B0EE2B8A547400823D0E /* Preferences.swift */,
-				9EF396F52AC4C55800C93C3A /* LiteratureTime.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		9EE43E4B2B443A5D00E0A008 /* Provider */ = {
-			isa = PBXGroup;
-			children = (
-				9EE43E4C2B443A7600E0A008 /* LiteratureTimeViewProvider.swift */,
-			);
-			path = Provider;
-			sourceTree = "<group>";
-		};
 		9EF396F12AC4BFAB00C93C3A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,8 +143,6 @@
 		9EF396F72AC4DDBB00C93C3A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9EF396F82AC4DDD200C93C3A /* StringExtension.swift */,
-				9E92B69A2B45EAB200F98E99 /* ModelContainerExtension.swift */,
 				9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */,
 				9E8CE6592B9CF1B6004C62B5 /* ColorResourceExtension.swift */,
 			);
@@ -193,6 +167,8 @@
 			name = vittra.literaturetime;
 			packageProductDependencies = (
 				9EEB857D2B664A4000D48369 /* Oknytt */,
+				9E6FDC012BBC5E83003DF133 /* Providers */,
+				9EF5B1572BBC5FF6005BB932 /* Models */,
 			);
 			productName = vittra.literaturetime;
 			productReference = 9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */;
@@ -222,6 +198,8 @@
 				Base,
 			);
 			mainGroup = 9E9CBD7E2A5898D600CB9319;
+			packageReferences = (
+			);
 			productRefGroup = 9E9CBD882A5898D600CB9319 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -249,18 +227,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
-				9E97DBD02B938F0C007DE3A4 /* LiteratureTimeProviderPreview.swift in Sources */,
 				9EB8AB502B8909DC00C6708C /* SettingsView.swift in Sources */,
-				9E92B69B2B45EAB200F98E99 /* ModelContainerExtension.swift in Sources */,
 				9E97DBD22B938F5D007DE3A4 /* LiteratureTimePreview.swift in Sources */,
-				9EF396F92AC4DDD200C93C3A /* StringExtension.swift in Sources */,
 				9E97DBD42B93D12D007DE3A4 /* UIApplicationExtension.swift in Sources */,
 				9E8CE65A2B9CF1B6004C62B5 /* ColorResourceExtension.swift in Sources */,
 				9EB8AB532B89129500C6708C /* AboutView.swift in Sources */,
-				9E02B0EF2B8A547400823D0E /* Preferences.swift in Sources */,
-				9EE43E4D2B443A7600E0A008 /* LiteratureTimeViewProvider.swift in Sources */,
 				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
-				9EF396F62AC4C55800C93C3A /* LiteratureTime.swift in Sources */,
 				9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,9 +457,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9E6FDC012BBC5E83003DF133 /* Providers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Providers;
+		};
 		9EEB857D2B664A4000D48369 /* Oknytt */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Oknytt;
+		};
+		9EF5B1572BBC5FF6005BB932 /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

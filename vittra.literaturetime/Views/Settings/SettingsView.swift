@@ -1,9 +1,10 @@
+import Models
 import SwiftUI
 
 @MainActor
 struct SettingsView: View {
     @AppStorage("\(Preferences.colorScheme)")
-    private var colorScheme: ColorScheme = .light
+    private var colorScheme: Models.ColorScheme = .light
 
     @AppStorage("\(Preferences.autoRefreshQuote)")
     private var autoRefreshQuote: Bool = false

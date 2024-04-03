@@ -1,8 +1,11 @@
+import Foundation
+import Models
 import SwiftData
-import SwiftUI
 
-extension ModelContainer {
-    static let productionContainer: ModelContainer = {
+public final class ModelProvider: Sendable {
+    public static let shared = ModelProvider()
+
+    public let productionContainer: ModelContainer = {
         do {
             guard let storeURL = Bundle.main.url(
                 forResource: "literatureTimes",
@@ -12,7 +15,7 @@ extension ModelContainer {
                 fatalError("Failed to find literatureTimes.store")
             }
 
-            let schema = Schema([Database.LiteratureTime.self])
+            let schema = Schema(CurrentScheme.models)
             let configuration = ModelConfiguration(url: storeURL, allowsSave: false)
             return try ModelContainer(for: schema, configurations: [configuration])
         } catch {
@@ -21,14 +24,14 @@ extension ModelContainer {
         }
     }()
 
-    static let previewContainer: ModelContainer = {
+    public let previewContainer: ModelContainer = {
         do {
-            let schema = Schema([Database.LiteratureTime.self])
+            let schema = Schema(CurrentScheme.models)
             let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(for: schema, configurations: [configuration])
 
             Task { @MainActor in
-                container.mainContext.insert(Database.LiteratureTime(
+                container.mainContext.insert(CurrentScheme.LiteratureTime(
                     time: "",
                     quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
                     quoteTime: "",

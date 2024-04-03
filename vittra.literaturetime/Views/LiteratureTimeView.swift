@@ -1,3 +1,5 @@
+import Models
+import Providers
 import SwiftData
 import SwiftUI
 
@@ -7,10 +9,7 @@ struct LiteratureTimeView: View {
     private var autoRefreshQuote: Bool = false
 
     @State
-    var model: ViewModel = .init(
-        initialState: .empty,
-        provider: LiteratureTimeProvider()
-    )
+    var model: ViewModel
 
     @State
     private var shouldPresentSettings = false
@@ -111,7 +110,7 @@ extension LiteratureTimeView {
         @AppStorage("\(Preferences.literatureTimeId)")
         private var literatureTimeId: String = .init()
 
-        private let provider: LiteratureTimeViewProviding
+        private let provider: LiteratureTimeProvider
 
         private var quoteTimer: Timer?
 
@@ -119,7 +118,7 @@ extension LiteratureTimeView {
 
         public init(
             initialState state: LiteratureTime,
-            provider: LiteratureTimeViewProviding
+            provider: LiteratureTimeProvider
         ) {
             self.state = state
             self.provider = provider
@@ -198,15 +197,15 @@ extension LiteratureTimeView {
     #Preview("Light") {
         LiteratureTimeView(model: .init(
             initialState: .previewSmall,
-            provider: LiteratureTimeProviderPreview()
+            provider: LiteratureTimeProvider(modelContext: ModelContext(ModelProvider.shared.previewContainer))
         ))
         .preferredColorScheme(.light)
     }
 
     #Preview("Dark") {
         LiteratureTimeView(model: .init(
-            initialState: .preview,
-            provider: LiteratureTimeProviderPreview()
+            initialState: .previewSmall,
+            provider: LiteratureTimeProvider(modelContext: ModelContext(ModelProvider.shared.previewContainer))
         ))
         .preferredColorScheme(.dark)
     }

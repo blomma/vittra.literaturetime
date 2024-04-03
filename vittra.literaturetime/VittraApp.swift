@@ -1,17 +1,22 @@
+import Models
+import Providers
 import SwiftUI
 
 @main
 struct VittraApp: App {
     @AppStorage("\(Preferences.colorScheme)")
-    private var colorScheme: ColorScheme = .light
+    private var colorScheme: Models.ColorScheme = .light
 
     @Environment(\.scenePhase)
     private var scenePhase
+
+    let modelContainer = ModelProvider.shared.productionContainer
 
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(modelContainer)
         .onChange(of: colorScheme) { _, _ in
             UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
                 colorScheme == .automatic ? .unspecified

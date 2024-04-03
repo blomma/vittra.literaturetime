@@ -1,13 +1,20 @@
+import Models
+import Providers
 import SwiftUI
 
 @MainActor
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+
     var body: some View {
         ZStack {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
-            LiteratureTimeView()
+            LiteratureTimeView(model: .init(
+                initialState: LiteratureTime.empty,
+                provider: LiteratureTimeProvider(modelContext: modelContext)
+            ))
         }
     }
 }

@@ -1,23 +1,34 @@
 import CoreData
 import Foundation
+import Models
 import SwiftData
+import SwiftUI
 
-protocol LiteratureTimeViewProviding {
-    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime?
-    func fetch(id: String) throws -> LiteratureTime?
+extension String {
+    func leftPadding(toLength: Int, withPad character: Character) -> String {
+        let stringLength = count
+        if stringLength < toLength {
+            return String(repeatElement(character, count: toLength - stringLength)) + self
+        } else {
+            return String(suffix(toLength))
+        }
+    }
 }
 
-struct LiteratureTimeProvider: LiteratureTimeViewProviding {}
-extension LiteratureTimeProvider {
-    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
-        let modelContext = ModelContext(.productionContainer)
+public struct LiteratureTimeProvider {
+    private let modelContext: ModelContext
 
+    public init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+    }
+
+    public func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
         let time = "\(paddedHour):\(paddedMinute)"
 
-        var descriptor = FetchDescriptor<Database.LiteratureTime>()
+        var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.time == time && item.id != excludingId
         }
@@ -71,13 +82,12 @@ extension LiteratureTimeProvider {
         )
     }
 
-    func fetch(id: String) throws -> LiteratureTime? {
-        var descriptor = FetchDescriptor<Database.LiteratureTime>()
+    public func fetch(id: String) throws -> LiteratureTime? {
+        var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.id == id
         }
 
-        let modelContext = ModelContext(.productionContainer)
         guard let literatureTimes = try? modelContext.fetch(descriptor), let literatureTime = literatureTimes.first else {
             return nil
         }
