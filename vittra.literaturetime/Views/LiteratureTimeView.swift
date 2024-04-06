@@ -154,26 +154,21 @@ extension LiteratureTimeView {
 
             if !literatureTimeId.isEmpty {
                 let literatureTime = try? provider.fetch(id: literatureTimeId)
-
-                guard let literatureTime = literatureTime else {
-                    state = .fallback
-                    return
+                if let literatureTime = literatureTime {
+                    state = literatureTime
                 }
-
-                state = literatureTime
             }
 
-            if !state.id.isEmpty {
-                return
+            if state.id.isEmpty {
+                fetchRandomQuote()
             }
-
-            fetchRandomQuote()
         }
 
         func fetchRandomQuote() {
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
             guard let hour = hm.hour, let minute = hm.minute else {
+                literatureTimeId = .init()
                 state = .fallback
                 return
             }
