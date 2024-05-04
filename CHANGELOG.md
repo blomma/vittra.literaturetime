@@ -7,6 +7,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html),
 
 ## 1.4.0 -
 
+- Update the quotes
+
 ## 1.3.0 - 2024-04-09
 
 - Ensure that on refresh the same quote, if more than one choice exists, is not loaded
