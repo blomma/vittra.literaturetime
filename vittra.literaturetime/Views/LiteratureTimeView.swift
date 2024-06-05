@@ -189,19 +189,19 @@ extension LiteratureTimeView {
 }
 
 #if DEBUG
-    #Preview("Light") {
-        LiteratureTimeView(model: .init(
-            initialState: .previewSmall,
-            provider: LiteratureTimeProvider(modelContext: ModelContext(ModelProvider.shared.previewContainer))
-        ))
-        .preferredColorScheme(.light)
-    }
+#Preview("Light") {
+    LiteratureTimeView(model: .init(
+        initialState: .previewSmall,
+        provider: LiteratureTimeProviderPreview()
+    ))
+    .preferredColorScheme(.light)
+}
 
-    #Preview("Dark") {
-        LiteratureTimeView(model: .init(
-            initialState: .previewSmall,
-            provider: LiteratureTimeProvider(modelContext: ModelContext(ModelProvider.shared.previewContainer))
-        ))
-        .preferredColorScheme(.dark)
-    }
+#Preview("Dark") {
+    LiteratureTimeView(model: .init(
+        initialState: .previewSmall,
+        provider: LiteratureTimeProviderPreview()
+    ))
+    .preferredColorScheme(.dark)
+}
 #endif

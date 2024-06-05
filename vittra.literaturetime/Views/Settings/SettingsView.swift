@@ -95,13 +95,13 @@ struct SettingsView: View {
 }
 
 #if DEBUG
-    #Preview("Light") {
-        SettingsView()
-            .preferredColorScheme(.light)
-    }
+#Preview("Light") {
+    SettingsView()
+        .preferredColorScheme(.light)
+}
 
-    #Preview("Dark") {
-        SettingsView()
-            .preferredColorScheme(.dark)
-    }
+#Preview("Dark") {
+    SettingsView()
+        .preferredColorScheme(.dark)
+}
 #endif
