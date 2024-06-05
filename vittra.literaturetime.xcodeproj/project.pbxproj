@@ -10,7 +10,6 @@
 		9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */; };
 		9E1F45EB2B47086800454FD8 /* Quotes in Resources */ = {isa = PBXBuildFile; fileRef = 9E1F45EA2B47086800454FD8 /* Quotes */; };
 		9E6FDC022BBC5E83003DF133 /* Providers in Frameworks */ = {isa = PBXBuildFile; productRef = 9E6FDC012BBC5E83003DF133 /* Providers */; };
-		9E8CE65A2B9CF1B6004C62B5 /* ColorResourceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CE6592B9CF1B6004C62B5 /* ColorResourceExtension.swift */; };
 		9E97DBD22B938F5D007DE3A4 /* LiteratureTimePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */; };
 		9E97DBD42B93D12D007DE3A4 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */; };
 		9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */; };
@@ -30,7 +29,6 @@
 		9E77C65F2B94B2A400ABF7B6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PRIVACY.md; sourceTree = "<group>"; };
-		9E8CE6592B9CF1B6004C62B5 /* ColorResourceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorResourceExtension.swift; sourceTree = "<group>"; };
 		9E97DBD12B938F5D007DE3A4 /* LiteratureTimePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimePreview.swift; sourceTree = "<group>"; };
 		9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */,
-				9E8CE6592B9CF1B6004C62B5 /* ColorResourceExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,7 +227,6 @@
 				9EB8AB502B8909DC00C6708C /* SettingsView.swift in Sources */,
 				9E97DBD22B938F5D007DE3A4 /* LiteratureTimePreview.swift in Sources */,
 				9E97DBD42B93D12D007DE3A4 /* UIApplicationExtension.swift in Sources */,
-				9E8CE65A2B9CF1B6004C62B5 /* ColorResourceExtension.swift in Sources */,
 				9EB8AB532B89129500C6708C /* AboutView.swift in Sources */,
 				9E16CA0A2AA28ABD00B50C39 /* LiteratureTimeView.swift in Sources */,
 				9E9CBD8B2A5898D600CB9319 /* VittraApp.swift in Sources */,
