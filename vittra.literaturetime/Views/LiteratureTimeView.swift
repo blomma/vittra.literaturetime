@@ -9,7 +9,10 @@ struct LiteratureTimeView: View {
     private var autoRefreshQuote: Bool = false
 
     @State
-    var model: ViewModel
+    var model: ViewModel = .init(
+        initialState: LiteratureTime.empty,
+        provider: LiteratureTimeProvider()
+    )
 
     @State
     private var shouldPresentSettings = false
@@ -110,7 +113,7 @@ extension LiteratureTimeView {
         @AppStorage("\(Preferences.literatureTimeId)")
         private var literatureTimeId: String = .init()
 
-        private let provider: LiteratureTimeProvider
+        private let provider: LiteratureTimeProviding
 
         private var quoteTimer: Timer?
 
@@ -118,7 +121,7 @@ extension LiteratureTimeView {
 
         public init(
             initialState state: LiteratureTime,
-            provider: LiteratureTimeProvider
+            provider: LiteratureTimeProviding
         ) {
             self.state = state
             self.provider = provider

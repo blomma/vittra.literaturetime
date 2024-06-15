@@ -15,14 +15,18 @@ extension String {
     }
 }
 
-public struct LiteratureTimeProvider {
-    private let modelContext: ModelContext
+public protocol LiteratureTimeProviding {
+    var modelContext: ModelContext { get }
+    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime?
+    func fetch(id: String) throws -> LiteratureTime?
+}
 
-    public init(modelContext: ModelContext) {
-        self.modelContext = modelContext
+public extension LiteratureTimeProviding {
+    var modelContext: ModelContext {
+        return ModelContext(ModelProvider.shared.productionContainer)
     }
 
-    public func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
+    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
@@ -82,7 +86,7 @@ public struct LiteratureTimeProvider {
         )
     }
 
-    public func fetch(id: String) throws -> LiteratureTime? {
+    func fetch(id: String) throws -> LiteratureTime? {
         var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.id == id
@@ -104,3 +108,17 @@ public struct LiteratureTimeProvider {
         )
     }
 }
+
+public struct LiteratureTimeProvider: LiteratureTimeProviding {
+    public init() {}
+}
+
+#if DEBUG
+public struct LiteratureTimeProviderPreview: LiteratureTimeProviding {
+    public var modelContext: ModelContext {
+        return ModelContext(ModelProvider.shared.previewContainer)
+    }
+
+    public init() {}
+}
+#endif
