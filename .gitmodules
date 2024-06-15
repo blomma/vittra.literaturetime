@@ -1,6 +1,3 @@
 [submodule "Quotes"]
 	path = Quotes
 	url = https://github.com/blomma/translated.quotes.literaturetime
-[submodule "Oknytt"]
-	path = Oknytt
-	url = https://github.com/blomma/oknytt

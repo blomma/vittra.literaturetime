@@ -11,7 +11,7 @@ extension LiteratureTime {
             title: "The Murder on the Links",
             author: "Agatha Christie",
             gutenbergReference: "58866",
-            id: "e42d5465bc978b08ec08d6711a0bc165d5381eaeaced8321fb33b95c85b97157"
+            id: "e42d465bc978b08ec08d6711a0bc165d5381eaeaced8321fb33b95c85b97157"
         )
     }
 
@@ -24,7 +24,7 @@ extension LiteratureTime {
             title: "The Murder on the Links",
             author: "Agatha Christie",
             gutenbergReference: "58866",
-            id: "e42d5465bc978b08ec08d6711a0bc165d5381eaeaced8321fb33b95c85b97157"
+            id: "e4d5465bc978b08ec08d6711a0bc165d5381eaeaced8321fb33b95c85b97157"
         )
     }
 
