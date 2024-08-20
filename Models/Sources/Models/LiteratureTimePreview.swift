@@ -1,7 +1,4 @@
-import Models
-import Providers
-
-extension LiteratureTime {
+public extension LiteratureTime {
     static var preview: LiteratureTime {
         LiteratureTime(
             time: "21:05",
