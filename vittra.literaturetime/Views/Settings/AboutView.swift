@@ -15,6 +15,13 @@ struct AboutView: View {
     var body: some View {
         List {
             Section {
+                Text("Timely quote is an open-source application for showing quotes taken from the books of project gutenberg, the twist is that the quotes in question have a reference to the current time of day.")
+                    .font(.system(.callout, design: .default, weight: .regular))
+                    .foregroundStyle(.literature)
+            }
+            .listRowBackground(Color(.literatureBackground))
+
+            Section {
                 Link(destination: URL(string: "https://github.com/blomma/vittra.literaturetime/blob/main/PRIVACY.md")!) {
                     Label("Privacy Policy", systemImage: "lock")
                 }
