@@ -1,8 +1,6 @@
 import CoreData
 import Foundation
 
-open class PersistentContainer: NSPersistentContainer {}
-
 func importLiteratureTime(fromFile: String, toStore: String) {
     var data: Data?
     do {
