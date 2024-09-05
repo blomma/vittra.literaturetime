@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E0D5E832C8A457600D1ED97 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
 		9E1F45EA2B47086800454FD8 /* Quotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Quotes; sourceTree = "<group>"; };
 		9E2D43662AED5AC50006EB20 /* Yggdrasil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Yggdrasil; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		9E9CBD7E2A5898D600CB9319 = {
 			isa = PBXGroup;
 			children = (
+				9E0D5E832C8A457600D1ED97 /* README.md */,
 				9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */,
 				9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */,
 				9E77C65F2B94B2A400ABF7B6 /* LICENSE */,
