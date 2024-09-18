@@ -20,5 +20,5 @@ let package = Package(
             name: "Oknytt"
         ),
     ],
-    swiftLanguageVersions: [.v6]
+    swiftLanguageModes: [.v6]
 )
