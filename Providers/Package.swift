@@ -11,10 +11,10 @@ let package = Package(
         .library(
             name: "Providers",
             targets: ["Providers"]
-        ),
+        )
     ],
     dependencies: [
-        .package(name: "Models", path: "../Models"),
+        .package(name: "Models", path: "../Models")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -22,9 +22,9 @@ let package = Package(
         .target(
             name: "Providers",
             dependencies: [
-                .product(name: "Models", package: "Models"),
+                .product(name: "Models", package: "Models")
             ]
-        ),
+        )
     ],
     swiftLanguageModes: [.v6]
 )

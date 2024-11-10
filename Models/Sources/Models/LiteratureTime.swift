@@ -8,7 +8,16 @@ public struct LiteratureTime: Equatable {
     public var gutenbergReference: String
     public var id: String
 
-    public init(time: String, quoteFirst: String, quoteTime: String, quoteLast: String, title: String, author: String, gutenbergReference: String, id: String) {
+    public init(
+        time: String,
+        quoteFirst: String,
+        quoteTime: String,
+        quoteLast: String,
+        title: String,
+        author: String,
+        gutenbergReference: String,
+        id: String
+    ) {
         self.time = time
         self.quoteFirst = quoteFirst
         self.quoteTime = quoteTime
@@ -23,18 +32,19 @@ public struct LiteratureTime: Equatable {
 extension LiteratureTime: CustomStringConvertible {
     public var description: String {
         return """
-        \(quoteFirst)\(quoteTime)\(quoteLast)
+            \(quoteFirst)\(quoteTime)\(quoteLast)
 
-        - \(title), \(author), \(gutenbergReference)
-        """
+            - \(title), \(author), \(gutenbergReference)
+            """
     }
 }
 
-public extension LiteratureTime {
-    static var fallback: LiteratureTime {
+extension LiteratureTime {
+    public static var fallback: LiteratureTime {
         LiteratureTime(
             time: "",
-            quoteFirst: "Apologies, a quote has not yet been unearthed for the current time, instead, for now, I leave you with this quote from Douglas Adams.\n\n\n",
+            quoteFirst:
+                "Apologies, a quote has not yet been unearthed for the current time, instead, for now, I leave you with this quote from Douglas Adams.\n\n\n",
             quoteTime: "",
             quoteLast: "“Time is an illusion. Lunchtime doubly so.”",
             title: "The Hitchhiker's Guide to the Galaxy",
@@ -44,7 +54,7 @@ public extension LiteratureTime {
         )
     }
 
-    static var empty: LiteratureTime {
+    public static var empty: LiteratureTime {
         LiteratureTime(
             time: "",
             quoteFirst: "",

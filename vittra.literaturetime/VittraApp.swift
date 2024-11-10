@@ -19,14 +19,16 @@ struct VittraApp: App {
         .modelContainer(modelContainer)
         .onChange(of: colorScheme) { _, _ in
             UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
-                colorScheme == .automatic ? .unspecified
-                    : colorScheme == .dark ? .dark : .light
+                colorScheme == .automatic
+                ? .unspecified
+                : colorScheme == .dark ? .dark : .light
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
-                    colorScheme == .automatic ? .unspecified
-                        : colorScheme == .dark ? .dark : .light
+                    colorScheme == .automatic
+                    ? .unspecified
+                    : colorScheme == .dark ? .dark : .light
             }
         }
     }

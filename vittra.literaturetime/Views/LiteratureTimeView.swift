@@ -83,13 +83,16 @@ struct LiteratureTimeView: View {
 
         if !model.state.gutenbergReference.isEmpty {
             Link(
-                destination: URL(string: "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)")!)
-            {
+                destination: URL(
+                    string: "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)"
+                )!
+            ) {
                 Label("View book on gutenberg", systemImage: "safari")
             }
 
             Button {
-                UIPasteboard.general.string = "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)"
+                UIPasteboard.general.string =
+                    "https://www.gutenberg.org/ebooks/\(model.state.gutenbergReference)"
             } label: {
                 Label("Copy link to gutenberg", systemImage: "link")
             }
@@ -176,7 +179,11 @@ extension LiteratureTimeView {
                 return
             }
 
-            let literatureTime = try? provider.fetchRandom(hour: hour, minute: minute, excludingId: literatureTimeId)
+            let literatureTime = try? provider.fetchRandom(
+                hour: hour,
+                minute: minute,
+                excludingId: literatureTimeId
+            )
 
             guard let literatureTime = literatureTime else {
                 literatureTimeId = .init()
@@ -193,18 +200,22 @@ extension LiteratureTimeView {
 
 #if DEBUG
 #Preview("Light") {
-    LiteratureTimeView(model: .init(
-        initialState: .previewSmall,
-        provider: LiteratureTimeProviderPreview()
-    ))
+    LiteratureTimeView(
+        model: .init(
+            initialState: .previewSmall,
+            provider: LiteratureTimeProviderPreview()
+        )
+    )
     .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
-    LiteratureTimeView(model: .init(
-        initialState: .previewSmall,
-        provider: LiteratureTimeProviderPreview()
-    ))
+    LiteratureTimeView(
+        model: .init(
+            initialState: .previewSmall,
+            provider: LiteratureTimeProviderPreview()
+        )
+    )
     .preferredColorScheme(.dark)
 }
 #endif

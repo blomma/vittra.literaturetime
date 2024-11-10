@@ -22,7 +22,16 @@ enum SchemaV1: VersionedSchema {
         var gutenbergReference: String
         var id: String
 
-        init(time: String, quoteFirst: String, quoteTime: String, quoteLast: String, title: String, author: String, gutenbergReference: String, id: String) {
+        init(
+            time: String,
+            quoteFirst: String,
+            quoteTime: String,
+            quoteLast: String,
+            title: String,
+            author: String,
+            gutenbergReference: String,
+            id: String
+        ) {
             self.time = time
             self.quoteFirst = quoteFirst
             self.quoteTime = quoteTime

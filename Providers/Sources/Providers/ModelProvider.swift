@@ -7,11 +7,13 @@ public final class ModelProvider: Sendable {
 
     public let productionContainer: ModelContainer = {
         do {
-            guard let storeURL = Bundle.main.url(
-                forResource: "literatureTimes",
-                withExtension: "store",
-                subdirectory: "Quotes"
-            ) else {
+            guard
+                let storeURL = Bundle.main.url(
+                    forResource: "literatureTimes",
+                    withExtension: "store",
+                    subdirectory: "Quotes"
+                )
+            else {
                 fatalError("Failed to find literatureTimes.store")
             }
 
@@ -31,16 +33,18 @@ public final class ModelProvider: Sendable {
             let container = try ModelContainer(for: schema, configurations: [configuration])
 
             Task { @MainActor in
-                container.mainContext.insert(CurrentScheme.LiteratureTime(
-                    time: "",
-                    quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
-                    quoteTime: "",
-                    quoteLast: "",
-                    title: "The Hitchhiker's Guide to the Galaxy",
-                    author: "Douglas Adams",
-                    gutenbergReference: "",
-                    id: ""
-                ))
+                container.mainContext.insert(
+                    CurrentScheme.LiteratureTime(
+                        time: "",
+                        quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
+                        quoteTime: "",
+                        quoteLast: "",
+                        title: "The Hitchhiker's Guide to the Galaxy",
+                        author: "Douglas Adams",
+                        gutenbergReference: "",
+                        id: ""
+                    )
+                )
             }
 
             return container

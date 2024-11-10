@@ -21,12 +21,12 @@ public protocol LiteratureTimeProviding {
     func fetch(id: String) throws -> LiteratureTime?
 }
 
-public extension LiteratureTimeProviding {
-    var modelContext: ModelContext {
+extension LiteratureTimeProviding {
+    public var modelContext: ModelContext {
         return ModelContext(ModelProvider.shared.productionContainer)
     }
 
-    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
+    public func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
@@ -37,11 +37,15 @@ public extension LiteratureTimeProviding {
             item.time == time && item.id != excludingId
         }
 
-        if let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 {
+        if let literatureTimeCount = try? modelContext.fetchCount(descriptor),
+            literatureTimeCount > 0
+        {
             descriptor.fetchLimit = 1
-            descriptor.fetchOffset = Int.random(in: 0 ... literatureTimeCount - 1)
+            descriptor.fetchOffset = Int.random(in: 0...literatureTimeCount - 1)
 
-            guard let literatureTimes = try? modelContext.fetch(descriptor), let literatureTime = literatureTimes.first else {
+            guard let literatureTimes = try? modelContext.fetch(descriptor),
+                let literatureTime = literatureTimes.first
+            else {
                 return nil
             }
 
@@ -63,14 +67,18 @@ public extension LiteratureTimeProviding {
 
         descriptor.fetchLimit = nil
         descriptor.fetchOffset = 0
-        guard let literatureTimeCount = try? modelContext.fetchCount(descriptor), literatureTimeCount > 0 else {
+        guard let literatureTimeCount = try? modelContext.fetchCount(descriptor),
+            literatureTimeCount > 0
+        else {
             return nil
         }
 
         descriptor.fetchLimit = 1
-        descriptor.fetchOffset = Int.random(in: 0 ... literatureTimeCount - 1)
+        descriptor.fetchOffset = Int.random(in: 0...literatureTimeCount - 1)
 
-        guard let literatureTimes = try? modelContext.fetch(descriptor), let literatureTime = literatureTimes.first else {
+        guard let literatureTimes = try? modelContext.fetch(descriptor),
+            let literatureTime = literatureTimes.first
+        else {
             return nil
         }
 
@@ -86,13 +94,15 @@ public extension LiteratureTimeProviding {
         )
     }
 
-    func fetch(id: String) throws -> LiteratureTime? {
+    public func fetch(id: String) throws -> LiteratureTime? {
         var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.id == id
         }
 
-        guard let literatureTimes = try? modelContext.fetch(descriptor), let literatureTime = literatureTimes.first else {
+        guard let literatureTimes = try? modelContext.fetch(descriptor),
+            let literatureTime = literatureTimes.first
+        else {
             return nil
         }
 

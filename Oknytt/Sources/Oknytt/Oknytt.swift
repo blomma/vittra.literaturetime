@@ -18,8 +18,8 @@ public func DLog(
 }
 
 // get current dispatch queue label
-public extension DispatchQueue {
-    static var currentLabel: String {
+extension DispatchQueue {
+    public static var currentLabel: String {
         return String(validatingCString: __dispatch_queue_get_label(nil)) ?? "unknown"
     }
 }

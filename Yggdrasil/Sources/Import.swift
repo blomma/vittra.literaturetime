@@ -30,7 +30,8 @@ func importLiteratureTime(fromFile: String, toStore: String) {
         fatalError("Unresolved error, modelUrl is nil")
     }
 
-    guard let model = NSManagedObjectModel(contentsOf: modelURL) else { fatalError("Unresolved error, model is nil")
+    guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
+        fatalError("Unresolved error, model is nil")
     }
 
     let container = NSPersistentContainer(name: "Model", managedObjectModel: model)

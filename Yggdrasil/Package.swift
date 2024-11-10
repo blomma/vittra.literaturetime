@@ -12,9 +12,9 @@ let package = Package(
         .executableTarget(
             name: "Yggdrasil",
             resources: [
-                .process("Model.xcdatamodeld"),
+                .process("Model.xcdatamodeld")
             ]
-        ),
+        )
     ],
     swiftLanguageModes: [.v6]
 )
