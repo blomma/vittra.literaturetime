@@ -122,6 +122,11 @@ extension LiteratureTimeView {
 
         public var state: LiteratureTime
 
+        private var currentHour: Int?
+        private var currentMinute: Int?
+        
+        private var previousLiteratureTimeIds:[String] = []
+        
         public init(
             initialState state: LiteratureTime,
             provider: LiteratureTimeProviding
@@ -176,13 +181,27 @@ extension LiteratureTimeView {
             guard let hour = hm.hour, let minute = hm.minute else {
                 literatureTimeId = .init()
                 state = .fallback
+
+                currentHour = nil
+                currentMinute = nil
+
+                previousLiteratureTimeIds.removeAll()
+                
                 return
+            }
+            
+            if hour != currentHour || minute != currentMinute {
+                currentHour = hour
+                currentMinute = minute
+                previousLiteratureTimeIds.removeAll()
+            } else {
+                previousLiteratureTimeIds.append(literatureTimeId)
             }
 
             let literatureTime = try? provider.fetchRandom(
                 hour: hour,
                 minute: minute,
-                excludingId: literatureTimeId
+                excludingIds: previousLiteratureTimeIds
             )
 
             guard let literatureTime = literatureTime else {

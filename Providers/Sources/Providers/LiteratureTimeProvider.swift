@@ -17,7 +17,7 @@ extension String {
 
 public protocol LiteratureTimeProviding {
     var modelContext: ModelContext { get }
-    func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime?
+    func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> LiteratureTime?
     func fetch(id: String) throws -> LiteratureTime?
 }
 
@@ -26,7 +26,7 @@ extension LiteratureTimeProviding {
         return ModelContext(ModelProvider.shared.productionContainer)
     }
 
-    public func fetchRandom(hour: Int, minute: Int, excludingId: String) throws -> LiteratureTime? {
+    public func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> LiteratureTime? {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
@@ -34,7 +34,7 @@ extension LiteratureTimeProviding {
 
         var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
-            item.time == time && item.id != excludingId
+            item.time == time && !excludingIds.contains(item.id)
         }
 
         if let literatureTimeCount = try? modelContext.fetchCount(descriptor),
