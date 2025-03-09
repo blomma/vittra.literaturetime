@@ -198,21 +198,27 @@ extension LiteratureTimeView {
                 previousLiteratureTimeIds.append(literatureTimeId)
             }
 
-            let literatureTime = try? provider.fetchRandom(
+            let result = try? provider.fetchRandom(
                 hour: hour,
                 minute: minute,
                 excludingIds: previousLiteratureTimeIds
             )
 
-            guard let literatureTime = literatureTime else {
+            guard let result = result else {
                 literatureTimeId = .init()
                 state = .fallback
+
+                currentHour = nil
+                currentMinute = nil
+
+                previousLiteratureTimeIds.removeAll()
 
                 return
             }
 
-            literatureTimeId = literatureTime.id
-            state = literatureTime
+            literatureTimeId = result.literatureTime.id
+            state = result.literatureTime
+            previousLiteratureTimeIds = result.excludingIds
         }
     }
 }

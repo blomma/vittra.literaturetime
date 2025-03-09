@@ -17,7 +17,7 @@ extension String {
 
 public protocol LiteratureTimeProviding {
     var modelContext: ModelContext { get }
-    func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> LiteratureTime?
+    func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> (literatureTime: LiteratureTime, excludingIds: [String])?
     func fetch(id: String) throws -> LiteratureTime?
 }
 
@@ -26,7 +26,7 @@ extension LiteratureTimeProviding {
         return ModelContext(ModelProvider.shared.productionContainer)
     }
 
-    public func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> LiteratureTime? {
+    public func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> (literatureTime: LiteratureTime, excludingIds: [String])? {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
@@ -49,7 +49,7 @@ extension LiteratureTimeProviding {
                 return nil
             }
 
-            return LiteratureTime(
+            return (LiteratureTime(
                 time: literatureTime.time,
                 quoteFirst: literatureTime.quoteFirst,
                 quoteTime: literatureTime.quoteTime,
@@ -58,7 +58,7 @@ extension LiteratureTimeProviding {
                 author: literatureTime.author,
                 gutenbergReference: literatureTime.gutenbergReference,
                 id: literatureTime.id
-            )
+            ), excludingIds)
         }
 
         descriptor.predicate = #Predicate { item in
@@ -75,14 +75,13 @@ extension LiteratureTimeProviding {
 
         descriptor.fetchLimit = 1
         descriptor.fetchOffset = Int.random(in: 0...literatureTimeCount - 1)
-
         guard let literatureTimes = try? modelContext.fetch(descriptor),
             let literatureTime = literatureTimes.first
         else {
             return nil
         }
 
-        return LiteratureTime(
+        return (LiteratureTime(
             time: literatureTime.time,
             quoteFirst: literatureTime.quoteFirst,
             quoteTime: literatureTime.quoteTime,
@@ -91,7 +90,7 @@ extension LiteratureTimeProviding {
             author: literatureTime.author,
             gutenbergReference: literatureTime.gutenbergReference,
             id: literatureTime.id
-        )
+        ), [])
     }
 
     public func fetch(id: String) throws -> LiteratureTime? {
