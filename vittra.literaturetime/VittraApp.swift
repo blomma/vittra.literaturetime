@@ -1,6 +1,10 @@
 import Models
 import Providers
 import SwiftUI
+import os
+
+let subsystem = Bundle.main.bundleIdentifier!
+let logger = Logger(subsystem: subsystem, category: "")
 
 @main
 struct VittraApp: App {

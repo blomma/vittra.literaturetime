@@ -1,4 +1,6 @@
 import Models
+import OSLog
+import Oknytt
 import Providers
 import SwiftData
 import SwiftUI
@@ -124,15 +126,20 @@ extension LiteratureTimeView {
 
         private var currentHour: Int?
         private var currentMinute: Int?
-        
-        private var previousLiteratureTimeIds:[String] = []
-        
+
+        private var previousLiteratureTimeIds: [String] = []
+
         public init(
             initialState state: LiteratureTime,
             provider: LiteratureTimeProviding
         ) {
             self.state = state
             self.provider = provider
+        }
+
+        private func setLiteratureTime(literatureTime: LiteratureTime) {
+            literatureTimeId = literatureTime.id
+            state = literatureTime
         }
 
         func fetchQuote(autoRefresh: Bool) {
@@ -164,32 +171,28 @@ extension LiteratureTimeView {
             }
 
             if !literatureTimeId.isEmpty {
-                let literatureTime = try? provider.fetch(id: literatureTimeId)
-                if let literatureTime = literatureTime {
-                    state = literatureTime
+                do {
+                    let literatureTime = try provider.fetch(id: literatureTimeId)
+                    if case .success(let literatureTime) = literatureTime {
+                        setLiteratureTime(literatureTime: literatureTime)
+                    }
+                } catch {
+                    logger.logf(level: .error, message: error.localizedDescription)
                 }
             }
 
-            if state.id.isEmpty {
+            if literatureTimeId.isEmpty {
                 fetchRandomQuote()
             }
         }
 
         func fetchRandomQuote() {
             let hm = Calendar.current.dateComponents([.hour, .minute], from: Date())
-
             guard let hour = hm.hour, let minute = hm.minute else {
-                literatureTimeId = .init()
-                state = .fallback
-
-                currentHour = nil
-                currentMinute = nil
-
-                previousLiteratureTimeIds.removeAll()
-                
+                setLiteratureTime(literatureTime: .fallback)
                 return
             }
-            
+
             if hour != currentHour || minute != currentMinute {
                 currentHour = hour
                 currentMinute = minute
@@ -198,27 +201,38 @@ extension LiteratureTimeView {
                 previousLiteratureTimeIds.append(literatureTimeId)
             }
 
-            let result = try? provider.fetchRandom(
-                hour: hour,
-                minute: minute,
-                excludingIds: previousLiteratureTimeIds
-            )
+            do {
+                var result = try provider.fetchRandomForTimeExcluding(
+                    hour: hour,
+                    minute: minute,
+                    excludingIds: previousLiteratureTimeIds
+                )
 
-            guard let result = result else {
-                literatureTimeId = .init()
-                state = .fallback
+                if case .success(let literatureTime) = result {
+                    setLiteratureTime(literatureTime: literatureTime)
+                    return
+                }
 
-                currentHour = nil
-                currentMinute = nil
+                if case .failure(let failure) = result, case .notFound = failure {
+                    previousLiteratureTimeIds.removeAll()
+                }
 
-                previousLiteratureTimeIds.removeAll()
+                result = try provider.fetchRandomForTimeExcluding(
+                    hour: hour,
+                    minute: minute,
+                    excludingIds: previousLiteratureTimeIds
+                )
 
-                return
+                if case .success(let literatureTime) = result {
+                    setLiteratureTime(literatureTime: literatureTime)
+                    return
+                }
+
+                setLiteratureTime(literatureTime: .fallback)
+            } catch {
+                logger.logf(level: .error, message: error.localizedDescription)
+                setLiteratureTime(literatureTime: .fallback)
             }
-
-            literatureTimeId = result.literatureTime.id
-            state = result.literatureTime
-            previousLiteratureTimeIds = result.excludingIds
         }
     }
 }

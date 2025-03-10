@@ -17,8 +17,18 @@ extension String {
 
 public protocol LiteratureTimeProviding {
     var modelContext: ModelContext { get }
-    func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> (literatureTime: LiteratureTime, excludingIds: [String])?
-    func fetch(id: String) throws -> LiteratureTime?
+
+    func fetchRandomForTimeExcluding(
+        hour: Int,
+        minute: Int,
+        excludingIds: [String]
+    ) throws -> Result<LiteratureTime, FetchLiteratureTimeError>
+
+    func fetch(id: String) throws -> Result<LiteratureTime, FetchLiteratureTimeError>
+}
+
+public enum FetchLiteratureTimeError: Error {
+    case notFound
 }
 
 extension LiteratureTimeProviding {
@@ -26,7 +36,11 @@ extension LiteratureTimeProviding {
         return ModelContext(ModelProvider.shared.productionContainer)
     }
 
-    public func fetchRandom(hour: Int, minute: Int, excludingIds: [String]) throws -> (literatureTime: LiteratureTime, excludingIds: [String])? {
+    public func fetchRandomForTimeExcluding(
+        hour: Int,
+        minute: Int,
+        excludingIds: [String]
+    ) throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
@@ -37,19 +51,22 @@ extension LiteratureTimeProviding {
             item.time == time && !excludingIds.contains(item.id)
         }
 
-        if let literatureTimeCount = try? modelContext.fetchCount(descriptor),
-            literatureTimeCount > 0
-        {
-            descriptor.fetchLimit = 1
-            descriptor.fetchOffset = Int.random(in: 0...literatureTimeCount - 1)
+        let literatureTimeCount = try modelContext.fetchCount(descriptor)
+        guard literatureTimeCount > 0 else {
+            return Result.failure(.notFound)
+        }
 
-            guard let literatureTimes = try? modelContext.fetch(descriptor),
-                let literatureTime = literatureTimes.first
-            else {
-                return nil
-            }
+        descriptor.fetchLimit = 1
+        descriptor.fetchOffset = Int.random(in: 0...literatureTimeCount - 1)
 
-            return (LiteratureTime(
+        let literatureTimes = try modelContext.fetch(descriptor)
+
+        // Feels weird, but this database is readonly and
+        // we have already checked that this descriptor returns more than 0
+        let literatureTime = literatureTimes.first!
+
+        return Result.success(
+            LiteratureTime(
                 time: literatureTime.time,
                 quoteFirst: literatureTime.quoteFirst,
                 quoteTime: literatureTime.quoteTime,
@@ -58,62 +75,34 @@ extension LiteratureTimeProviding {
                 author: literatureTime.author,
                 gutenbergReference: literatureTime.gutenbergReference,
                 id: literatureTime.id
-            ), excludingIds)
-        }
-
-        descriptor.predicate = #Predicate { item in
-            item.time == time
-        }
-
-        descriptor.fetchLimit = nil
-        descriptor.fetchOffset = 0
-        guard let literatureTimeCount = try? modelContext.fetchCount(descriptor),
-            literatureTimeCount > 0
-        else {
-            return nil
-        }
-
-        descriptor.fetchLimit = 1
-        descriptor.fetchOffset = Int.random(in: 0...literatureTimeCount - 1)
-        guard let literatureTimes = try? modelContext.fetch(descriptor),
-            let literatureTime = literatureTimes.first
-        else {
-            return nil
-        }
-
-        return (LiteratureTime(
-            time: literatureTime.time,
-            quoteFirst: literatureTime.quoteFirst,
-            quoteTime: literatureTime.quoteTime,
-            quoteLast: literatureTime.quoteLast,
-            title: literatureTime.title,
-            author: literatureTime.author,
-            gutenbergReference: literatureTime.gutenbergReference,
-            id: literatureTime.id
-        ), [])
+            )
+        )
     }
 
-    public func fetch(id: String) throws -> LiteratureTime? {
+    public func fetch(id: String) throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
         var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.id == id
         }
 
-        guard let literatureTimes = try? modelContext.fetch(descriptor),
+        let literatureTimes = try modelContext.fetch(descriptor)
+        guard
             let literatureTime = literatureTimes.first
         else {
-            return nil
+            return .failure(.notFound)
         }
 
-        return LiteratureTime(
-            time: literatureTime.time,
-            quoteFirst: literatureTime.quoteFirst,
-            quoteTime: literatureTime.quoteTime,
-            quoteLast: literatureTime.quoteLast,
-            title: literatureTime.title,
-            author: literatureTime.author,
-            gutenbergReference: literatureTime.gutenbergReference,
-            id: literatureTime.id
+        return .success(
+            LiteratureTime(
+                time: literatureTime.time,
+                quoteFirst: literatureTime.quoteFirst,
+                quoteTime: literatureTime.quoteTime,
+                quoteLast: literatureTime.quoteLast,
+                title: literatureTime.title,
+                author: literatureTime.author,
+                gutenbergReference: literatureTime.gutenbergReference,
+                id: literatureTime.id
+            )
         )
     }
 }
