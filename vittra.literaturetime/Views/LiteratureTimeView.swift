@@ -25,6 +25,11 @@ struct LiteratureTimeView: View {
     @Environment(\.horizontalSizeClass)
     private var horizontalSizeClass
 
+    private let refreshTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    
+    @State
+    private var previousRefreshDate: Date = Date.now
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Color(.literatureBackground)
@@ -60,14 +65,30 @@ struct LiteratureTimeView: View {
             .foregroundStyle(.literature)
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
-                    model.fetchQuote(autoRefresh: autoRefreshQuote)
+                    model.fetchQuote()
                 }
             }
             .onChange(of: autoRefreshQuote) {
-                model.fetchQuote(autoRefresh: autoRefreshQuote)
+                model.fetchQuote()
             }
             .refreshable {
                 model.fetchRandomQuote()
+            }
+            .onReceive(refreshTimer) { currentDate in
+                if autoRefreshQuote {
+                    let previousHourMinute = Calendar.current.dateComponents([.hour, .minute], from: previousRefreshDate)
+                    let currentHourMinute = Calendar.current.dateComponents([.hour, .minute], from: currentDate)
+                    if
+                        let currentHour = currentHourMinute.hour,
+                        let currentMinute = currentHourMinute.minute,
+                        let previousHour = previousHourMinute.hour,
+                        let previousMinute = previousHourMinute.minute,
+                        currentHour != previousHour || currentMinute != previousMinute
+                    {
+                        previousRefreshDate = currentDate
+                        model.fetchRandomQuote()
+                    }
+              }
             }
         }
         .sheet(isPresented: $shouldPresentSettings) {
@@ -120,8 +141,6 @@ extension LiteratureTimeView {
 
         private let provider: LiteratureTimeProviding
 
-        private var quoteTimer: Timer?
-
         public var state: LiteratureTime
 
         private var currentHour: Int?
@@ -142,34 +161,7 @@ extension LiteratureTimeView {
             state = literatureTime
         }
 
-        func fetchQuote(autoRefresh: Bool) {
-            quoteTimer?.invalidate()
-            quoteTimer = nil
-
-            if autoRefresh {
-                fetchRandomQuote()
-
-                let now = Date.timeIntervalSinceReferenceDate
-                let delayFraction = trunc(now) - now
-
-                let delay = 60.0 - Double(Int(now) % 60) + delayFraction
-
-                quoteTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { _ in
-                    Task { @MainActor in
-                        self.fetchRandomQuote()
-
-                        // Now create a repeating timer that fires once a minute.
-                        self.quoteTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
-                            Task { @MainActor in
-                                self.fetchRandomQuote()
-                            }
-                        }
-                    }
-                }
-
-                return
-            }
-
+        func fetchQuote() {
             if !literatureTimeId.isEmpty {
                 do {
                     let literatureTime = try provider.fetch(id: literatureTimeId)
