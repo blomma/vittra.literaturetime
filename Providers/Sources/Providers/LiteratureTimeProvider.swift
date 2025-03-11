@@ -1,8 +1,6 @@
-import CoreData
 import Foundation
 import Models
 import SwiftData
-import SwiftUI
 
 extension String {
     func leftPadding(toLength: Int, withPad character: Character) -> String {
@@ -15,32 +13,26 @@ extension String {
     }
 }
 
-public protocol LiteratureTimeProviding {
-    var modelContext: ModelContext { get }
-
-    func fetchRandomForTimeExcluding(
-        hour: Int,
-        minute: Int,
-        excludingIds: [String]
-    ) throws -> Result<LiteratureTime, FetchLiteratureTimeError>
-
-    func fetch(id: String) throws -> Result<LiteratureTime, FetchLiteratureTimeError>
-}
-
 public enum FetchLiteratureTimeError: Error {
     case notFound
 }
 
-extension LiteratureTimeProviding {
-    public var modelContext: ModelContext {
-        return ModelContext(ModelProvider.shared.productionContainer)
+public actor LiteratureTimeProvider {
+    public nonisolated let modelExecutor: any ModelExecutor
+    public nonisolated let modelContainer: ModelContainer
+
+    private var modelContext: ModelContext { modelExecutor.modelContext }
+
+    public init(modelContainer: ModelContainer) {
+        self.modelExecutor = DefaultSerialModelExecutor(modelContext: ModelContext(modelContainer))
+        self.modelContainer = modelContainer
     }
 
     public func fetchRandomForTimeExcluding(
         hour: Int,
         minute: Int,
         excludingIds: [String]
-    ) throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
+    ) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
@@ -79,7 +71,7 @@ extension LiteratureTimeProviding {
         )
     }
 
-    public func fetch(id: String) throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
+    public func fetch(id: String) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
         var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
         descriptor.predicate = #Predicate { item in
             item.id == id
@@ -106,17 +98,3 @@ extension LiteratureTimeProviding {
         )
     }
 }
-
-public struct LiteratureTimeProvider: LiteratureTimeProviding {
-    public init() {}
-}
-
-#if DEBUG
-public struct LiteratureTimeProviderPreview: LiteratureTimeProviding {
-    public var modelContext: ModelContext {
-        return ModelContext(ModelProvider.shared.previewContainer)
-    }
-
-    public init() {}
-}
-#endif

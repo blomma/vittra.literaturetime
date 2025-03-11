@@ -32,21 +32,6 @@ public final class ModelProvider: Sendable {
             let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(for: schema, configurations: [configuration])
 
-            Task { @MainActor in
-                container.mainContext.insert(
-                    CurrentScheme.LiteratureTime(
-                        time: "",
-                        quoteFirst: "“Time is an illusion. Lunchtime doubly so.”",
-                        quoteTime: "",
-                        quoteLast: "",
-                        title: "The Hitchhiker's Guide to the Galaxy",
-                        author: "Douglas Adams",
-                        gutenbergReference: "",
-                        id: ""
-                    )
-                )
-            }
-
             return container
         } catch {
             let nsError = error as NSError

@@ -1,4 +1,4 @@
-public struct LiteratureTime: Equatable {
+public struct LiteratureTime: Equatable, Sendable {
     public var time: String
     public var quoteFirst: String
     public var quoteTime: String

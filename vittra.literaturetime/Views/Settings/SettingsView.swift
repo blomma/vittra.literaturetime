@@ -1,7 +1,6 @@
 import Models
 import SwiftUI
 
-@MainActor
 struct SettingsView: View {
     @AppStorage("\(Preferences.colorScheme)")
     private var colorScheme: Models.ColorScheme = .light

@@ -1,6 +1,5 @@
 import SwiftUI
 
-@MainActor
 struct AboutView: View {
     let versionNumber: String
 
