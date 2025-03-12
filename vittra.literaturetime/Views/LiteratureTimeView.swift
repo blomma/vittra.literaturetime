@@ -203,7 +203,12 @@ extension LiteratureTimeView {
                 }
 
                 if case .failure(let failure) = result, case .notFound = failure {
-                    previousLiteratureTimeIds.removeAll()
+                    let previousLiteratureTimeIdsCount = previousLiteratureTimeIds.count
+                    if previousLiteratureTimeIdsCount > 1 {
+                        previousLiteratureTimeIds.removeAll(where: { $0 != literatureTimeId })
+                    } else {
+                        previousLiteratureTimeIds.removeAll()
+                    }
                 }
 
                 result = try await provider.fetchRandomForTimeExcluding(
