@@ -24,7 +24,7 @@ public actor LiteratureTimeProvider {
     private var modelContext: ModelContext { modelExecutor.modelContext }
 
     public init(modelContainer: ModelContainer) {
-        self.modelExecutor = DefaultSerialModelExecutor(modelContext: ModelContext(modelContainer))
+        modelExecutor = DefaultSerialModelExecutor(modelContext: ModelContext(modelContainer))
         self.modelContainer = modelContainer
     }
 

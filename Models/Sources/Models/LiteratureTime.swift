@@ -39,8 +39,8 @@ extension LiteratureTime: CustomStringConvertible {
     }
 }
 
-extension LiteratureTime {
-    public static var fallback: LiteratureTime {
+public extension LiteratureTime {
+    static var fallback: LiteratureTime {
         LiteratureTime(
             time: "",
             quoteFirst:
@@ -54,7 +54,7 @@ extension LiteratureTime {
         )
     }
 
-    public static var empty: LiteratureTime {
+    static var empty: LiteratureTime {
         LiteratureTime(
             time: "",
             quoteFirst: "",

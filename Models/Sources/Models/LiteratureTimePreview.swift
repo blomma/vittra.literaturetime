@@ -1,5 +1,5 @@
-extension LiteratureTime {
-    public static var preview: LiteratureTime {
+public extension LiteratureTime {
+    static var preview: LiteratureTime {
         LiteratureTime(
             time: "21:05",
             quoteFirst: "It was ",
@@ -13,7 +13,7 @@ extension LiteratureTime {
         )
     }
 
-    public static var previewBig: LiteratureTime {
+    static var previewBig: LiteratureTime {
         LiteratureTime(
             time: "21:05",
             quoteFirst: "It was ",
@@ -27,7 +27,7 @@ extension LiteratureTime {
         )
     }
 
-    public static var preview0425: LiteratureTime {
+    static var preview0425: LiteratureTime {
         return LiteratureTime(
             time: "04:25",
             quoteFirst:
@@ -42,7 +42,7 @@ extension LiteratureTime {
         )
     }
 
-    public static var previewSmall: LiteratureTime {
+    static var previewSmall: LiteratureTime {
         LiteratureTime(
             time: "21:05",
             quoteFirst: "It was ",
