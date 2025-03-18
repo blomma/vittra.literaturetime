@@ -1,0 +1,33 @@
+{
+  "configurations" : [
+    {
+      "id" : "E1C968A8-4A73-4D9F-8584-D9AFF7F9EFAE",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "-com.apple.CoreData.SQLDebug 1"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:vittra.literaturetime.xcodeproj",
+      "identifier" : "9E9CBD862A5898D600CB9319",
+      "name" : "vittra.literaturetime"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Providers",
+        "identifier" : "ProvidersTests",
+        "name" : "ProvidersTests"
+      }
+    }
+  ],
+  "version" : 1
+}

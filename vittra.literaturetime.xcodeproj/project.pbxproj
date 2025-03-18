@@ -29,6 +29,7 @@
 		9E77C65F2B94B2A400ABF7B6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PRIVACY.md; sourceTree = "<group>"; };
+		9E966BF72D8709A3002D94D8 /* vittra.literaturetime.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = vittra.literaturetime.xctestplan; sourceTree = "<group>"; };
 		9E97DBD32B93D12D007DE3A4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9CBD8A2A5898D600CB9319 /* VittraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VittraApp.swift; sourceTree = "<group>"; };
@@ -59,6 +60,7 @@
 		9E9CBD7E2A5898D600CB9319 = {
 			isa = PBXGroup;
 			children = (
+				9E966BF72D8709A3002D94D8 /* vittra.literaturetime.xctestplan */,
 				9E0D5E832C8A457600D1ED97 /* README.md */,
 				9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */,
 				9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */,

@@ -24,7 +24,11 @@ let package = Package(
             dependencies: [
                 .product(name: "Models", package: "Models")
             ]
-        )
+        ),
+        .testTarget(
+            name: "ProvidersTests",
+            dependencies: ["Providers"]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
