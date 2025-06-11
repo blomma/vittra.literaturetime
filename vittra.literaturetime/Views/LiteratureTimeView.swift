@@ -23,12 +23,10 @@ struct LiteratureTimeView: View {
 
     private let refreshTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
+    @State
     var model: ViewModel = .init(
         provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.productionContainer)
     )
-
-    @State
-    var state: StateModel = .init()
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -38,16 +36,16 @@ struct LiteratureTimeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Group {
-                        Text(state.literatureTime.quoteFirst)
-                            + Text(state.literatureTime.quoteTime)
+                        Text(model.literatureTime.quoteFirst)
+                            + Text(model.literatureTime.quoteTime)
                             .foregroundStyle(.literatureTime)
-                            + Text(state.literatureTime.quoteLast)
+                            + Text(model.literatureTime.quoteLast)
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                     HStack {
-                        Text("- \(state.literatureTime.title), \(Text(state.literatureTime.author).italic())")
+                        Text("- \(model.literatureTime.title), \(Text(model.literatureTime.author).italic())")
                     }
                     .font(.system(.footnote, design: .serif, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -55,7 +53,7 @@ struct LiteratureTimeView: View {
                 }
                 .padding(.horizontal, horizontalSizeClass == .compact ? 30 : 100)
                 .padding(.vertical, 45)
-                .animation(.default, value: state.literatureTime)
+                .animation(.default, value: model.literatureTime)
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
                 .contextMenu {
@@ -66,24 +64,20 @@ struct LiteratureTimeView: View {
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active && !autoRefreshQuote {
                     Task {
-                        let newState = await model.fetchQuote(
+                        await model.fetchQuote(
                             literatureTimeId: literatureTimeId,
-                            state: state,
                             currentDate: Date()
                         )
-                        setState(newState: newState)
+                        literatureTimeId = model.literatureTime.id
                     }
                 }
             }
             .refreshable {
-                Task {
-                    let newState = await model.fetchRandomQuote(
-                        literatureTimeId: literatureTimeId,
-                        state: state,
-                        currentDate: Date()
-                    )
-                    setState(newState: newState)
-                }
+                await model.fetchRandomQuote(
+                    literatureTimeId: literatureTimeId,
+                    currentDate: Date()
+                )
+                literatureTimeId = model.literatureTime.id
             }
             .onReceive(refreshTimer) { currentDate in
                 if !autoRefreshQuote {
@@ -91,12 +85,11 @@ struct LiteratureTimeView: View {
                 }
 
                 Task {
-                    let newState = await model.autoRefreshQuote(
+                    await model.autoRefreshQuote(
                         literatureTimeId: literatureTimeId,
-                        state: state,
                         currentDate: currentDate
                     )
-                    setState(newState: newState)
+                    literatureTimeId = model.literatureTime.id
                 }
             }
         }
@@ -105,26 +98,18 @@ struct LiteratureTimeView: View {
         }
     }
 
-    private func setState(newState: StateModel) {
-        state.literatureTime = newState.literatureTime
-        state.previousRefreshDate = newState.previousRefreshDate
-        state.previousLiteratureTimeIds = newState.previousLiteratureTimeIds
-
-        literatureTimeId = newState.literatureTime.id
-    }
-
     @ViewBuilder
     private var makeContextMenu: some View {
         Button {
-            UIPasteboard.general.string = state.literatureTime.description
+            UIPasteboard.general.string = model.literatureTime.description
         } label: {
             Label("Copy quote", systemImage: "doc.on.doc")
         }
 
-        if !state.literatureTime.gutenbergReference.isEmpty {
+        if !model.literatureTime.gutenbergReference.isEmpty {
             Link(
                 destination: URL(
-                    string: "https://www.gutenberg.org/ebooks/\(state.literatureTime.gutenbergReference)"
+                    string: "https://www.gutenberg.org/ebooks/\(model.literatureTime.gutenbergReference)"
                 )!
             ) {
                 Label("View book on gutenberg", systemImage: "safari")
@@ -132,7 +117,7 @@ struct LiteratureTimeView: View {
 
             Button {
                 UIPasteboard.general.string =
-                    "https://www.gutenberg.org/ebooks/\(state.literatureTime.gutenbergReference)"
+                    "https://www.gutenberg.org/ebooks/\(model.literatureTime.gutenbergReference)"
             } label: {
                 Label("Copy link to gutenberg", systemImage: "link")
             }
@@ -149,38 +134,32 @@ struct LiteratureTimeView: View {
 }
 
 extension LiteratureTimeView {
-    @MainActor
     @Observable
-    final class StateModel {
+    final class ViewModel {
         @ObservationIgnored var previousLiteratureTimeIds: [String]
         @ObservationIgnored var previousRefreshDate: Date
 
         var literatureTime: LiteratureTime
 
-        init(
+        private let provider: LiteratureTimeProvider
+
+        public init(
+            provider: LiteratureTimeProvider,
             previousLiteratureTimeIds: [String] = [],
             previousRefreshDate: Date = .distantPast,
             literatureTime: LiteratureTime = .empty
         ) {
+            self.provider = provider
+
             self.previousLiteratureTimeIds = previousLiteratureTimeIds
             self.previousRefreshDate = previousRefreshDate
             self.literatureTime = literatureTime
         }
-    }
 
-    actor ViewModel {
-        private let provider: LiteratureTimeProvider
-
-        public init(
-            provider: LiteratureTimeProvider
-        ) {
-            self.provider = provider
-        }
-
-        func autoRefreshQuote(literatureTimeId: String, state: StateModel, currentDate: Date) async -> StateModel {
-            let previousHourMinute = await Calendar.current.dateComponents(
+        func autoRefreshQuote(literatureTimeId: String, currentDate: Date) async {
+            let previousHourMinute = Calendar.current.dateComponents(
                 [.hour, .minute],
-                from: state.previousRefreshDate
+                from: previousRefreshDate
             )
             let currentHourMinute = Calendar.current.dateComponents([.hour, .minute], from: currentDate)
 
@@ -189,43 +168,40 @@ extension LiteratureTimeView {
                 let previousHour = previousHourMinute.hour,
                 let previousMinute = previousHourMinute.minute
             else {
-                return await StateModel(
-                    previousLiteratureTimeIds: state.previousLiteratureTimeIds,
-                    previousRefreshDate: state.previousRefreshDate,
-                    literatureTime: .fallback
-                )
+                self.literatureTime = .fallback
+
+                return
             }
 
             if currentHour == previousHour && currentMinute == previousMinute {
-                return state
+                return
             }
 
-            return await fetchRandomQuote(literatureTimeId: literatureTimeId, state: state, currentDate: currentDate)
+            return await fetchRandomQuote(literatureTimeId: literatureTimeId, currentDate: currentDate)
         }
 
-        func fetchQuote(literatureTimeId: String, state: StateModel, currentDate: Date) async -> StateModel {
+        func fetchQuote(literatureTimeId: String, currentDate: Date) async {
             if !literatureTimeId.isEmpty {
                 do {
                     let result = try await provider.fetch(id: literatureTimeId)
                     if case let .success(literatureTime) = result {
-                        return await StateModel(
-                            previousLiteratureTimeIds: state.previousLiteratureTimeIds,
-                            previousRefreshDate: currentDate,
-                            literatureTime: literatureTime
-                        )
+                        self.previousRefreshDate = currentDate
+                        self.literatureTime = literatureTime
+
+                        return
                     }
                 } catch {
                     logger.logf(level: .error, message: error.localizedDescription)
                 }
             }
 
-            return await fetchRandomQuote(literatureTimeId: literatureTimeId, state: state, currentDate: currentDate)
+            return await fetchRandomQuote(literatureTimeId: literatureTimeId, currentDate: currentDate)
         }
 
-        func fetchRandomQuote(literatureTimeId: String, state: StateModel, currentDate: Date) async -> StateModel {
-            let previousHourMinute = await Calendar.current.dateComponents(
+        func fetchRandomQuote(literatureTimeId: String, currentDate: Date) async {
+            let previousHourMinute = Calendar.current.dateComponents(
                 [.hour, .minute],
-                from: state.previousRefreshDate
+                from: previousRefreshDate
             )
             let currentHourMinute = Calendar.current.dateComponents([.hour, .minute], from: Date())
 
@@ -235,14 +211,10 @@ extension LiteratureTimeView {
                 let previousHour = previousHourMinute.hour,
                 let previousMinute = previousHourMinute.minute
             else {
-                return await StateModel(
-                    previousLiteratureTimeIds: state.previousLiteratureTimeIds,
-                    previousRefreshDate: state.previousRefreshDate,
-                    literatureTime: .fallback
-                )
-            }
+                literatureTime = .fallback
 
-            var previousLiteratureTimeIds = await state.previousLiteratureTimeIds
+                return
+            }
 
             if previousHour != currentHour || previousMinute != currentMinute {
                 previousLiteratureTimeIds.removeAll()
@@ -258,11 +230,10 @@ extension LiteratureTimeView {
                 )
 
                 if case let .success(literatureTime) = result {
-                    return await StateModel(
-                        previousLiteratureTimeIds: previousLiteratureTimeIds,
-                        previousRefreshDate: currentDate,
-                        literatureTime: literatureTime
-                    )
+                    self.previousRefreshDate = currentDate
+                    self.literatureTime = literatureTime
+
+                    return
                 }
 
                 if case let .failure(failure) = result, case .notFound = failure {
@@ -281,21 +252,16 @@ extension LiteratureTimeView {
                 )
 
                 if case let .success(literatureTime) = result {
-                    return await StateModel(
-                        previousLiteratureTimeIds: previousLiteratureTimeIds,
-                        previousRefreshDate: currentDate,
-                        literatureTime: literatureTime
-                    )
+                    self.previousRefreshDate = currentDate
+                    self.literatureTime = literatureTime
+
+                    return
                 }
             } catch {
                 logger.logf(level: .error, message: error.localizedDescription)
             }
 
-            return await StateModel(
-                previousLiteratureTimeIds: previousLiteratureTimeIds,
-                previousRefreshDate: state.previousRefreshDate,
-                literatureTime: .fallback
-            )
+            literatureTime = .fallback
         }
     }
 }
@@ -304,9 +270,9 @@ extension LiteratureTimeView {
 #Preview("Light") {
     LiteratureTimeView(
         model: .init(
-            provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.previewContainer)
-        ),
-        state: .init(literatureTime: .previewSmall)
+            provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.previewContainer),
+            literatureTime: .previewSmall
+        )
     )
     .preferredColorScheme(.light)
 }
@@ -314,9 +280,9 @@ extension LiteratureTimeView {
 #Preview("Dark") {
     LiteratureTimeView(
         model: .init(
-            provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.previewContainer)
-        ),
-        state: .init(literatureTime: .previewSmall)
+            provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.previewContainer),
+            literatureTime: .previewSmall
+        )
     )
     .preferredColorScheme(.dark)
 }

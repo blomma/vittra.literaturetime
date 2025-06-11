@@ -2,8 +2,8 @@ import Foundation
 import Models
 import SwiftData
 
-public final class ModelProvider: Sendable {
-    public static let shared = ModelProvider()
+public final class ModelProvider {
+    @MainActor public static let shared = ModelProvider()
 
     public let productionContainer: ModelContainer = {
         do {

@@ -1,12 +1,12 @@
 public struct LiteratureTime: Equatable, Sendable {
-    public var time: String
-    public var quoteFirst: String
-    public var quoteTime: String
-    public var quoteLast: String
-    public var title: String
-    public var author: String
-    public var gutenbergReference: String
-    public var id: String
+    public let time: String
+    public let quoteFirst: String
+    public let quoteTime: String
+    public let quoteLast: String
+    public let title: String
+    public let author: String
+    public let gutenbergReference: String
+    public let id: String
 
     public init(
         time: String,
