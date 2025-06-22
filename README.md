@@ -10,3 +10,7 @@ Timely quote is an open-source application for showing quotes taken from the boo
 ## Support
 
 In the unlikely event of a problem or if you have a suggestion I want you to create an issue at https://github.com/blomma/vittra.literaturetime/issues
+
+## Links
+
+App Store https://apps.apple.com/us/app/timely-quote/id6466886308
