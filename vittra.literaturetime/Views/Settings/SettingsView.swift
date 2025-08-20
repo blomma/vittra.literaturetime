@@ -47,7 +47,8 @@ struct SettingsView: View {
         } header: {
             Text("App")
         } footer: {
-            if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+            {
                 Text("App Version: \(appVersion)").frame(maxWidth: .infinity, alignment: .center)
             }
         }
@@ -67,12 +68,12 @@ struct SettingsView: View {
             Text("Apperance")
         } footer: {
             switch colorScheme {
-            case .automatic:
-                Text("Automatically switch between light and dark themes when your system does")
-            case .light:
-                Text("Always use light theme")
-            case .dark:
-                Text("Always use dark theme")
+                case .automatic:
+                    Text("Automatically switch between light and dark themes when your system does")
+                case .light:
+                    Text("Always use light theme")
+                case .dark:
+                    Text("Always use dark theme")
             }
         }
         .listRowBackground(Color(.literatureBackground))

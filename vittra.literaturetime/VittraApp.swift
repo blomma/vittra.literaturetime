@@ -14,13 +14,10 @@ struct VittraApp: App {
     @Environment(\.scenePhase)
     private var scenePhase
 
-    let modelContainer = ModelProvider.shared.productionContainer
-
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(modelContainer)
         .onChange(of: colorScheme) { _, _ in
             UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =
                 colorScheme == .automatic

@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:vittra.literaturetime.xctestplan"
+            reference = "container:TestPlans/UnitTest.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

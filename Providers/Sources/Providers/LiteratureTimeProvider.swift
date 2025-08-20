@@ -20,17 +20,18 @@ public actor LiteratureTimeProvider {
     public func fetchRandomForTimeExcluding(
         hour: Int,
         minute: Int,
-        excludingIds: [String]
+        excludingIds: Set<String>
     ) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
 
         let time = "\(paddedHour):\(paddedMinute)"
 
-        var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
-        descriptor.predicate = #Predicate { item in
-            item.time == time && !excludingIds.contains(item.id)
-        }
+        var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>(
+            predicate: #Predicate { item in
+                item.time == time && !excludingIds.contains(item.id)
+            }
+        )
 
         let literatureTimeCount = try modelContext.fetchCount(descriptor)
         guard literatureTimeCount > 0 else {
@@ -61,10 +62,11 @@ public actor LiteratureTimeProvider {
     }
 
     public func fetch(id: String) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
-        var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>()
-        descriptor.predicate = #Predicate { item in
-            item.id == id
-        }
+        let descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>(
+            predicate: #Predicate { item in
+                item.id == id
+            }
+        )
 
         let literatureTimes = try modelContext.fetch(descriptor)
         guard

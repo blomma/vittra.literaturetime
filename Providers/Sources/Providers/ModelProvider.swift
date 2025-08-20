@@ -3,7 +3,8 @@ import Models
 import SwiftData
 
 public final class ModelProvider {
-    @MainActor public static let shared = ModelProvider()
+    @MainActor
+    public static let shared = ModelProvider()
 
     public let productionContainer: ModelContainer = {
         do {

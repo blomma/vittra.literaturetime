@@ -24,9 +24,15 @@ struct LiteratureTimeView: View {
     private let refreshTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     @State
-    var model: ViewModel = .init(
-        provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.productionContainer)
-    )
+    private var literatureTimeIds: Set<String> = []
+
+    @State
+    private var previousRefreshDate: Date = .distantPast
+
+    @State
+    var literatureTime: LiteratureTime = .empty
+
+    var provider = LiteratureTimeProvider(modelContainer: ModelProvider.shared.productionContainer)
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -36,16 +42,16 @@ struct LiteratureTimeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Group {
-                        Text(model.literatureTime.quoteFirst)
-                            + Text(model.literatureTime.quoteTime)
+                        Text(literatureTime.quoteFirst)
+                            + Text(literatureTime.quoteTime)
                             .foregroundStyle(.literatureTime)
-                            + Text(model.literatureTime.quoteLast)
+                            + Text(literatureTime.quoteLast)
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                     HStack {
-                        Text("- \(model.literatureTime.title), \(Text(model.literatureTime.author).italic())")
+                        Text("- \(literatureTime.title), \(Text(literatureTime.author).italic())")
                     }
                     .font(.system(.footnote, design: .serif, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -53,7 +59,7 @@ struct LiteratureTimeView: View {
                 }
                 .padding(.horizontal, horizontalSizeClass == .compact ? 30 : 100)
                 .padding(.vertical, 45)
-                .animation(.default, value: model.literatureTime)
+                .animation(.default, value: literatureTime)
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
                 .contextMenu {
@@ -64,20 +70,12 @@ struct LiteratureTimeView: View {
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active && !autoRefreshQuote {
                     Task {
-                        await model.fetchQuote(
-                            literatureTimeId: literatureTimeId,
-                            currentDate: Date()
-                        )
-                        literatureTimeId = model.literatureTime.id
+                        await fetchQuote(currentDate: Date())
                     }
                 }
             }
             .refreshable {
-                await model.fetchRandomQuote(
-                    literatureTimeId: literatureTimeId,
-                    currentDate: Date()
-                )
-                literatureTimeId = model.literatureTime.id
+                await fetchRandomQuote(currentDate: Date())
             }
             .onReceive(refreshTimer) { currentDate in
                 if !autoRefreshQuote {
@@ -85,11 +83,7 @@ struct LiteratureTimeView: View {
                 }
 
                 Task {
-                    await model.autoRefreshQuote(
-                        literatureTimeId: literatureTimeId,
-                        currentDate: currentDate
-                    )
-                    literatureTimeId = model.literatureTime.id
+                    await autoRefreshQuote(currentDate: currentDate)
                 }
             }
         }
@@ -101,15 +95,15 @@ struct LiteratureTimeView: View {
     @ViewBuilder
     private var makeContextMenu: some View {
         Button {
-            UIPasteboard.general.string = model.literatureTime.description
+            UIPasteboard.general.string = literatureTime.description
         } label: {
             Label("Copy quote", systemImage: "doc.on.doc")
         }
 
-        if !model.literatureTime.gutenbergReference.isEmpty {
+        if !literatureTime.gutenbergReference.isEmpty {
             Link(
                 destination: URL(
-                    string: "https://www.gutenberg.org/ebooks/\(model.literatureTime.gutenbergReference)"
+                    string: "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)"
                 )!
             ) {
                 Label("View book on gutenberg", systemImage: "safari")
@@ -117,7 +111,7 @@ struct LiteratureTimeView: View {
 
             Button {
                 UIPasteboard.general.string =
-                    "https://www.gutenberg.org/ebooks/\(model.literatureTime.gutenbergReference)"
+                    "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)"
             } label: {
                 Label("Copy link to gutenberg", systemImage: "link")
             }
@@ -134,144 +128,145 @@ struct LiteratureTimeView: View {
 }
 
 extension LiteratureTimeView {
-    @Observable
-    final class ViewModel {
-        @ObservationIgnored var previousLiteratureTimeIds: [String]
-        @ObservationIgnored var previousRefreshDate: Date
+    func fallBack() {
+        self.literatureTime = .fallback
+        literatureTimeId = literatureTime.id
+    }
 
-        var literatureTime: LiteratureTime
+    func autoRefreshQuote(currentDate: Date) async {
+        let previousHourMinute = Calendar.current.dateComponents(
+            [.hour, .minute],
+            from: previousRefreshDate
+        )
+        let currentHourMinute = Calendar.current.dateComponents(
+            [.hour, .minute],
+            from: currentDate
+        )
 
-        private let provider: LiteratureTimeProvider
+        guard let currentHour = currentHourMinute.hour,
+            let currentMinute = currentHourMinute.minute,
+            let previousHour = previousHourMinute.hour,
+            let previousMinute = previousHourMinute.minute
+        else {
+            fallBack()
 
-        public init(
-            provider: LiteratureTimeProvider,
-            previousLiteratureTimeIds: [String] = [],
-            previousRefreshDate: Date = .distantPast,
-            literatureTime: LiteratureTime = .empty
-        ) {
-            self.provider = provider
-
-            self.previousLiteratureTimeIds = previousLiteratureTimeIds
-            self.previousRefreshDate = previousRefreshDate
-            self.literatureTime = literatureTime
+            return
         }
 
-        func autoRefreshQuote(literatureTimeId: String, currentDate: Date) async {
-            let previousHourMinute = Calendar.current.dateComponents(
-                [.hour, .minute],
-                from: previousRefreshDate
-            )
-            let currentHourMinute = Calendar.current.dateComponents([.hour, .minute], from: currentDate)
-
-            guard let currentHour = currentHourMinute.hour,
-                let currentMinute = currentHourMinute.minute,
-                let previousHour = previousHourMinute.hour,
-                let previousMinute = previousHourMinute.minute
-            else {
-                self.literatureTime = .fallback
-
-                return
-            }
-
-            if currentHour == previousHour && currentMinute == previousMinute {
-                return
-            }
-
-            return await fetchRandomQuote(literatureTimeId: literatureTimeId, currentDate: currentDate)
+        if currentHour == previousHour && currentMinute == previousMinute {
+            return
         }
 
-        func fetchQuote(literatureTimeId: String, currentDate: Date) async {
-            if !literatureTimeId.isEmpty {
-                do {
-                    let result = try await provider.fetch(id: literatureTimeId)
-                    if case let .success(literatureTime) = result {
-                        self.previousRefreshDate = currentDate
-                        self.literatureTime = literatureTime
+        return await fetchRandomQuote(currentDate: currentDate)
+    }
 
-                        return
-                    }
-                } catch {
-                    logger.logf(level: .error, message: error.localizedDescription)
-                }
-            }
-
-            return await fetchRandomQuote(literatureTimeId: literatureTimeId, currentDate: currentDate)
-        }
-
-        func fetchRandomQuote(literatureTimeId: String, currentDate: Date) async {
-            let previousHourMinute = Calendar.current.dateComponents(
-                [.hour, .minute],
-                from: previousRefreshDate
-            )
-            let currentHourMinute = Calendar.current.dateComponents([.hour, .minute], from: Date())
-
-            guard
-                let currentHour = currentHourMinute.hour,
-                let currentMinute = currentHourMinute.minute,
-                let previousHour = previousHourMinute.hour,
-                let previousMinute = previousHourMinute.minute
-            else {
-                literatureTime = .fallback
-
-                return
-            }
-
-            if previousHour != currentHour || previousMinute != currentMinute {
-                previousLiteratureTimeIds.removeAll()
-            } else {
-                previousLiteratureTimeIds.append(literatureTimeId)
-            }
-
+    func fetchQuote(currentDate: Date) async {
+        if !literatureTimeId.isEmpty {
             do {
-                var result = try await provider.fetchRandomForTimeExcluding(
-                    hour: currentHour,
-                    minute: currentMinute,
-                    excludingIds: previousLiteratureTimeIds
-                )
-
+                let result = try await provider.fetch(id: literatureTimeId)
                 if case let .success(literatureTime) = result {
-                    self.previousRefreshDate = currentDate
+                    previousRefreshDate = currentDate
                     self.literatureTime = literatureTime
-
-                    return
-                }
-
-                if case let .failure(failure) = result, case .notFound = failure {
-                    let previousLiteratureTimeIdsCount = previousLiteratureTimeIds.count
-                    if previousLiteratureTimeIdsCount > 1 {
-                        previousLiteratureTimeIds.removeAll(where: { $0 != literatureTimeId })
-                    } else {
-                        previousLiteratureTimeIds.removeAll()
-                    }
-                }
-
-                result = try await provider.fetchRandomForTimeExcluding(
-                    hour: currentHour,
-                    minute: currentMinute,
-                    excludingIds: previousLiteratureTimeIds
-                )
-
-                if case let .success(literatureTime) = result {
-                    self.previousRefreshDate = currentDate
-                    self.literatureTime = literatureTime
+                    literatureTimeId = literatureTime.id
+                    literatureTimeIds.insert(literatureTime.id)
 
                     return
                 }
             } catch {
                 logger.logf(level: .error, message: error.localizedDescription)
             }
-
-            literatureTime = .fallback
         }
+
+        return await fetchRandomQuote(currentDate: currentDate)
+    }
+
+    func fetchRandomQuote(currentDate: Date) async {
+        let previousHourMinute = Calendar.current.dateComponents(
+            [.hour, .minute],
+            from: previousRefreshDate
+        )
+        let currentHourMinute = Calendar.current.dateComponents([.hour, .minute], from: Date())
+
+        guard
+            let currentHour = currentHourMinute.hour,
+            let currentMinute = currentHourMinute.minute,
+            let previousHour = previousHourMinute.hour,
+            let previousMinute = previousHourMinute.minute
+        else {
+            fallBack()
+
+            return
+        }
+
+        if previousHour != currentHour || previousMinute != currentMinute {
+            literatureTimeIds = []
+        }
+
+        do {
+            var result = try await provider.fetchRandomForTimeExcluding(
+                hour: currentHour,
+                minute: currentMinute,
+                excludingIds: literatureTimeIds
+            )
+
+            if case let .success(literatureTime) = result {
+                previousRefreshDate = currentDate
+                self.literatureTime = literatureTime
+                literatureTimeId = literatureTime.id
+                literatureTimeIds.insert(literatureTimeId)
+
+                return
+            }
+
+            // We didn't find anything and there were no exclusions, which means
+            // there is nothing to be found for this timeslot
+            // so we do an early exit and wait for a better time
+            if literatureTimeIds.isEmpty {
+                fallBack()
+
+                return
+            }
+
+            // In this case, we excluded the current literaturetime
+            // and got nothing back, which means we should just keep the current one
+            if literatureTimeIds.count == 1 {
+                previousRefreshDate = currentDate
+
+                return
+            }
+
+            // I this case we excluded more than just the current literaturetime
+            // so we keep the current literaturetime and try fetching again
+            literatureTimeIds = [literatureTimeId]
+
+            result = try await provider.fetchRandomForTimeExcluding(
+                hour: currentHour,
+                minute: currentMinute,
+                excludingIds: literatureTimeIds
+            )
+
+            if case let .success(literatureTime) = result {
+                previousRefreshDate = currentDate
+                self.literatureTime = literatureTime
+                literatureTimeId = literatureTime.id
+                literatureTimeIds.insert(literatureTimeId)
+
+                return
+            }
+        } catch {
+            logger.logf(level: .error, message: error.localizedDescription)
+        }
+
+        fallBack()
     }
 }
 
 #if DEBUG
 #Preview("Light") {
     LiteratureTimeView(
-        model: .init(
-            provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.previewContainer),
-            literatureTime: .previewSmall
+        literatureTime: .previewSmall,
+        provider: LiteratureTimeProvider(
+            modelContainer: ModelProvider.shared.previewContainer
         )
     )
     .preferredColorScheme(.light)
@@ -279,9 +274,9 @@ extension LiteratureTimeView {
 
 #Preview("Dark") {
     LiteratureTimeView(
-        model: .init(
-            provider: LiteratureTimeProvider(modelContainer: ModelProvider.shared.previewContainer),
-            literatureTime: .previewSmall
+        literatureTime: .previewSmall,
+        provider: LiteratureTimeProvider(
+            modelContainer: ModelProvider.shared.previewContainer
         )
     )
     .preferredColorScheme(.dark)
