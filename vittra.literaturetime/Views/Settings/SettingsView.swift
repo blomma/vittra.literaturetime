@@ -47,9 +47,10 @@ struct SettingsView: View {
         } header: {
             Text("App")
         } footer: {
-            if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+            if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+               let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
             {
-                Text("App Version: \(appVersion)").frame(maxWidth: .infinity, alignment: .center)
+                Text("App Version: \(appVersion).\(buildVersion)").frame(maxWidth: .infinity, alignment: .center)
             }
         }
         .listRowBackground(Color(.literatureBackground))
