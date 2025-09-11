@@ -39,7 +39,7 @@ struct AboutView: View {
                     Label("License", systemImage: "checkmark.shield")
                 }
             } footer: {
-                Text("\(versionNumber)©2024 Mikael Hultgren")
+                Text("\(versionNumber)©2025 Mikael Hultgren")
             }
             .listRowBackground(Color(.literatureBackground))
 
