@@ -198,6 +198,8 @@ extension LiteratureTimeView {
             return
         }
 
+        // We have crossed over to a new combination of hour and/or minute
+        // so we reset the previous fetched id's of quotes
         if previousHour != currentHour || previousMinute != currentMinute {
             literatureTimeIds = []
         }
@@ -235,7 +237,7 @@ extension LiteratureTimeView {
                 return
             }
 
-            // I this case we excluded more than just the current literaturetime
+            // In this case we excluded more than just the current literaturetime
             // so we keep the current literaturetime and try fetching again
             literatureTimeIds = [literatureTimeId]
 
