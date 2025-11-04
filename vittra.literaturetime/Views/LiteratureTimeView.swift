@@ -42,10 +42,7 @@ struct LiteratureTimeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Group {
-                        Text(literatureTime.quoteFirst)
-                            + Text(literatureTime.quoteTime)
-                            .foregroundStyle(.literatureTime)
-                            + Text(literatureTime.quoteLast)
+                        Text("\(literatureTime.quoteFirst)\(Text(literatureTime.quoteTime).foregroundStyle(.literatureTime))\(literatureTime.quoteLast)")
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -111,7 +108,7 @@ struct LiteratureTimeView: View {
 
             Button {
                 UIPasteboard.general.string =
-                    "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)"
+                "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)"
             } label: {
                 Label("Copy link to gutenberg", systemImage: "link")
             }
