@@ -39,7 +39,7 @@ struct LiteratureTimeView: View {
             Color(.literatureBackground)
                 .ignoresSafeArea()
 
-            ScrollView(.vertical, showsIndicators: false) {
+            ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
                         Text("\(literatureTime.quoteFirst)\(Text(literatureTime.quoteTime).foregroundStyle(.literatureTime))\(literatureTime.quoteLast)")
@@ -63,6 +63,7 @@ struct LiteratureTimeView: View {
                     makeContextMenu
                 }
             }
+            .scrollIndicators(.hidden)
             .foregroundStyle(.literature)
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active && !autoRefreshQuote {

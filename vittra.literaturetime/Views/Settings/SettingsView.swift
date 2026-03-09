@@ -25,11 +25,8 @@ struct SettingsView: View {
             .toolbarBackground(Color(.literatureBackground).opacity(0.30), for: .navigationBar)
             .toolbar {
                 ToolbarItem {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Done").bold()
-                    }
+                    Button("Done", action: dismiss)
+                        .bold()
                 }
             }
         }
