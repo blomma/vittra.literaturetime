@@ -16,6 +16,10 @@
 		9E9CBD8F2A5898D800CB9319 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9CBD8E2A5898D800CB9319 /* Colors.xcassets */; };
 		9EB8AB502B8909DC00C6708C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */; };
 		9EB8AB532B89129500C6708C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB8AB522B89129500C6708C /* AboutView.swift */; };
+		9EE64DFC2F5F2BCB003CCA7C /* SettingsAppSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE64DFA2F5F2BCB003CCA7C /* SettingsAppSection.swift */; };
+		9EE64DFD2F5F2BCB003CCA7C /* SettingsAppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE64DF92F5F2BCB003CCA7C /* SettingsAppearanceSection.swift */; };
+		9EE64DFE2F5F2BCB003CCA7C /* SettingsGeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE64DFB2F5F2BCB003CCA7C /* SettingsGeneralSection.swift */; };
+		9EE64E002F5F2BEB003CCA7C /* QuoteContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE64DFF2F5F2BEB003CCA7C /* QuoteContextMenu.swift */; };
 		9EEB857E2B664A4000D48369 /* Oknytt in Frameworks */ = {isa = PBXBuildFile; productRef = 9EEB857D2B664A4000D48369 /* Oknytt */; };
 		9EF5B1582BBC5FF6005BB932 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 9EF5B1572BBC5FF6005BB932 /* Models */; };
 /* End PBXBuildFile section */
@@ -39,6 +43,10 @@
 		9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9EB8AB522B89129500C6708C /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		9EBB58692E393C95005C679B /* BaseSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BaseSettings.xcconfig; sourceTree = "<group>"; };
+		9EE64DF92F5F2BCB003CCA7C /* SettingsAppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSection.swift; sourceTree = "<group>"; };
+		9EE64DFA2F5F2BCB003CCA7C /* SettingsAppSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppSection.swift; sourceTree = "<group>"; };
+		9EE64DFB2F5F2BCB003CCA7C /* SettingsGeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGeneralSection.swift; sourceTree = "<group>"; };
+		9EE64DFF2F5F2BEB003CCA7C /* QuoteContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteContextMenu.swift; sourceTree = "<group>"; };
 		9EEB857C2B66488600D48369 /* Oknytt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Oknytt; sourceTree = "<group>"; };
 		9EF5B1592BBC6120005BB932 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +113,9 @@
 		9EB8AB512B89127900C6708C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				9EE64DF92F5F2BCB003CCA7C /* SettingsAppearanceSection.swift */,
+				9EE64DFA2F5F2BCB003CCA7C /* SettingsAppSection.swift */,
+				9EE64DFB2F5F2BCB003CCA7C /* SettingsGeneralSection.swift */,
 				9EB8AB4F2B8909DC00C6708C /* SettingsView.swift */,
 				9EB8AB522B89129500C6708C /* AboutView.swift */,
 			);
@@ -131,6 +142,7 @@
 			children = (
 				9EB8AB512B89127900C6708C /* Settings */,
 				9E9CBD8C2A5898D600CB9319 /* ContentView.swift */,
+				9EE64DFF2F5F2BEB003CCA7C /* QuoteContextMenu.swift */,
 				9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */,
 			);
 			path = Views;
@@ -221,6 +233,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EE64DFC2F5F2BCB003CCA7C /* SettingsAppSection.swift in Sources */,
+				9EE64E002F5F2BEB003CCA7C /* QuoteContextMenu.swift in Sources */,
+				9EE64DFD2F5F2BCB003CCA7C /* SettingsAppearanceSection.swift in Sources */,
+				9EE64DFE2F5F2BCB003CCA7C /* SettingsGeneralSection.swift in Sources */,
 				9E9CBD8D2A5898D600CB9319 /* ContentView.swift in Sources */,
 				9EB8AB502B8909DC00C6708C /* SettingsView.swift in Sources */,
 				9E97DBD42B93D12D007DE3A4 /* UIApplicationExtension.swift in Sources */,

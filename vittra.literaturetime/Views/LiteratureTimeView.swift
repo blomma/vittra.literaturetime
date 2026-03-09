@@ -42,7 +42,9 @@ struct LiteratureTimeView: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     Group {
-                        Text("\(literatureTime.quoteFirst)\(Text(literatureTime.quoteTime).foregroundStyle(.literatureTime))\(literatureTime.quoteLast)")
+                        Text(
+                            "\(literatureTime.quoteFirst)\(Text(literatureTime.quoteTime).foregroundStyle(.literatureTime))\(literatureTime.quoteLast)"
+                        )
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -60,7 +62,10 @@ struct LiteratureTimeView: View {
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
                 .contextMenu {
-                    makeContextMenu
+                    QuoteContextMenu(
+                        literatureTime: literatureTime,
+                        shouldPresentSettings: $shouldPresentSettings
+                    )
                 }
             }
             .scrollIndicators(.hidden)
@@ -87,40 +92,6 @@ struct LiteratureTimeView: View {
         }
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
-        }
-    }
-
-    @ViewBuilder
-    private var makeContextMenu: some View {
-        Button {
-            UIPasteboard.general.string = literatureTime.description
-        } label: {
-            Label("Copy quote", systemImage: "doc.on.doc")
-        }
-
-        if !literatureTime.gutenbergReference.isEmpty {
-            Link(
-                destination: URL(
-                    string: "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)"
-                )!
-            ) {
-                Label("View book on gutenberg", systemImage: "safari")
-            }
-
-            Button {
-                UIPasteboard.general.string =
-                "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)"
-            } label: {
-                Label("Copy link to gutenberg", systemImage: "link")
-            }
-        }
-
-        Divider()
-
-        Button {
-            shouldPresentSettings.toggle()
-        } label: {
-            Label("Settings", systemImage: "gearshape")
         }
     }
 }

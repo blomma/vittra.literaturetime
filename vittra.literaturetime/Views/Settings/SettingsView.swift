@@ -14,9 +14,9 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                appSection
-                displaySection
-                generalSection
+                SettingsAppSection()
+                SettingsAppearanceSection()
+                SettingsGeneralSection()
             }
             .scrollContentBackground(.hidden)
             .background(Color(.literatureBackground))
@@ -25,70 +25,14 @@ struct SettingsView: View {
             .toolbarBackground(Color(.literatureBackground).opacity(0.30), for: .navigationBar)
             .toolbar {
                 ToolbarItem {
-                    Button("Done", action: dismiss)
-                        .bold()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done").bold()
+                    }
                 }
             }
         }
-    }
-
-    private var appSection: some View {
-        Section {
-            Link(destination: URL(string: "https://github.com/blomma/vittra.literaturetime")!) {
-                Label("Source (GitHub)", systemImage: "link")
-            }
-
-            NavigationLink(destination: AboutView()) {
-                Label("About", systemImage: "info.circle")
-            }
-        } header: {
-            Text("App")
-        } footer: {
-            if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-               let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-            {
-                Text("App Version: \(appVersion).\(buildVersion)").frame(maxWidth: .infinity, alignment: .center)
-            }
-        }
-        .listRowBackground(Color(.literatureBackground))
-    }
-
-    @ViewBuilder
-    private var displaySection: some View {
-        Section {
-            Picker("ColorScheme", selection: $colorScheme) {
-                ForEach(ColorScheme.allCases) { colorScheme in
-                    Text(colorScheme.rawValue.capitalized)
-                }
-            }
-            .pickerStyle(.segmented)
-        } header: {
-            Text("Apperance")
-        } footer: {
-            switch colorScheme {
-                case .automatic:
-                    Text("Automatically switch between light and dark themes when your system does")
-                case .light:
-                    Text("Always use light theme")
-                case .dark:
-                    Text("Always use dark theme")
-            }
-        }
-        .listRowBackground(Color(.literatureBackground))
-    }
-
-    @ViewBuilder
-    private var generalSection: some View {
-        Section {
-            Toggle(isOn: $autoRefreshQuote) {
-                Label("Auto refresh quote", systemImage: "arrow.clockwise")
-            }
-        } header: {
-            Text("General")
-        } footer: {
-            Text("Automatically refresh quote shown every minute on the minute")
-        }
-        .listRowBackground(Color(.literatureBackground))
     }
 }
 
