@@ -10,11 +10,12 @@ struct SettingsAppearanceSection: View {
             Picker("ColorScheme", selection: $colorScheme) {
                 ForEach(Models.ColorScheme.allCases) { colorScheme in
                     Text(colorScheme.rawValue.capitalized)
+                        .tag(colorScheme)
                 }
             }
             .pickerStyle(.segmented)
         } header: {
-            Text("Apperance")
+            Text("Appearance")
         } footer: {
             switch colorScheme {
                 case .automatic:

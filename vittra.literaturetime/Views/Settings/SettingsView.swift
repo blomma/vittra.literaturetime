@@ -1,13 +1,6 @@
-import Models
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("\(Preferences.colorScheme)")
-    private var colorScheme: Models.ColorScheme = .light
-
-    @AppStorage("\(Preferences.autoRefreshQuote)")
-    private var autoRefreshQuote: Bool = false
-
     @Environment(\.dismiss)
     private var dismiss
 
@@ -24,7 +17,7 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color(.literatureBackground).opacity(0.30), for: .navigationBar)
             .toolbar {
-                ToolbarItem {
+                ToolbarItem(placement: .confirmationAction) {
                     Button {
                         dismiss()
                     } label: {

@@ -26,21 +26,20 @@
 		9EF5B1592BBC6120005BB932 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		9E5409DC2E3F85B2004DC694 /* TestPlans */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TestPlans; sourceTree = "<group>"; };
-		9E9CBD892A5898D600CB9319 /* vittra.literaturetime */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9EFF00012E3F85B2004DC694 /* Exception for "vittra.literaturetime" folder in "vittra.literaturetime" target */, ); explicitFileTypes = {}; explicitFolders = (); path = vittra.literaturetime; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9EFF00012E3F85B2004DC694 /* Exception for "vittra.literaturetime" folder in "vittra.literaturetime" target */ = {
+		9EFF00012E3F85B2004DC694 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				VittraApp.entitlements,
 			);
 			target = 9E9CBD862A5898D600CB9319 /* vittra.literaturetime */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9E5409DC2E3F85B2004DC694 /* TestPlans */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TestPlans; sourceTree = "<group>"; };
+		9E9CBD892A5898D600CB9319 /* vittra.literaturetime */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9EFF00012E3F85B2004DC694 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = vittra.literaturetime; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9E9CBD842A5898D600CB9319 /* Frameworks */ = {
