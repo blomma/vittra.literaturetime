@@ -21,8 +21,6 @@ struct LiteratureTimeView: View {
     @Environment(\.horizontalSizeClass)
     private var horizontalSizeClass
 
-    private let refreshTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-
     @State
     private var literatureTimeIds: Set<String> = []
 
@@ -80,13 +78,21 @@ struct LiteratureTimeView: View {
             .refreshable {
                 await fetchRandomQuote(currentDate: Date())
             }
-            .onReceive(refreshTimer) { currentDate in
-                if !autoRefreshQuote {
-                    return
-                }
+            .task(id: autoRefreshQuote) {
+                guard autoRefreshQuote else { return }
 
-                Task {
-                    await autoRefreshQuote(currentDate: currentDate)
+                // Poll for a minute rollover. Scoping the loop to `.task` ties it
+                // to the view's lifetime, so it's cancelled automatically on
+                // disappear or when auto-refresh is toggled off — no overlapping
+                // tasks and no reentrancy window on the shared state.
+                while !Task.isCancelled {
+                    await autoRefreshQuote(currentDate: Date())
+
+                    do {
+                        try await Task.sleep(for: .seconds(0.1))
+                    } catch {
+                        break
+                    }
                 }
             }
         }
