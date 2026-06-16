@@ -4,32 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "Providers",
+    name: "LiteratureSchema",
     platforms: [.iOS(.v18), .macOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "Providers",
-            targets: ["Providers"]
+            name: "LiteratureSchema",
+            targets: ["LiteratureSchema"]
         )
-    ],
-    dependencies: [
-        .package(name: "Models", path: "../Models"),
-        .package(name: "LiteratureSchema", path: "../LiteratureSchema")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Providers",
-            dependencies: [
-                .product(name: "Models", package: "Models"),
-                .product(name: "LiteratureSchema", package: "LiteratureSchema")
-            ]
-        ),
-        .testTarget(
-            name: "ProvidersTests",
-            dependencies: ["Providers"]
-        ),
+            name: "LiteratureSchema"
+        )
     ]
 )

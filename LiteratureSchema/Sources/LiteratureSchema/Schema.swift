@@ -1,28 +1,30 @@
 import SwiftData
 
-typealias CurrentScheme = SchemaV1
+public typealias CurrentScheme = SchemaV1
 
-enum SchemaV1: VersionedSchema {
-    static var versionIdentifier: Schema.Version {
+public enum SchemaV1: VersionedSchema {
+    public static var versionIdentifier: Schema.Version {
         .init(1, 0, 0)
     }
 
-    static var models: [any PersistentModel.Type] {
+    public static var models: [any PersistentModel.Type] {
         [LiteratureTime.self]
     }
 
     @Model
-    final class LiteratureTime: Equatable {
-        var time: String
-        var quoteFirst: String
-        var quoteTime: String
-        var quoteLast: String
-        var title: String
-        var author: String
-        var gutenbergReference: String
-        var id: String
+    public final class LiteratureTime {
+        #Index<LiteratureTime>([\.time], [\.id])
 
-        init(
+        public var time: String
+        public var quoteFirst: String
+        public var quoteTime: String
+        public var quoteLast: String
+        public var title: String
+        public var author: String
+        public var gutenbergReference: String
+        public var id: String
+
+        public init(
             time: String,
             quoteFirst: String,
             quoteTime: String,

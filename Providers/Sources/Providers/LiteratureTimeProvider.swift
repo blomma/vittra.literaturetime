@@ -1,4 +1,5 @@
 import Foundation
+import LiteratureSchema
 import Models
 import SwiftData
 
@@ -62,11 +63,12 @@ public actor LiteratureTimeProvider {
     }
 
     public func fetch(id: String) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
-        let descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>(
+        var descriptor = FetchDescriptor<CurrentScheme.LiteratureTime>(
             predicate: #Predicate { item in
                 item.id == id
             }
         )
+        descriptor.fetchLimit = 1
 
         let literatureTimes = try modelContext.fetch(descriptor)
         guard

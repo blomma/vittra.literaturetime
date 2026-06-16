@@ -1,76 +1,79 @@
-import CoreData
 import Foundation
+import LiteratureSchema
+import SQLite3
+import SwiftData
+
+enum SeedError: Error {
+    case sqlite(String)
+}
 
 func importLiteratureTime(fromFile: String, toStore: String) {
-    var data: Data?
     do {
-        data = try String(contentsOfFile: fromFile).data(using: .utf8)
+        let data = try Data(contentsOf: URL(filePath: fromFile))
+        let imports = try JSONDecoder().decode([LiteratureTimeImport].self, from: data)
+
+        // Seed into a scratch location first, then copy the finished single-file
+        // store into place. Keeping this separate from the destination means a
+        // failed run never leaves a half-written store behind.
+        let workURL = URL.temporaryDirectory.appending(path: "literatureTimes-seed.store")
+        try? FileManager.default.removeItem(at: workURL)
+
+        try seed(imports, into: workURL)
+        try consolidate(workURL)
+
+        let destination = URL(filePath: toStore)
+        try? FileManager.default.removeItem(at: destination)
+        try FileManager.default.copyItem(at: workURL, to: destination)
     } catch {
-        let nsError = error as NSError
-        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        fatalError("Failed to seed store: \(error)")
+    }
+}
+
+/// Inserts every quote into a fresh SwiftData store using the same schema the app
+/// reads with, so there is a single source of truth for the model.
+private func seed(_ imports: [LiteratureTimeImport], into url: URL) throws {
+    let container = try ModelContainer(
+        for: Schema(CurrentScheme.models),
+        configurations: [ModelConfiguration(url: url)]
+    )
+    let context = ModelContext(container)
+
+    for item in imports {
+        context.insert(
+            CurrentScheme.LiteratureTime(
+                time: item.time,
+                quoteFirst: item.quoteFirst,
+                quoteTime: item.quoteTime,
+                quoteLast: item.quoteLast,
+                title: item.title,
+                author: item.author,
+                gutenbergReference: item.gutenbergReference,
+                id: item.hash
+            )
+        )
     }
 
-    guard let data = data else {
-        return
+    try context.save()
+    // `container` is released here, closing SwiftData's connections so the
+    // checkpoint below can take the store's write lock cleanly.
+}
+
+/// SwiftData writes in WAL mode, leaving `-wal`/`-shm` sidecar files. The app
+/// opens the bundled store read-only, so fold the WAL back into the main file and
+/// switch to a single-file journal — the SwiftData equivalent of the old Core Data
+/// `journal_mode = DELETE`.
+private func consolidate(_ url: URL) throws {
+    var db: OpaquePointer?
+    guard sqlite3_open(url.path, &db) == SQLITE_OK else {
+        let message = db.map { String(cString: sqlite3_errmsg($0)) } ?? "open failed"
+        sqlite3_close(db)
+        throw SeedError.sqlite(message)
     }
+    defer { sqlite3_close(db) }
 
-    var literaturetimesImport: [LiteratureTimeImport]?
-    do {
-        literaturetimesImport = try JSONDecoder().decode([LiteratureTimeImport].self, from: data)
-    } catch {
-        let nsError = error as NSError
-        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-    }
-
-    guard let literaturetimesImport = literaturetimesImport else {
-        return
-    }
-
-    guard let modelURL = Bundle.module.url(forResource: "Model", withExtension: "momd") else {
-        fatalError("Unresolved error, modelUrl is nil")
-    }
-
-    guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
-        fatalError("Unresolved error, model is nil")
-    }
-
-    let container = NSPersistentContainer(name: "Model", managedObjectModel: model)
-    let storeURL = URL.documentsDirectory.appending(path: "literaturetimes.store")
-    if let description = container.persistentStoreDescriptions.first {
-        // Delete all existing data.
-        try? FileManager.default.removeItem(at: storeURL)
-
-        // Make Core Data write to our new store URL.
-        description.url = storeURL
-
-        // Force WAL mode off.
-        description.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
-        container.loadPersistentStores { _, error in
-            do {
-                for literatureTimeImport in literaturetimesImport {
-                    let literatureTime = LiteratureTime(context: container.viewContext)
-                    literatureTime.time = literatureTimeImport.time
-                    literatureTime.quoteFirst = literatureTimeImport.quoteFirst
-                    literatureTime.quoteTime = literatureTimeImport.quoteTime
-                    literatureTime.quoteLast = literatureTimeImport.quoteLast
-                    literatureTime.title = literatureTimeImport.title
-                    literatureTime.author = literatureTimeImport.author
-                    literatureTime.gutenbergReference = literatureTimeImport.gutenbergReference
-                    literatureTime.id = literatureTimeImport.hash
-
-                    container.viewContext.insert(literatureTime)
-                }
-
-                // Ensure all our changes are fully saved.
-                try container.viewContext.save()
-
-                // Adjust this to the actual location where you want the file to be saved.
-                let destination = URL(filePath: toStore)
-                try FileManager.default.removeItem(at: destination)
-                try FileManager.default.copyItem(at: storeURL, to: destination)
-            } catch {
-                fatalError("Failed to create data: \(error.localizedDescription)")
-            }
+    for pragma in ["PRAGMA wal_checkpoint(TRUNCATE);", "PRAGMA journal_mode=DELETE;"] {
+        guard sqlite3_exec(db, pragma, nil, nil, nil) == SQLITE_OK else {
+            throw SeedError.sqlite(String(cString: sqlite3_errmsg(db)))
         }
     }
 }

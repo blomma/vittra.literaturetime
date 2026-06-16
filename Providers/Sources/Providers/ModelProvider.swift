@@ -1,4 +1,5 @@
 import Foundation
+import LiteratureSchema
 import Models
 import SwiftData
 
