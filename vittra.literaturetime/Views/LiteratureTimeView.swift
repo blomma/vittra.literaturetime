@@ -21,6 +21,9 @@ struct LiteratureTimeView: View {
     @Environment(\.horizontalSizeClass)
     private var horizontalSizeClass
 
+    @Environment(\.colorScheme)
+    private var colorScheme
+
     @State
     private var literatureTimeIds: Set<String> = []
 
@@ -98,6 +101,7 @@ struct LiteratureTimeView: View {
         }
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
+                .preferredColorScheme(colorScheme)
         }
     }
 }
