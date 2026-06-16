@@ -28,7 +28,6 @@
 		9E0D5E832C8A457600D1ED97 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9E16CA092AA28ABD00B50C39 /* LiteratureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureTimeView.swift; sourceTree = "<group>"; };
 		9E1F45EA2B47086800454FD8 /* Quotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Quotes; sourceTree = "<group>"; };
-		9E2D43662AED5AC50006EB20 /* Yggdrasil */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Yggdrasil; sourceTree = "<group>"; };
 		9E6FDC002BBC5E30003DF133 /* Providers */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Providers; sourceTree = "<group>"; };
 		9E77C65F2B94B2A400ABF7B6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -82,7 +81,6 @@
 				9EF5B1592BBC6120005BB932 /* Models */,
 				9E6FDC002BBC5E30003DF133 /* Providers */,
 				9EEB857C2B66488600D48369 /* Oknytt */,
-				9E2D43662AED5AC50006EB20 /* Yggdrasil */,
 				9E9CBD892A5898D600CB9319 /* vittra.literaturetime */,
 				9E9CBD882A5898D600CB9319 /* Products */,
 				9EBEDEF42A9BC7E2002CD4A4 /* Frameworks */,
@@ -189,7 +187,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					9E9CBD862A5898D600CB9319 = {
 						CreatedOnToolsVersion = 15.0;
