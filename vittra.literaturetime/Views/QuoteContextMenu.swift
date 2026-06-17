@@ -12,6 +12,10 @@ struct QuoteContextMenu: View {
     }
 
     var body: some View {
+        ShareLink(item: literatureTime.quotation) {
+            Label("Share quote", systemImage: "square.and.arrow.up")
+        }
+
         Button("Copy quote", systemImage: "doc.on.doc", action: copyQuote)
 
         if let gutenbergURL {
@@ -28,7 +32,7 @@ struct QuoteContextMenu: View {
     }
 
     private func copyQuote() {
-        UIPasteboard.general.string = literatureTime.description
+        UIPasteboard.general.string = literatureTime.quotation
     }
 
     private func copyGutenbergLink() {

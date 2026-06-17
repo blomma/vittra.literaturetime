@@ -29,12 +29,15 @@ public struct LiteratureTime: Equatable, Sendable {
     }
 }
 
-extension LiteratureTime: CustomStringConvertible {
-    public var description: String {
+public extension LiteratureTime {
+    /// The quote formatted for sharing or copying: the full quote followed by
+    /// its attribution. Excludes the raw Gutenberg reference id, which is an
+    /// internal lookup key and not meaningful to a reader.
+    var quotation: String {
         return """
             \(quoteFirst)\(quoteTime)\(quoteLast)
 
-            - \(title), \(author), \(gutenbergReference)
+            — \(title), \(author)
             """
     }
 }
