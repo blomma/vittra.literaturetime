@@ -3,7 +3,7 @@ import SwiftUI
 
 struct SettingsAppearanceSection: View {
     @AppStorage("\(Preferences.colorScheme)")
-    private var colorScheme: Models.ColorScheme = .light
+    private var colorScheme: Models.ColorScheme = .automatic
 
     var body: some View {
         Section {

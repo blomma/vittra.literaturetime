@@ -8,7 +8,7 @@ let logger = Logger(subsystem: subsystem, category: "")
 @main
 struct VittraApp: App {
     @AppStorage("\(Preferences.colorScheme)")
-    private var colorScheme: Models.ColorScheme = .light
+    private var colorScheme: Models.ColorScheme = .automatic
 
     var body: some Scene {
         WindowGroup {
