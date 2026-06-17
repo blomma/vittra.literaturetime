@@ -6,6 +6,10 @@ struct QuoteContextMenu: View {
     @Binding
     var shouldPresentSettings: Bool
 
+    /// Invoked after a copy action places text on the pasteboard, so the host
+    /// can confirm the otherwise-silent action (e.g. with haptic feedback).
+    var onCopy: () -> Void = {}
+
     private var gutenbergURL: URL? {
         guard !literatureTime.gutenbergReference.isEmpty else { return nil }
         return URL(string: "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)")
@@ -33,11 +37,13 @@ struct QuoteContextMenu: View {
 
     private func copyQuote() {
         UIPasteboard.general.string = literatureTime.quotation
+        onCopy()
     }
 
     private func copyGutenbergLink() {
         guard let gutenbergURL else { return }
         UIPasteboard.general.string = gutenbergURL.absoluteString
+        onCopy()
     }
 
     private func presentSettings() {

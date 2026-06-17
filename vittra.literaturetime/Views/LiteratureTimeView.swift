@@ -12,6 +12,12 @@ struct LiteratureTimeView: View {
     @State
     private var shouldPresentSettings = false
 
+    @State
+    private var copyFeedbackTrigger = 0
+
+    @State
+    private var refreshFeedbackTrigger = 0
+
     @Environment(\.scenePhase)
     private var scenePhase
 
@@ -56,15 +62,31 @@ struct LiteratureTimeView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.top, 15)
                 }
-                .padding(.horizontal, horizontalSizeClass == .compact ? 30 : 100)
+                // Cap the text column to a comfortable measure rather than
+                // padding by a fixed amount: on wide layouts (iPad, landscape)
+                // a fixed inset still yields an over-long line that hurts
+                // readability, so we constrain the width and centre the column.
+                .frame(maxWidth: 640, alignment: .leading)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 30)
                 .padding(.vertical, 45)
                 .animation(.default, value: model.literatureTime)
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
+                // Read the quote and its attribution as a single, natural
+                // utterance instead of two separate elements (and avoid the
+                // leading hyphen being spoken as "dash").
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(
+                    Text(
+                        "\(model.literatureTime.quoteFirst)\(model.literatureTime.quoteTime)\(model.literatureTime.quoteLast). \(model.literatureTime.title), by \(model.literatureTime.author)"
+                    )
+                )
                 .contextMenu {
                     QuoteContextMenu(
                         literatureTime: model.literatureTime,
-                        shouldPresentSettings: $shouldPresentSettings
+                        shouldPresentSettings: $shouldPresentSettings,
+                        onCopy: { copyFeedbackTrigger += 1 }
                     )
                 }
             }
@@ -85,6 +107,7 @@ struct LiteratureTimeView: View {
             }
             .refreshable {
                 await model.refreshRandomQuote(currentDate: Date())
+                refreshFeedbackTrigger += 1
             }
             .task(id: autoRefreshQuote) {
                 // `.task` runs on appear (and whenever auto-refresh is toggled),
@@ -135,7 +158,8 @@ struct LiteratureTimeView: View {
             Menu {
                 QuoteContextMenu(
                     literatureTime: model.literatureTime,
-                    shouldPresentSettings: $shouldPresentSettings
+                    shouldPresentSettings: $shouldPresentSettings,
+                    onCopy: { copyFeedbackTrigger += 1 }
                 )
             } label: {
                 Image(systemName: "ellipsis.circle")
@@ -148,6 +172,8 @@ struct LiteratureTimeView: View {
             .padding(.trailing, horizontalSizeClass == .compact ? 12 : 80)
             .padding(.bottom, 8)
         }
+        .sensoryFeedback(.success, trigger: copyFeedbackTrigger)
+        .sensoryFeedback(.impact(flexibility: .soft), trigger: refreshFeedbackTrigger)
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
                 .preferredColorScheme(colorScheme)
