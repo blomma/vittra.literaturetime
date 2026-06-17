@@ -8,11 +8,11 @@ import Providers
 final class LiteratureTimeModel {
     private(set) var literatureTime: LiteratureTime
 
-    private let provider: LiteratureTimeProvider
+    private let provider: any LiteratureTimeProviding
     private var literatureTimeIds: Set<String> = []
     private var previousRefreshDate: Date = .distantPast
 
-    init(literatureTime: LiteratureTime = .empty, provider: LiteratureTimeProvider) {
+    init(literatureTime: LiteratureTime = .empty, provider: any LiteratureTimeProviding) {
         self.literatureTime = literatureTime
         self.provider = provider
     }

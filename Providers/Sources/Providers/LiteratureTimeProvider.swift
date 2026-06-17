@@ -7,7 +7,7 @@ public enum FetchLiteratureTimeError: Error {
     case notFound
 }
 
-public actor LiteratureTimeProvider {
+public actor LiteratureTimeProvider: LiteratureTimeProviding {
     public nonisolated let modelExecutor: any ModelExecutor
     public nonisolated let modelContainer: ModelContainer
 

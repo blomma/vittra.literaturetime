@@ -25,14 +25,11 @@ struct LiteratureTimeView: View {
     private var model: LiteratureTimeModel
 
     init(
-        literatureTime: LiteratureTime = .empty,
-        provider: LiteratureTimeProvider = .init(
+        provider: any LiteratureTimeProviding = LiteratureTimeProvider(
             modelContainer: ModelProvider.shared.productionContainer
         )
     ) {
-        _model = State(
-            initialValue: LiteratureTimeModel(literatureTime: literatureTime, provider: provider)
-        )
+        _model = State(initialValue: LiteratureTimeModel(provider: provider))
     }
 
     var body: some View {
@@ -130,6 +127,26 @@ struct LiteratureTimeView: View {
                     }
                 }
             }
+
+            // Visible affordance mirroring the long-press context menu. A
+            // context menu is an accelerator, not a primary path, so the same
+            // actions need a discoverable control on the canvas; the menu
+            // content is shared verbatim with `.contextMenu` above.
+            Menu {
+                QuoteContextMenu(
+                    literatureTime: model.literatureTime,
+                    shouldPresentSettings: $shouldPresentSettings
+                )
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .font(.title2)
+                    .foregroundStyle(.literature)
+                    .padding(12)
+                    .contentShape(Circle())
+            }
+            .accessibilityLabel("Quote actions")
+            .padding(.trailing, horizontalSizeClass == .compact ? 12 : 80)
+            .padding(.bottom, 8)
         }
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
@@ -141,20 +158,14 @@ struct LiteratureTimeView: View {
 #if DEBUG
 #Preview("Light") {
     LiteratureTimeView(
-        literatureTime: .previewSmall,
-        provider: LiteratureTimeProvider(
-            modelContainer: ModelProvider.shared.previewContainer
-        )
+        provider: PreviewLiteratureTimeProvider(literatureTime: .previewBig)
     )
     .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
     LiteratureTimeView(
-        literatureTime: .previewSmall,
-        provider: LiteratureTimeProvider(
-            modelContainer: ModelProvider.shared.previewContainer
-        )
+        provider: PreviewLiteratureTimeProvider(literatureTime: .previewSmall)
     )
     .preferredColorScheme(.dark)
 }
