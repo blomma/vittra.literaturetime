@@ -90,7 +90,19 @@ struct LiteratureTimeView: View {
                 await model.refreshRandomQuote(currentDate: Date())
             }
             .task(id: autoRefreshQuote) {
-                guard autoRefreshQuote else { return }
+                // `.task` runs on appear (and whenever auto-refresh is toggled),
+                // unlike `onChange(of: scenePhase)`, which doesn't fire for the
+                // initial value and so can't be relied on for the cold-launch
+                // load. When auto-refresh is off, this is the initial load that
+                // restores the last quote (or a fresh one for the current time).
+                guard autoRefreshQuote else {
+                    await model.loadInitialQuote(
+                        persistedId: literatureTimeId,
+                        currentDate: Date()
+                    )
+
+                    return
+                }
 
                 // Refresh on each minute boundary. Scoping the loop to `.task` ties
                 // it to the view's lifetime, so it's cancelled automatically on
