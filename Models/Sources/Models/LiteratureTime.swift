@@ -43,6 +43,12 @@ public extension LiteratureTime {
 }
 
 public extension LiteratureTime {
+    /// Stable, non-fetchable id that marks the placeholder when persisting and
+    /// restoring the last shown quote. It lets restoration tell apart "the
+    /// fallback was on screen" from "nothing has been loaded yet" (empty id),
+    /// so a previously shown fallback is restored as-is rather than replaced.
+    static let fallbackId = "__fallback__"
+
     static var fallback: LiteratureTime {
         LiteratureTime(
             time: "",
@@ -53,7 +59,7 @@ public extension LiteratureTime {
             title: "The Hitchhiker's Guide to the Galaxy",
             author: "Douglas Adams",
             gutenbergReference: "",
-            id: ""
+            id: fallbackId
         )
     }
 

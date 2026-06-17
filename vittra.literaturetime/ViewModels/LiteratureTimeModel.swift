@@ -20,6 +20,16 @@ final class LiteratureTimeModel {
     /// Restores the previously shown quote by id, falling back to a random one
     /// for the current time when it can't be found.
     func loadInitialQuote(persistedId: String, currentDate: Date) async {
+        // The placeholder is a real, restorable state: if it was the last thing
+        // shown, restore it as-is rather than fetching a fresh quote. Left
+        // unanchored to `currentDate` so a later refresh (or auto-refresh
+        // toggle) will still try to find a real quote for the current time.
+        if persistedId == LiteratureTime.fallbackId {
+            useFallback()
+
+            return
+        }
+
         if !persistedId.isEmpty {
             do {
                 let result = try await provider.fetch(id: persistedId)

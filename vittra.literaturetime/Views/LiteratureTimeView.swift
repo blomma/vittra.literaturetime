@@ -18,9 +18,6 @@ struct LiteratureTimeView: View {
     @State
     private var refreshFeedbackTrigger = 0
 
-    @Environment(\.scenePhase)
-    private var scenePhase
-
     @Environment(\.horizontalSizeClass)
     private var horizontalSizeClass
 
@@ -92,17 +89,13 @@ struct LiteratureTimeView: View {
             }
             .scrollIndicators(.hidden)
             .foregroundStyle(.literature)
-            .onChange(of: scenePhase) { _, newPhase in
-                if newPhase == .active && !autoRefreshQuote {
-                    Task {
-                        await model.loadInitialQuote(
-                            persistedId: literatureTimeId,
-                            currentDate: Date()
-                        )
-                    }
-                }
-            }
             .onChange(of: model.literatureTime) { _, newValue in
+                // Persist whatever is shown so it can be restored on next
+                // launch — including the placeholder, which carries a stable
+                // sentinel id. Only the initial `.empty` state (empty id) is
+                // skipped, so an empty persisted id keeps meaning "nothing has
+                // been loaded yet".
+                guard !newValue.id.isEmpty else { return }
                 literatureTimeId = newValue.id
             }
             .refreshable {
