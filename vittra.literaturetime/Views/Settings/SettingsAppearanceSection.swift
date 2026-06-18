@@ -7,7 +7,7 @@ struct SettingsAppearanceSection: View {
 
     var body: some View {
         Section {
-            Picker("ColorScheme", selection: $colorScheme) {
+            Picker("Color scheme", selection: $colorScheme) {
                 ForEach(Models.ColorScheme.allCases) { colorScheme in
                     Text(colorScheme.rawValue.capitalized)
                         .tag(colorScheme)

@@ -37,12 +37,14 @@ struct QuoteContextMenu: View {
 
     private func copyQuote() {
         UIPasteboard.general.string = literatureTime.quotation
+        AccessibilityNotification.Announcement("Quote copied").post()
         onCopy()
     }
 
     private func copyGutenbergLink() {
         guard let gutenbergURL else { return }
         UIPasteboard.general.string = gutenbergURL.absoluteString
+        AccessibilityNotification.Announcement("Link copied").post()
         onCopy()
     }
 

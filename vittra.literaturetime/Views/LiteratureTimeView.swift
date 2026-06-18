@@ -24,6 +24,9 @@ struct LiteratureTimeView: View {
     @Environment(\.colorScheme)
     private var colorScheme
 
+    @Environment(\.accessibilityReduceMotion)
+    private var accessibilityReduceMotion
+
     @State
     private var model: LiteratureTimeModel
 
@@ -67,7 +70,10 @@ struct LiteratureTimeView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 30)
                 .padding(.vertical, 45)
-                .animation(.default, value: model.literatureTime)
+                .animation(
+                    accessibilityReduceMotion ? nil : .default,
+                    value: model.literatureTime
+                )
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
                 // Read the quote and its attribution as a single, natural
