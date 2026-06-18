@@ -27,6 +27,9 @@ struct LiteratureTimeView: View {
     @Environment(\.accessibilityReduceMotion)
     private var accessibilityReduceMotion
 
+    @Environment(\.accessibilityDifferentiateWithoutColor)
+    private var accessibilityDifferentiateWithoutColor
+
     @State
     private var model: LiteratureTimeModel
 
@@ -47,7 +50,7 @@ struct LiteratureTimeView: View {
                 VStack(alignment: .leading) {
                     Group {
                         Text(
-                            "\(model.literatureTime.quoteFirst)\(Text(model.literatureTime.quoteTime).foregroundStyle(.literatureTime))\(model.literatureTime.quoteLast)"
+                            "\(model.literatureTime.quoteFirst)\(Text(model.literatureTime.quoteTime).foregroundStyle(.literatureTime).underline(accessibilityDifferentiateWithoutColor))\(model.literatureTime.quoteLast)"
                         )
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
@@ -85,11 +88,20 @@ struct LiteratureTimeView: View {
                         "\(model.literatureTime.quoteFirst)\(model.literatureTime.quoteTime)\(model.literatureTime.quoteLast). \(model.literatureTime.title), by \(model.literatureTime.author)"
                     )
                 )
+                .accessibilityValue(
+                    model.literatureTime.quoteTime.isEmpty
+                        ? Text("")
+                        : Text("Time reference: \(model.literatureTime.quoteTime)")
+                )
+                .accessibilityHidden(model.literatureTime.id.isEmpty)
                 .contextMenu {
                     QuoteContextMenu(
                         literatureTime: model.literatureTime,
                         shouldPresentSettings: $shouldPresentSettings,
-                        onCopy: { copyFeedbackTrigger += 1 }
+                        onCopy: { copyFeedbackTrigger += 1 },
+                        onRefresh: {
+                            Task { await refreshQuote() }
+                        }
                     )
                 }
             }
@@ -105,8 +117,7 @@ struct LiteratureTimeView: View {
                 literatureTimeId = newValue.id
             }
             .refreshable {
-                await model.refreshRandomQuote(currentDate: Date())
-                refreshFeedbackTrigger += 1
+                await refreshQuote()
             }
             .task(id: autoRefreshQuote) {
                 // `.task` runs on appear (and whenever auto-refresh is toggled),
@@ -158,7 +169,10 @@ struct LiteratureTimeView: View {
                 QuoteContextMenu(
                     literatureTime: model.literatureTime,
                     shouldPresentSettings: $shouldPresentSettings,
-                    onCopy: { copyFeedbackTrigger += 1 }
+                    onCopy: { copyFeedbackTrigger += 1 },
+                    onRefresh: {
+                        Task { await refreshQuote() }
+                    }
                 )
             } label: {
                 Image(systemName: "ellipsis.circle")
@@ -168,6 +182,7 @@ struct LiteratureTimeView: View {
                     .contentShape(Circle())
             }
             .accessibilityLabel("Quote actions")
+            .disabled(model.literatureTime.id.isEmpty)
             .padding(.trailing, horizontalSizeClass == .compact ? 12 : 80)
             .padding(.bottom, 8)
         }
@@ -177,6 +192,12 @@ struct LiteratureTimeView: View {
             SettingsView()
                 .preferredColorScheme(colorScheme)
         }
+    }
+
+    private func refreshQuote() async {
+        await model.refreshRandomQuote(currentDate: Date())
+        refreshFeedbackTrigger += 1
+        AccessibilityNotification.Announcement("Quote refreshed").post()
     }
 }
 

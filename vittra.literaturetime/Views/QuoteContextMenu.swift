@@ -10,6 +10,10 @@ struct QuoteContextMenu: View {
     /// can confirm the otherwise-silent action (e.g. with haptic feedback).
     var onCopy: () -> Void = {}
 
+    /// Invoked when the user requests a new quote. The host owns the asynchronous
+    /// refresh so this menu can be shared by both `Menu` and `contextMenu`.
+    var onRefresh: () -> Void = {}
+
     private var gutenbergURL: URL? {
         guard !literatureTime.gutenbergReference.isEmpty else { return nil }
         return URL(string: "https://www.gutenberg.org/ebooks/\(literatureTime.gutenbergReference)")
@@ -21,6 +25,8 @@ struct QuoteContextMenu: View {
         }
 
         Button("Copy quote", systemImage: "doc.on.doc", action: copyQuote)
+
+        Button("Refresh quote", systemImage: "arrow.clockwise", action: onRefresh)
 
         if let gutenbergURL {
             Link(destination: gutenbergURL) {
