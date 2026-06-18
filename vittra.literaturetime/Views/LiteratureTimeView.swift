@@ -55,10 +55,26 @@ struct LiteratureTimeView: View {
                     }
                     .font(.system(.title2, design: .serif, weight: .regular))
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityLabel(
+                        Text(
+                            "\(model.literatureTime.quoteFirst)\(model.literatureTime.quoteTime)\(model.literatureTime.quoteLast)"
+                        )
+                    )
+                    .accessibilityCustomContent(
+                        "Time reference",
+                        model.literatureTime.quoteTime.isEmpty
+                            ? nil
+                            : Text(model.literatureTime.quoteTime)
+                    )
 
                     HStack {
                         Text(
                             "- \(model.literatureTime.title), \(Text(model.literatureTime.author).italic())"
+                        )
+                        .accessibilityLabel(
+                            Text(
+                                "\(model.literatureTime.title), by \(model.literatureTime.author)"
+                            )
                         )
                     }
                     .font(.system(.footnote, design: .serif, weight: .regular))
@@ -79,20 +95,6 @@ struct LiteratureTimeView: View {
                 )
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
-                // Read the quote and its attribution as a single, natural
-                // utterance instead of two separate elements (and avoid the
-                // leading hyphen being spoken as "dash").
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(
-                    Text(
-                        "\(model.literatureTime.quoteFirst)\(model.literatureTime.quoteTime)\(model.literatureTime.quoteLast). \(model.literatureTime.title), by \(model.literatureTime.author)"
-                    )
-                )
-                .accessibilityValue(
-                    model.literatureTime.quoteTime.isEmpty
-                        ? Text("")
-                        : Text("Time reference: \(model.literatureTime.quoteTime)")
-                )
                 .accessibilityHidden(model.literatureTime.id.isEmpty)
                 .contextMenu {
                     QuoteContextMenu(
@@ -142,7 +144,14 @@ struct LiteratureTimeView: View {
                 // between.
                 while !Task.isCancelled {
                     let now = Date()
+                    let previousId = model.literatureTime.id
                     await model.autoRefreshIfMinuteChanged(currentDate: now)
+
+                    if !previousId.isEmpty, model.literatureTime.id != previousId {
+                        AccessibilityNotification.Announcement(
+                            "Quote updated for the current time"
+                        ).post()
+                    }
 
                     let nextMinute =
                         Calendar.current.nextDate(
@@ -195,9 +204,17 @@ struct LiteratureTimeView: View {
     }
 
     private func refreshQuote() async {
+        let previousId = model.literatureTime.id
+
         await model.refreshRandomQuote(currentDate: Date())
         refreshFeedbackTrigger += 1
-        AccessibilityNotification.Announcement("Quote refreshed").post()
+
+        let announcement =
+            model.literatureTime.id == previousId
+                ? "No different quote available for this time"
+                : "Quote refreshed"
+
+        AccessibilityNotification.Announcement(announcement).post()
     }
 }
 
