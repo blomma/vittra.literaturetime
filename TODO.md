@@ -24,5 +24,5 @@
 
 ## Tech Debt (TECH)
 
-- [ ] **TECH-1 · Stray capabilities in the app config** — `VittraApp.entitlements` declares `aps-environment` (push) and empty iCloud container/service arrays, and `Info.plist` declares an empty `UIBackgroundModes`. None are used by the app. Remove them to avoid provisioning friction and App Review questions about unused entitlements.
+- [x] **TECH-1 · Stray capabilities in the app config** — `VittraApp.entitlements` declares `aps-environment` (push) and empty iCloud container/service arrays, and `Info.plist` declares an empty `UIBackgroundModes`. None are used by the app. Remove them to avoid provisioning friction and App Review questions about unused entitlements.
 - [ ] **TECH-2 · `refreshRandomQuote` exclusion logic is hard to follow** — the multi-branch, double-fetch retry in `LiteratureTimeModel.refreshRandomQuote` (`LiteratureTimeModel.swift:43`) encodes several subtle cases (no results, only-current excluded, more-than-current excluded) inline. Simplify/extract before this logic is duplicated into the widget and watch targets.
