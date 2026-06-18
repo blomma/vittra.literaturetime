@@ -192,6 +192,7 @@ struct LiteratureTimeView: View {
             }
             .accessibilityLabel("Quote actions")
             .disabled(model.literatureTime.id.isEmpty)
+            .accessibilityHidden(model.literatureTime.id.isEmpty)
             .padding(.trailing, horizontalSizeClass == .compact ? 12 : 80)
             .padding(.bottom, 8)
         }
