@@ -83,7 +83,7 @@ let devices: [(rawValue: String, simulator: String)] = [
     ("iPhone_6.7", ProcessInfo.processInfo.environment["SCREENSHOT_IPHONE_SIMULATOR"] ?? "iPhone 17 Pro Max"),
     ("iPad_12.9", ProcessInfo.processInfo.environment["SCREENSHOT_IPAD_SIMULATOR"] ?? "iPad Pro 13-inch (M5)"),
 ]
-let screenNames = ["01_LiteraryClock", "02_Personalize", "03_DarkMode"]
+let screenNames = ["01_LiteraryClock", "02_Personalize", "03_DarkMode", "04_ReadTheBook", "05_OpenSource"]
 let simulatorOS = ProcessInfo.processInfo.environment["SCREENSHOT_SIMULATOR_OS"] ?? "26.5"
 
 for device in devices {
