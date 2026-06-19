@@ -24,6 +24,9 @@ struct LiteratureTimeView: View {
     @Environment(\.colorScheme)
     private var colorScheme
 
+    @Environment(\.scenePhase)
+    private var scenePhase
+
     @Environment(\.accessibilityReduceMotion)
     private var accessibilityReduceMotion
 
@@ -149,7 +152,11 @@ struct LiteratureTimeView: View {
                     let previousId = model.literatureTime.id
                     await model.autoRefreshIfMinuteChanged(currentDate: now)
 
-                    if !previousId.isEmpty, model.literatureTime.id != previousId {
+                    if !previousId.isEmpty,
+                        model.literatureTime.id != previousId,
+                        scenePhase == .active,
+                        !shouldPresentSettings
+                    {
                         AccessibilityNotification.Announcement(
                             "Quote updated for the current time"
                         ).post()
