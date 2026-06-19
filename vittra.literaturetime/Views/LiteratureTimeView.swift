@@ -61,7 +61,7 @@ struct LiteratureTimeView: View {
                         )
                     )
                     .accessibilityCustomContent(
-                        "Time reference",
+                        AccessibilityCustomContentKey("Time reference"),
                         model.literatureTime.quoteTime.isEmpty
                             ? nil
                             : Text(model.literatureTime.quoteTime)
@@ -108,6 +108,7 @@ struct LiteratureTimeView: View {
                 }
             }
             .scrollIndicators(.hidden)
+            .accessibilityIdentifier("timelyQuote.home")
             .foregroundStyle(.literature)
             .onChange(of: model.literatureTime) { _, newValue in
                 // Persist whatever is shown so it can be restored on next
@@ -191,6 +192,7 @@ struct LiteratureTimeView: View {
                     .contentShape(Circle())
             }
             .accessibilityLabel("Quote actions")
+            .accessibilityIdentifier("timelyQuote.quoteActions")
             .disabled(model.literatureTime.id.isEmpty)
             .accessibilityHidden(model.literatureTime.id.isEmpty)
             .padding(.trailing, horizontalSizeClass == .compact ? 12 : 80)

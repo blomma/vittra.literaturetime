@@ -33,31 +33,10 @@
             reference = "container:TestPlans/UnitTest.xctestplan"
             default = "YES">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/ScreenshotTests.xctestplan">
+         </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9E9CBD9A2A5898D800CB9319"
-               BuildableName = "vittra.literaturetimeTests.xctest"
-               BlueprintName = "vittra.literaturetimeTests"
-               ReferencedContainer = "container:vittra.literaturetime.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9E9CBDA42A5898D800CB9319"
-               BuildableName = "vittra.literaturetimeUITests.xctest"
-               BlueprintName = "vittra.literaturetimeUITests"
-               ReferencedContainer = "container:vittra.literaturetime.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

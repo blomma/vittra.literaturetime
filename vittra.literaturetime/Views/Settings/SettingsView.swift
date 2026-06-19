@@ -26,6 +26,7 @@ struct SettingsView: View {
                 }
             }
         }
+        .accessibilityIdentifier("timelyQuote.settings")
     }
 }
 

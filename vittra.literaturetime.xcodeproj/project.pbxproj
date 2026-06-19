@@ -13,6 +13,16 @@
 		9EF5B1582BBC5FF6005BB932 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 9EF5B1572BBC5FF6005BB932 /* Models */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9EAA00072E50000100C0DE01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E9CBD7F2A5898D600CB9319 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E9CBD862A5898D600CB9319;
+			remoteInfo = vittra.literaturetime;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		9E0D5E832C8A457600D1ED97 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9E1F45EA2B47086800454FD8 /* Quotes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Quotes; sourceTree = "<group>"; };
@@ -21,6 +31,7 @@
 		9E77C6602B94B2B500ABF7B6 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		9E77C6612B94B2BF00ABF7B6 /* PRIVACY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PRIVACY.md; sourceTree = "<group>"; };
 		9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vittra.literaturetime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9CBDA52A5898D800CB9319 /* vittra.literaturetimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vittra.literaturetimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EBB58692E393C95005C679B /* BaseSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BaseSettings.xcconfig; sourceTree = "<group>"; };
 		9EEB857C2B66488600D48369 /* Oknytt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Oknytt; sourceTree = "<group>"; };
 		9EF5B1592BBC6120005BB932 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
@@ -39,6 +50,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		9E5409DC2E3F85B2004DC694 /* TestPlans */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TestPlans; sourceTree = "<group>"; };
 		9E9CBD892A5898D600CB9319 /* vittra.literaturetime */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9EFF00012E3F85B2004DC694 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = vittra.literaturetime; sourceTree = "<group>"; };
+		9EAA00012E50000100C0DE01 /* vittra.literaturetimeUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = vittra.literaturetimeUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +61,13 @@
 				9EF5B1582BBC5FF6005BB932 /* Models in Frameworks */,
 				9EEB857E2B664A4000D48369 /* Oknytt in Frameworks */,
 				9E6FDC022BBC5E83003DF133 /* Providers in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EAA00032E50000100C0DE01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +88,7 @@
 				9E6FDC002BBC5E30003DF133 /* Providers */,
 				9EEB857C2B66488600D48369 /* Oknytt */,
 				9E9CBD892A5898D600CB9319 /* vittra.literaturetime */,
+				9EAA00012E50000100C0DE01 /* vittra.literaturetimeUITests */,
 				9E9CBD882A5898D600CB9319 /* Products */,
 				9EBEDEF42A9BC7E2002CD4A4 /* Frameworks */,
 			);
@@ -78,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */,
+				9E9CBDA52A5898D800CB9319 /* vittra.literaturetimeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +138,29 @@
 			productReference = 9E9CBD872A5898D600CB9319 /* vittra.literaturetime.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9E9CBDA42A5898D800CB9319 /* vittra.literaturetimeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9EAA000A2E50000100C0DE01 /* Build configuration list for PBXNativeTarget "vittra.literaturetimeUITests" */;
+			buildPhases = (
+				9EAA00022E50000100C0DE01 /* Sources */,
+				9EAA00032E50000100C0DE01 /* Frameworks */,
+				9EAA00042E50000100C0DE01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9EAA00082E50000100C0DE01 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9EAA00012E50000100C0DE01 /* vittra.literaturetimeUITests */,
+			);
+			name = vittra.literaturetimeUITests;
+			packageProductDependencies = (
+			);
+			productName = vittra.literaturetimeUITests;
+			productReference = 9E9CBDA52A5898D800CB9319 /* vittra.literaturetimeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -129,6 +173,10 @@
 				TargetAttributes = {
 					9E9CBD862A5898D600CB9319 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					9E9CBDA42A5898D800CB9319 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 9E9CBD862A5898D600CB9319;
 					};
 				};
 			};
@@ -148,6 +196,7 @@
 			projectRoot = "";
 			targets = (
 				9E9CBD862A5898D600CB9319 /* vittra.literaturetime */,
+				9E9CBDA42A5898D800CB9319 /* vittra.literaturetimeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -161,6 +210,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9EAA00042E50000100C0DE01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -171,7 +227,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9EAA00022E50000100C0DE01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9EAA00082E50000100C0DE01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E9CBD862A5898D600CB9319 /* vittra.literaturetime */;
+			targetProxy = 9EAA00072E50000100C0DE01 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9E9CBDAD2A5898D800CB9319 /* Debug */ = {
@@ -325,6 +396,44 @@
 			};
 			name = Release;
 		};
+		9EAA00052E50000100C0DE01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 32J7P2AA46;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.artsoftheinsane.vittra-literaturetimeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = vittra.literaturetime;
+			};
+			name = Debug;
+		};
+		9EAA00062E50000100C0DE01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 32J7P2AA46;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.artsoftheinsane.vittra-literaturetimeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = vittra.literaturetime;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -342,6 +451,15 @@
 			buildConfigurations = (
 				9E9CBDB02A5898D800CB9319 /* Debug */,
 				9E9CBDB12A5898D800CB9319 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9EAA000A2E50000100C0DE01 /* Build configuration list for PBXNativeTarget "vittra.literaturetimeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EAA00052E50000100C0DE01 /* Debug */,
+				9EAA00062E50000100C0DE01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
