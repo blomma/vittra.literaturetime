@@ -108,6 +108,7 @@ struct LiteratureTimeView: View {
                 }
             }
             .scrollIndicators(.hidden)
+            .contentMargins(.bottom, 64, for: .scrollContent)
             .accessibilityIdentifier("timelyQuote.home")
             .foregroundStyle(.literature)
             .onChange(of: model.literatureTime) { _, newValue in
