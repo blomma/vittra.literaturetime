@@ -193,11 +193,21 @@ struct LiteratureTimeView: View {
                     }
                 )
             } label: {
+                // Pin an explicit 48×48 hit target rather than deriving it from
+                // the glyph's intrinsic size plus padding: this guarantees the
+                // target stays above Apple's 44pt floor regardless of the symbol
+                // or Dynamic Type mapping, and a rectangular content shape keeps
+                // the corners — where an edge-arriving thumb lands — tappable.
                 Image(systemName: "ellipsis.circle")
-                    .font(.title2)
-                    .foregroundStyle(.literature)
-                    .padding(12)
-                    .contentShape(Circle())
+                    .font(.title)
+                    // Tint with the app's single accent (the colour of the time
+                    // word) rather than the prose colour: this reads as chrome,
+                    // not content, and reuses the existing "accent = interactive"
+                    // semantic. Held at 0.7 so it stays discoverable without
+                    // pulling the eye off the quote.
+                    .foregroundStyle(Color.literatureTime.opacity(0.6))
+                    .frame(width: 48, height: 48)
+                    .contentShape(Rectangle())
             }
             .accessibilityLabel("Quote actions")
             .accessibilityIdentifier("timelyQuote.quoteActions")
