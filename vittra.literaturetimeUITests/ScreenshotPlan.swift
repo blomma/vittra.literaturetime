@@ -30,10 +30,10 @@ struct ScreenshotPlan: Sendable {
     static let literatureTimeID =
         "60ec21b8053497f65e26250aa9427618c56229c23aa0cff6aed4da8f47d5bac1"
     static let screens = [
-        Screen(name: "01_LiteraryClock", caption: "A literary clock for your day"),
+        Screen(name: "01_LiteraryClock", caption: "The literary clock you can read"),
         Screen(name: "02_Personalize", caption: "A new book quote every minute"),
-        Screen(name: "03_DarkMode", caption: "Light or dark, made for reading"),
-        Screen(name: "04_ReadTheBook", caption: "Read the whole book, free"),
+        Screen(name: "03_DarkMode", caption: "Light or dark — made for reading"),
+        Screen(name: "04_ReadTheBook", caption: "Read the whole book — free"),
         Screen(name: "05_OpenSource", caption: "Private. No ads. Open source."),
     ]
     static let devices = Device.allCases

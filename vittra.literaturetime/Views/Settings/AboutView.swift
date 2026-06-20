@@ -47,8 +47,6 @@ struct AboutView: View {
                 Text(
                     """
                     • [Project Gutenberg](https://www.gutenberg.org)
-
-                    • [SwiftFormat](https://github.com/nicklockwood/SwiftFormat)
                     """
                 )
                 .multilineTextAlignment(.leading)
