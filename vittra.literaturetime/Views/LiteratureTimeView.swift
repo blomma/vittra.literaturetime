@@ -226,6 +226,47 @@ struct LiteratureTimeView: View {
                 : "Quote refreshed"
 
         AccessibilityNotification.Announcement(announcement).post()
+
+        // `.refreshable` keeps the pull-to-refresh spinner visible until this
+        // closure returns, then plays a retract animation. The fetch above is a
+        // near-instant local lookup, so if the user pulls and immediately
+        // switches apps, the closure can return while backgrounded — UIKit then
+        // drops the retract animation (no active screen to run it on) and the
+        // spinner stays stuck until the next pull. Hold the task open until the
+        // app is active again so the spinner always dismisses on-screen.
+        await waitUntilActive()
+    }
+
+    /// Suspends until a scene is foreground-active, returning immediately if
+    /// one already is.
+    ///
+    /// Reads the scene-activation graph (`connectedScenes` +
+    /// `UIScene.didActivateNotification`) rather than the app-global
+    /// `UIApplication.applicationState`, so it stays correct when the app has
+    /// more than one window. The `guard` reads the live state immediately
+    /// before subscribing. Because the view is `@MainActor` and the observer
+    /// is registered synchronously before the first suspension, no activation
+    /// can be delivered in between, so there is no missed-notification window.
+    ///
+    /// The per-notification check is a `for await … break` rather than
+    /// `first(where:)`: under Swift 6 strict concurrency the latter takes a
+    /// `@concurrent` closure over the non-Sendable `Notification`, which is a
+    /// data-race error. Cancellation terminates the sequence, so the loop exits
+    /// and the function returns without any further state checks.
+    private func waitUntilActive() async {
+        guard !isForegroundActive else { return }
+
+        for await _ in NotificationCenter.default.notifications(
+            named: UIScene.didActivateNotification
+        ) {
+            if isForegroundActive { break }
+        }
+    }
+
+    private var isForegroundActive: Bool {
+        UIApplication.shared.connectedScenes.contains { scene in
+            scene.activationState == .foregroundActive
+        }
     }
 }
 
