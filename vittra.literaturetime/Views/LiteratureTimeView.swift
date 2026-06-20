@@ -216,7 +216,7 @@ struct LiteratureTimeView: View {
             .padding(.trailing, horizontalSizeClass == .compact ? 12 : 80)
             .padding(.bottom, 8)
         }
-        .sensoryFeedback(.success, trigger: copyFeedbackTrigger)
+        .sensoryFeedback(.impact(weight: .light), trigger: copyFeedbackTrigger)
         .sensoryFeedback(.impact(flexibility: .soft), trigger: refreshFeedbackTrigger)
         .sheet(isPresented: $shouldPresentSettings) {
             SettingsView()
