@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html),
 
-## 1.13.0 -
+## 1.13.0
+
+- A fresh batch of quotes to discover
+- A redrawn app icon
+- Accessibility improvements: clearer VoiceOver reading of quotes and refresh feedback
+- Behind-the-scenes code improvements for a smoother experience
 
 ## 1.12.0 - 2025-09
 
