@@ -199,7 +199,7 @@ struct LiteratureTimeView: View {
                 // or Dynamic Type mapping, and a rectangular content shape keeps
                 // the corners — where an edge-arriving thumb lands — tappable.
                 Image(systemName: "ellipsis.circle")
-                    .font(.title)
+                    .font(.system(.title, weight: .thin))
                     // Tint with the app's single accent (the colour of the time
                     // word) rather than the prose colour: this reads as chrome,
                     // not content, and reuses the existing "accent = interactive"
