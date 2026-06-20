@@ -28,7 +28,7 @@ struct ScreenshotPlan: Sendable {
 
     static let locale = "en-US"
     static let literatureTimeID =
-        "65a6e80ec9faf825244bab5f261c1e5230f82813492900612015eaef4d6f5b0c"
+        "60ec21b8053497f65e26250aa9427618c56229c23aa0cff6aed4da8f47d5bac1"
     static let screens = [
         Screen(name: "01_LiteraryClock", caption: "A literary clock for your day"),
         Screen(name: "02_Personalize", caption: "A new book quote every minute"),

@@ -95,7 +95,7 @@ for device in devices {
     try run("/usr/bin/xcrun", ["simctl", "bootstatus", simulatorUDID, "-b"])
     try run("/usr/bin/xcrun", [
         "simctl", "status_bar", simulatorUDID, "override",
-        "--time", "7:03", "--batteryState", "charged", "--batteryLevel", "100",
+        "--time", "10:38", "--batteryState", "charged", "--batteryLevel", "100",
         "--wifiBars", "3", "--cellularBars", "4",
     ])
 
