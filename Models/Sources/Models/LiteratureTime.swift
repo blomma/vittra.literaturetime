@@ -16,7 +16,7 @@ public struct LiteratureTime: Equatable, Sendable {
         title: String,
         author: String,
         gutenbergReference: String,
-        id: String
+        id: String,
     ) {
         self.time = time
         self.quoteFirst = quoteFirst
@@ -59,7 +59,7 @@ public extension LiteratureTime {
             title: "The Hitchhiker's Guide to the Galaxy",
             author: "Douglas Adams",
             gutenbergReference: "",
-            id: fallbackId
+            id: fallbackId,
         )
     }
 
@@ -72,7 +72,7 @@ public extension LiteratureTime {
             title: "",
             author: "",
             gutenbergReference: "",
-            id: ""
+            id: "",
         )
     }
 }

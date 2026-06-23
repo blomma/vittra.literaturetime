@@ -7,7 +7,7 @@ public protocol LiteratureTimeProviding: Sendable {
     func fetchRandomForTimeExcluding(
         hour: Int,
         minute: Int,
-        excludingIds: Set<String>
+        excludingIds: Set<String>,
     ) async throws -> Result<LiteratureTime, FetchLiteratureTimeError>
 
     func fetch(id: String) async throws -> Result<LiteratureTime, FetchLiteratureTimeError>

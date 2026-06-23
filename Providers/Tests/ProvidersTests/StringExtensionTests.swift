@@ -9,13 +9,13 @@ import Testing
         (input: "1", paddedToLength: 2, withCharacter: "0", expectedResult: "01"),
         (input: "01", paddedToLength: 2, withCharacter: "0", expectedResult: "01"),
         (input: "20", paddedToLength: 2, withCharacter: "0", expectedResult: "20"),
-    ]
+    ],
 )
 func leftPadWithCharacterToLengthShouldPass(
     input: String,
     paddedToLength: Int,
     withCharacter: Character,
-    expectedResult: String
+    expectedResult: String,
 ) {
     let result = String(input).leftPadding(toLength: paddedToLength, withPad: withCharacter)
     #expect(result == expectedResult)

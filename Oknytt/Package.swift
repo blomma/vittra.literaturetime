@@ -10,7 +10,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Oknytt",
-            targets: ["Oknytt"]
+            targets: ["Oknytt"],
         )
     ],
     targets: [
@@ -19,5 +19,5 @@ let package = Package(
         .target(
             name: "Oknytt"
         )
-    ]
+    ],
 )

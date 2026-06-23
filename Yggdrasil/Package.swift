@@ -19,7 +19,7 @@ let package = Package(
             ],
             linkerSettings: [
                 .linkedLibrary("sqlite3")
-            ]
+            ],
         )
-    ]
+    ],
 )

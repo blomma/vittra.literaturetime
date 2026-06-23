@@ -10,12 +10,12 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Providers",
-            targets: ["Providers"]
+            targets: ["Providers"],
         )
     ],
     dependencies: [
         .package(name: "Models", path: "../Models"),
-        .package(name: "LiteratureSchema", path: "../LiteratureSchema")
+        .package(name: "LiteratureSchema", path: "../LiteratureSchema"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,12 +24,12 @@ let package = Package(
             name: "Providers",
             dependencies: [
                 .product(name: "Models", package: "Models"),
-                .product(name: "LiteratureSchema", package: "LiteratureSchema")
-            ]
+                .product(name: "LiteratureSchema", package: "LiteratureSchema"),
+            ],
         ),
         .testTarget(
             name: "ProvidersTests",
-            dependencies: ["Providers"]
+            dependencies: ["Providers"],
         ),
-    ]
+    ],
 )

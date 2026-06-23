@@ -19,7 +19,7 @@ struct ScreenshotTestHelper {
         app.launch()
         XCTAssertTrue(
             app.scrollViews["timelyQuote.home"].waitForExistence(timeout: 10),
-            "The quote view did not finish loading"
+            "The quote view did not finish loading",
         )
     }
 

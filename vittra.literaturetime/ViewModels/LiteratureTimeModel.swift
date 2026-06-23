@@ -53,11 +53,11 @@ final class LiteratureTimeModel {
     func refreshRandomQuote(currentDate: Date) async {
         let previousHourMinute = Calendar.current.dateComponents(
             [.hour, .minute],
-            from: previousRefreshDate
+            from: previousRefreshDate,
         )
         let currentHourMinute = Calendar.current.dateComponents(
             [.hour, .minute],
-            from: currentDate
+            from: currentDate,
         )
 
         guard
@@ -81,7 +81,7 @@ final class LiteratureTimeModel {
             var result = try await provider.fetchRandomForTimeExcluding(
                 hour: currentHour,
                 minute: currentMinute,
-                excludingIds: literatureTimeIds
+                excludingIds: literatureTimeIds,
             )
 
             if case let .success(literatureTime) = result {
@@ -116,7 +116,7 @@ final class LiteratureTimeModel {
             result = try await provider.fetchRandomForTimeExcluding(
                 hour: currentHour,
                 minute: currentMinute,
-                excludingIds: literatureTimeIds
+                excludingIds: literatureTimeIds,
             )
 
             if case let .success(literatureTime) = result {
@@ -138,11 +138,11 @@ final class LiteratureTimeModel {
     func autoRefreshIfMinuteChanged(currentDate: Date) async {
         let previousHourMinute = Calendar.current.dateComponents(
             [.hour, .minute],
-            from: previousRefreshDate
+            from: previousRefreshDate,
         )
         let currentHourMinute = Calendar.current.dateComponents(
             [.hour, .minute],
-            from: currentDate
+            from: currentDate,
         )
 
         guard let currentHour = currentHourMinute.hour,

@@ -13,15 +13,15 @@ struct ScreenshotPlan: Sendable {
 
         var simulatorName: String {
             switch self {
-            case .iPhone6_7: "iPhone 17 Pro Max"
-            case .iPad12_9: "iPad Pro 13-inch (M5)"
+                case .iPhone6_7: "iPhone 17 Pro Max"
+                case .iPad12_9: "iPad Pro 13-inch (M5)"
             }
         }
 
         var screenshotSize: CGSize {
             switch self {
-            case .iPhone6_7: CGSize(width: 1290, height: 2796)
-            case .iPad12_9: CGSize(width: 2048, height: 2732)
+                case .iPhone6_7: CGSize(width: 1290, height: 2796)
+                case .iPad12_9: CGSize(width: 2048, height: 2732)
             }
         }
     }

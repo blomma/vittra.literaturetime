@@ -34,7 +34,7 @@ func importLiteratureTime(fromFile: String, toStore: String) {
 private func seed(_ imports: [LiteratureTimeImport], into url: URL) throws {
     let container = try ModelContainer(
         for: Schema(CurrentScheme.models),
-        configurations: [ModelConfiguration(url: url)]
+        configurations: [ModelConfiguration(url: url)],
     )
     let context = ModelContext(container)
 
@@ -48,7 +48,7 @@ private func seed(_ imports: [LiteratureTimeImport], into url: URL) throws {
                 title: item.title,
                 author: item.author,
                 gutenbergReference: item.gutenbergReference,
-                id: item.hash
+                id: item.hash,
             )
         )
     }

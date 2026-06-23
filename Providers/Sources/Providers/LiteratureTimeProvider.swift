@@ -21,7 +21,7 @@ public actor LiteratureTimeProvider: LiteratureTimeProviding {
     public func fetchRandomForTimeExcluding(
         hour: Int,
         minute: Int,
-        excludingIds: Set<String>
+        excludingIds: Set<String>,
     ) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
         let paddedHour = String(hour).leftPadding(toLength: 2, withPad: "0")
         let paddedMinute = String(minute).leftPadding(toLength: 2, withPad: "0")
@@ -57,7 +57,7 @@ public actor LiteratureTimeProvider: LiteratureTimeProviding {
                 title: literatureTime.title,
                 author: literatureTime.author,
                 gutenbergReference: literatureTime.gutenbergReference,
-                id: literatureTime.id
+                id: literatureTime.id,
             )
         )
     }
@@ -86,7 +86,7 @@ public actor LiteratureTimeProvider: LiteratureTimeProviding {
                 title: literatureTime.title,
                 author: literatureTime.author,
                 gutenbergReference: literatureTime.gutenbergReference,
-                id: literatureTime.id
+                id: literatureTime.id,
             )
         )
     }

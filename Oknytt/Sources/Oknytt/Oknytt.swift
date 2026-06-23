@@ -15,7 +15,7 @@ public extension Logger {
         file: StaticString = #file,
         function: StaticString = #function,
         line: UInt = #line,
-        column: UInt = #column
+        column: UInt = #column,
     ) {
         #if DEBUG
         if level == .debug {

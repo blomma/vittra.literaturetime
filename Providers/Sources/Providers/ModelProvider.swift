@@ -13,7 +13,7 @@ public final class ModelProvider {
                 let storeURL = Bundle.main.url(
                     forResource: "literatureTimes",
                     withExtension: "store",
-                    subdirectory: "Quotes"
+                    subdirectory: "Quotes",
                 )
             else {
                 fatalError("Failed to find literatureTimes.store")

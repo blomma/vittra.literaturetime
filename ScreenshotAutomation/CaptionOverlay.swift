@@ -17,13 +17,13 @@ struct CaptionOverlay {
         let attributedText = NSAttributedString(string: text, attributes: attributes)
         let measured = attributedText.boundingRect(
             with: CGSize(width: rect.width * 0.84, height: rect.height),
-            options: [.usesLineFragmentOrigin, .usesFontLeading]
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
         )
         let textRect = CGRect(
             x: rect.midX - rect.width * 0.42,
             y: rect.midY - measured.height / 2,
             width: rect.width * 0.84,
-            height: measured.height
+            height: measured.height,
         )
         attributedText.draw(with: textRect, options: [.usesLineFragmentOrigin, .usesFontLeading])
     }

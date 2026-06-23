@@ -67,7 +67,7 @@ struct LiteratureTimeView: View {
                         AccessibilityCustomContentKey("Time reference"),
                         model.literatureTime.quoteTime.isEmpty
                             ? nil
-                            : Text(model.literatureTime.quoteTime)
+                            : Text(model.literatureTime.quoteTime),
                     )
 
                     HStack {
@@ -94,7 +94,7 @@ struct LiteratureTimeView: View {
                 .padding(.vertical, 45)
                 .animation(
                     accessibilityReduceMotion ? nil : .default,
-                    value: model.literatureTime
+                    value: model.literatureTime,
                 )
                 .foregroundStyle(.literature)
                 .contentShape(Rectangle())
@@ -106,7 +106,7 @@ struct LiteratureTimeView: View {
                         onCopy: { copyFeedbackTrigger += 1 },
                         onRefresh: {
                             Task { await refreshQuote() }
-                        }
+                        },
                     )
                 }
             }
@@ -135,7 +135,7 @@ struct LiteratureTimeView: View {
                 guard autoRefreshQuote else {
                     await model.loadInitialQuote(
                         persistedId: literatureTimeId,
-                        currentDate: Date()
+                        currentDate: Date(),
                     )
 
                     return
@@ -159,14 +159,15 @@ struct LiteratureTimeView: View {
                     {
                         AccessibilityNotification.Announcement(
                             "Quote updated for the current time"
-                        ).post()
+                        )
+                        .post()
                     }
 
                     let nextMinute =
                         Calendar.current.nextDate(
                             after: now,
                             matching: DateComponents(second: 0),
-                            matchingPolicy: .nextTime
+                            matchingPolicy: .nextTime,
                         ) ?? now.addingTimeInterval(60)
 
                     do {
@@ -190,7 +191,7 @@ struct LiteratureTimeView: View {
                     onCopy: { copyFeedbackTrigger += 1 },
                     onRefresh: {
                         Task { await refreshQuote() }
-                    }
+                    },
                 )
             } label: {
                 // Pin an explicit 48×48 hit target rather than deriving it from
@@ -232,8 +233,8 @@ struct LiteratureTimeView: View {
 
         let announcement =
             model.literatureTime.id == previousId
-                ? "No different quote available for this time"
-                : "Quote refreshed"
+            ? "No different quote available for this time"
+            : "Quote refreshed"
 
         AccessibilityNotification.Announcement(announcement).post()
 

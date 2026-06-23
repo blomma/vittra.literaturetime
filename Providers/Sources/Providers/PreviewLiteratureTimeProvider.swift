@@ -14,12 +14,13 @@ public struct PreviewLiteratureTimeProvider: LiteratureTimeProviding {
     public func fetchRandomForTimeExcluding(
         hour _: Int,
         minute _: Int,
-        excludingIds _: Set<String>
+        excludingIds _: Set<String>,
     ) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
         .success(literatureTime)
     }
 
-    public func fetch(id _: String) async throws -> Result<LiteratureTime, FetchLiteratureTimeError> {
+    public func fetch(id _: String) async throws -> Result<LiteratureTime, FetchLiteratureTimeError>
+    {
         .success(literatureTime)
     }
 }

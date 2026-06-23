@@ -32,7 +32,7 @@ public enum SchemaV1: VersionedSchema {
             title: String,
             author: String,
             gutenbergReference: String,
-            id: String
+            id: String,
         ) {
             self.time = time
             self.quoteFirst = quoteFirst
