@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Yggdrasil",
-    platforms: [.iOS(.v18), .macOS(.v15), .tvOS(.v17), .watchOS(.v10)],
+    platforms: [.iOS(.v26), .macOS(.v26)],
     dependencies: [
         .package(name: "LiteratureSchema", path: "../LiteratureSchema")
     ],
